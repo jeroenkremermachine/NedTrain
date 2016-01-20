@@ -16,6 +16,7 @@ public class Main {
 		System.out.println(myTrain.getType().getLength());
 		
 		System.out.println("Dit moet silvana kunnen zien! Nu wel");
+		System.out.println("Dit moet viv kunnen zien!");
 	}
 
 }
