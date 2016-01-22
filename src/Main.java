@@ -14,6 +14,7 @@ public class Main {
 		
 		System.out.println(myTrain.getWash());
 		System.out.println(myTrain.getType().getLength());
+		System.out.println("hello");
 	}
 
 }
