@@ -25,9 +25,9 @@ public class Main {
 		ArrayList<Integer> positions = new ArrayList<Integer>();
 		positions.add(0, 0);
 		positions.add(1, 0);
-		positions.add(2, 1);
-		positions.add(3, 1);
-		positions.add(4, 0);
+		positions.add(2, 0);
+		positions.add(3, 0);
+		positions.add(4, 754); // initial train standing here
 
 		int[][] tpm = {
 				{1, 0, 1, 1, 0},
@@ -37,17 +37,32 @@ public class Main {
 				{0, 0, 1, 1, 1},
 		};
 
-		// Gewenste beweging
-		int start = 3;
-		int end = 4;
+		
+		
+		// New train arrival
+		
 
-		// resultaten
+		if (positions.get(0) == 0) {
+		positions.set(0, myTrain.getID());
+		}
+		int start = 0;
+		int end = 1;
+		int movement = 4; // the final position that the train should go to
+		while (positions.get(movement) != myTrain.getID()) {
+
 		System.out.println("the old position vector was:   "+ positions);
-		shuntingMovements move = new shuntingMovements(start,end, tpm, washpositions, repairpositions, positions);
+		shuntingMovements move = new shuntingMovements(myTrain.getID(), start,end, tpm, washpositions, repairpositions, positions);
 		System.out.println("is it possible to move:   "+ move.getpossibleMove());
 		System.out.println("did the train arrive on a washing position:   "+ move.getWashed());
-		System.out.println("the new position vector is:   "+move.getPositions());
+		System.out.println("the new position vector is:   "+ move.getPositions());
+		System.out.println();
+		if (move.getpossibleMove() == true) {
+		start = end;
+		}
+		end = end + 1;
+		positions = move.getPositions();
 
+		}
 
 }
 }
