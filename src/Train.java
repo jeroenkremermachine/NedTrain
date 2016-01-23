@@ -7,8 +7,9 @@ public class Train {
 	private boolean repair;
 	private boolean clean;
 	private boolean wash;
+	private int arrivalminute;
 
-	public Train(int ID, trainType type, boolean interchangable, boolean inspect, boolean repair, boolean clean, boolean wash){
+	public Train(int ID, trainType type, boolean interchangable, boolean inspect, boolean repair, boolean clean, boolean wash, int arrivalminute){
 		this.trainID = ID;
 		this.trainType = type;
 		this.interchangable = interchangable;
@@ -16,6 +17,7 @@ public class Train {
 		this.repair = repair;
 		this.clean = clean;
 		this.wash = wash;
+		this.arrivalminute = arrivalminute;
 	}
 
 	public int getID(){
@@ -46,6 +48,9 @@ public class Train {
 		return wash;
 	}
 	
+	public int getarrivalminute(){
+		return arrivalminute;
+	}
 	public void setInterchangable(boolean x){
 		this.interchangable = x;
 	}

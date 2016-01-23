@@ -59,6 +59,10 @@ public class shuntingMovements {
 		public ArrayList<Integer> getPositions() {
 			return positions;
 		}
+		
+		public int getTimeMove() {
+			return 3;
+		}
 
 
 	}
