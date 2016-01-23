@@ -57,17 +57,13 @@ public class Main {
 				positions.set(0, myTrain.getID());				
 		}
 		
-		if (positions.get(0) != 0) 
-		{
 		int start = 0; 
 		int end = 2;
-		System.out.println("the old position vector was:   "+ positions);
+		
+		if (positions.get(start) != 0) 
+		{
+		System.out.println("We gaan verplaatsen!! the old position vector was:   "+ positions);
 		shuntingMovements move = new shuntingMovements(myTrain.getID(), start,end, tpm, washpositions, repairpositions, positions);
-		System.out.println("is it possible to move:   "+ move.getpossibleMove());
-		System.out.println("did the train arrive on a washing position:   "+ move.getWashed());
-		System.out.println("the new position vector is:   "+ move.getPositions());
-		System.out.println();
-
 		movement = move.getpossibleMove();
 		positions = move.getPositions();
 		timeMovement = move.getTimeMove();
@@ -76,12 +72,16 @@ public class Main {
 		if (movement == true) 
 		{
 		System.out.println("startminuut van verplaatsing:   "+ minuut);
+		System.out.println("is it possible to move:   "+ movement);
+//		System.out.println("did the train arrive on a washing position:   "+ move.getWashed());
+		System.out.println("the new position vector is:   "+ positions);
 		minuut = minuut + timeMovement;
 		}
 		else 
 		{	
+			System.out.println("in deze minuut heeft geen verplaatsing plaats gevonden:  "+ minuut);
 		minuut++;
-		System.out.println("in deze minuut heeft geen verplaatsing plaats gevonden:  "+ minuut);
+
 		}
 
 		
