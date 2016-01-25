@@ -12,12 +12,12 @@ public class Main {
 		System.out.println(myTrain.getWash());
 		System.out.println(myTrain.getarrivalminute());
 		myTrain.setWash(false);
-		
+
 		System.out.println(myTrain.getWash());
 		System.out.println(myTrain.getType().getLength());
 		System.out.println("hello");
-	
-		
+
+
 		// Train movement initialisation 
 		ArrayList<Integer> washpositions = new ArrayList<Integer>();
 		washpositions.add(2);
@@ -38,59 +38,59 @@ public class Main {
 				{0, 0, 1, 1, 1},
 		};
 
-		
-		
+
+
 		// New train arrival, train goes to position 2 after it arrived
 
 
 		int minuut = 0; 
-		
+
 		while ( minuut <= 20)
 		{
 			boolean movement = false;
 			int timeMovement = 0;
-		
 
-		// check of er arrival plaats vind
-		if (minuut == myTrain.getarrivalminute()) 
-		{
+
+			// check of er arrival plaats vind
+			if (minuut == myTrain.getarrivalminute()) 
+			{
 				positions.set(0, myTrain.getID());				
-		}
-		
-		int start = 0; 
-		int end = 2;
-		
-		if (positions.get(start) != 0) 
-		{
-		System.out.println("We gaan verplaatsen!! the old position vector was:   "+ positions);
-		shuntingMovements move = new shuntingMovements(myTrain.getID(), start,end, tpm, washpositions, repairpositions, positions);
-		movement = move.getpossibleMove();
-		positions = move.getPositions();
-		timeMovement = move.getTimeMove();
-		}
-		
-		if (movement == true) 
-		{
-		System.out.println("startminuut van verplaatsing:   "+ minuut);
-		System.out.println("is it possible to move:   "+ movement);
-//		System.out.println("did the train arrive on a washing position:   "+ move.getWashed());
-		System.out.println("the new position vector is:   "+ positions);
-		minuut = minuut + timeMovement;
-		}
-		else 
-		{	
-			System.out.println("in deze minuut heeft geen verplaatsing plaats gevonden:  "+ minuut);
-		minuut++;
+			}
+
+			int start = 0; 
+			int end = 2;
+
+			if (positions.get(start) != 0) 
+			{
+				System.out.println("We gaan verplaatsen!! the old position vector was:   "+ positions);
+				shuntingMovements move = new shuntingMovements(myTrain.getID(), start,end, tpm, washpositions, repairpositions, positions);
+				movement = move.getpossibleMove();
+				positions = move.getPositions();
+				timeMovement = move.getTimeMove();
+			}
+
+			if (movement == true) 
+			{
+				System.out.println("startminuut van verplaatsing:   "+ minuut);
+				System.out.println("is it possible to move:   "+ movement);
+				//		System.out.println("did the train arrive on a washing position:   "+ move.getWashed());
+				System.out.println("the new position vector is:   "+ positions);
+				minuut = minuut + timeMovement;
+			}
+			else 
+			{	
+				System.out.println("in deze minuut heeft geen verplaatsing plaats gevonden:  "+ minuut);
+				minuut++;
+
+			}
+
+
 
 		}
 
-		
+	}
+}
 
-		}
-		
-		}
-		}
-	
 
 
 
