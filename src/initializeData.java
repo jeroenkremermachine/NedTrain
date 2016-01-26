@@ -13,6 +13,12 @@ public class initializeData {
 	public trainType SLT6;
 
 
+	public initializeData(){
+		initializeTrains();
+		initializeCompositions();
+		initializeTypes();
+	}
+	
 	public void initializeTrains(){
 		
 	}
