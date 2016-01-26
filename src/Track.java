@@ -9,15 +9,17 @@ public class Track {
 	public double idleSpace;
 	public boolean front;
 	public boolean back;
-	public ArrayList<Integer> connections; //1. From front of this track to front of other track, 2. from front of this track to back other, 3. from back of this track to front of other, 4. from back of this track to back of other 
+	public Integer[] connections; //1. From front of this track to front of other track, 2. from front of this track to back other, 3. from back of this track to front of other, 4. from back of this track to back of other 
 
 
 
-	public Track(double trackLength, boolean washTrack, boolean platformTrack, boolean ADTrack,ArrayList<Integer> connections){
+	public Track(double trackLength, boolean washTrack, boolean platformTrack, boolean ADTrack,Integer[] connections, ArrayList<Train> trainTrack){
 		this.trackLength=trackLength;
 		this.washTrack=washTrack;
 		this.platformTrack=platformTrack;
-		this.trainTrack=trainTrack; 
+		this.trainTrack=trainTrack;
+		this.ADTrack=ADTrack;
+		this.connections=connections;
 	}
 
 	public void remove(Train toRemove){ //finds the train and removes it from this track
@@ -33,7 +35,7 @@ public class Track {
 	}
 	
 	public int getConnection(int i){ //returns the integer in the connections vector of this track
-		return connections.get(i);
+		return connections[i];
 	}
 
 	public double getLength(){ //returns the length of the track

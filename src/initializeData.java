@@ -59,6 +59,7 @@ public class initializeData {
 			this.VIRM4 = new trainType(Integer.parseInt(type[5]), 0, 0, 0, 0);
 
 			line = br.readLine();
+			type = line.split(cvsSplitBy);
 			this.VIRM6 = new trainType(Integer.parseInt(type[5]), 0, 0, 0, 0);
 			
 			line = br.readLine();
