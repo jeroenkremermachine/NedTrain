@@ -4,6 +4,7 @@ public class Track {
 	public double trackLength;
 	public boolean washTrack;
 	public boolean platformTrack;
+	public boolean ADTrack;
 	public ArrayList<Train> trainTrack; //Contains the trains that are on this track in a certain order. From front to end. (important to define front and back of each track)
 	public double idleSpace;
 	public boolean front;
@@ -12,7 +13,7 @@ public class Track {
 
 
 
-	public Track(double trackLength, boolean washTrack, boolean platformTrack,ArrayList<Train> trainTrack,ArrayList<Integer> connections){
+	public Track(double trackLength, boolean washTrack, boolean platformTrack, boolean ADTrack,ArrayList<Integer> connections){
 		this.trackLength=trackLength;
 		this.washTrack=washTrack;
 		this.platformTrack=platformTrack;
@@ -45,6 +46,10 @@ public class Track {
 
 	public boolean getPlatform(){ //returns true if this track is a platform
 		return platformTrack;
+	}
+	
+	public boolean getAD(){
+		return ADTrack;
 	}
 
 	public ArrayList<Train> getTrains(){ //returns the arrayList containing all trains on this track
