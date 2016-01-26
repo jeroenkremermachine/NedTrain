@@ -60,10 +60,11 @@ public class Track {
 	}
 
 	public double getIdle(){//returns the idle space left on this track
-		idleSpace=0;
+		double fullSpace=0;
 		for (int i=0;i<trainTrack.size();i++){
-			idleSpace = idleSpace + trainTrack.get(i).getType().getLength();
+			fullSpace = fullSpace + trainTrack.get(i).getType().getLength();
 		}
+		idleSpace = trackLength - fullSpace;
 		return idleSpace;
 	}
 
