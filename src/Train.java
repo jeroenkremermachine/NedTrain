@@ -48,7 +48,7 @@ public class Train {
 		return wash;
 	}
 	
-	public int getarrivalminute(){
+	public int getArrivalminute(){
 		return arrivalminute;
 	}
 	public void setInterchangable(boolean x){

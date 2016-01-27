@@ -2,11 +2,25 @@ import java.util.ArrayList;
 
 public class trainComposition {
 	private ArrayList<Train> trains = new ArrayList<Train>();
+	private ArrayList<trainType> types = new ArrayList<trainType>();
 	private int ID;
+	private boolean arrival;
+	private int time;
 
-	public trainComposition(ArrayList trains, int ID){
+	public trainComposition(ArrayList trains, ArrayList types, int ID, boolean arrival, int time){
 		this.trains = trains;
 		this.ID = ID;
+		this.arrival = arrival;
+		this.time = time;
+		this.types = types;
+	}
+	
+	public boolean getArrival(){
+		return arrival;
+	}
+	
+	public int getTime(){
+		return time;
 	}
 	
 	public int getID(){
@@ -31,5 +45,13 @@ public class trainComposition {
 	
 	public void removeTrain(Train x){
 		trains.remove(x);
+	}
+	
+	public ArrayList<Train> getTrains(){
+		return trains;
+	}
+	
+	public ArrayList<trainType> getTypes(){
+		return types;
 	}
 }

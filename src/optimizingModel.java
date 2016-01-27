@@ -41,7 +41,7 @@ public class optimizingModel {
 
 
 			// check of er arrival plaats vind
-			if (minuut == myTrain.getarrivalminute()) 
+			if (minuut == myTrain.getArrivalminute()) 
 			{
 				positions.set(0, myTrain.getID());				
 			}
