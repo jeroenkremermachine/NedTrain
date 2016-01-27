@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, IOException {
 		// TODO Auto-generated method stub
 	initializeData data = new initializeData(); //create the data set
 	InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
@@ -11,13 +13,18 @@ public class Main {
 	
 	optimizingModel model = new optimizingModel(data, yard); //create the model
 	model.optimization(); //run the model and obtain output
-		
+	yard.tpmbuilder();
 
+				
+			
 
 		
 
 	}
 }
+
+
+
 
 
 
