@@ -6,13 +6,15 @@ public class trainComposition {
 	private int ID;
 	private boolean arrival;
 	private int time;
+	private boolean t906a;
 
-	public trainComposition(ArrayList trains, ArrayList types, int ID, boolean arrival, int time){
+	public trainComposition(ArrayList trains, ArrayList types, int ID, boolean arrival, int time, boolean t906a){
 		this.trains = trains;
 		this.ID = ID;
 		this.arrival = arrival;
 		this.time = time;
 		this.types = types;
+		this.t906a = t906a;
 	}
 	
 	public boolean getArrival(){
@@ -37,6 +39,10 @@ public class trainComposition {
 			length = length + trains.get(i).getType().getLength();
 		}
 		return length;
+	}
+	
+	public boolean get906a(){
+		return t906a;
 	}
 	
 	public void addTrain(Train x){

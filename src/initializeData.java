@@ -119,7 +119,7 @@ public class initializeData {
 	}
 	
 	public void initializeCompositions(){
-		String csvFile = "KleineBinckhorstTimes.csv";
+		String csvFile = "KleineBinckhorstTimes2.csv";
 		BufferedReader br = null;
 		String csvFile2 = "KleineBinckhorstCompositions.csv";
 		BufferedReader br2 = null;
@@ -155,7 +155,7 @@ public class initializeData {
 			this.f1 = new Train(1, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains1.add(f1);
 			}
-			this.c1 = new trainComposition(trains1, types1, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c1 = new trainComposition(trains1, types1, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types1.add(SLT4);
 			
 			// Second composition ========================================================
@@ -174,7 +174,7 @@ public class initializeData {
 			this.f3 = new Train(3, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains2.add(f3);
 			}
-			this.c2 = new trainComposition(trains2, types2, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c2 = new trainComposition(trains2, types2, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types2.add(VIRM4);
 			types2.add(VIRM6);
 			
@@ -192,7 +192,7 @@ public class initializeData {
 			this.f4 = new Train(4, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains3.add(f4);
 			}
-			this.c3 = new trainComposition(trains3, types3, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c3 = new trainComposition(trains3, types3, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types3.add(VIRM4);
 			types3.add(VIRM6);
 			
@@ -210,7 +210,7 @@ public class initializeData {
 			this.f5 = new Train(5, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains4.add(f5);
 			}
-			this.c4 = new trainComposition(trains4, types4, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c4 = new trainComposition(trains4, types4, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types4.add(VIRM4);
 			
 			// Fifth composition ========================================================
@@ -227,7 +227,7 @@ public class initializeData {
 			this.f6 = new Train(6, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains5.add(f6);
 			}
-			this.c5 = new trainComposition(trains5, types5, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c5 = new trainComposition(trains5, types5, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types5.add(VIRM6);
 			
 			// Sixth composition ========================================================
@@ -244,7 +244,7 @@ public class initializeData {
 			this.f7 = new Train(7, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains6.add(f7);
 			}
-			this.c6 = new trainComposition(trains6, types6, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c6 = new trainComposition(trains6, types6, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), false);
 			types6.add(DDZ4);
 			
 			// Seventh composition ========================================================
@@ -261,7 +261,7 @@ public class initializeData {
 			this.f8 = new Train(8, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains7.add(f8);
 			}
-			this.c7 = new trainComposition(trains7, types7, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c7 = new trainComposition(trains7, types7, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types7.add(VIRM4);
 			
 			// Eigth composition ========================================================
@@ -280,7 +280,7 @@ public class initializeData {
 			this.f10 = new Train(10, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains8.add(f10);
 			}
-			this.c8 = new trainComposition(trains8, types8, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c8 = new trainComposition(trains8, types8, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), false);
 			types8.add(VIRM4);
 			types8.add(VIRM4);
 			
@@ -298,7 +298,7 @@ public class initializeData {
 			this.f11 = new Train(11, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains9.add(f11);
 			}
-			this.c9 = new trainComposition(trains9, types9, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c9 = new trainComposition(trains9, types9, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types8.add(SLT6);
 			
 			// Tenth composition ========================================================
@@ -315,7 +315,7 @@ public class initializeData {
 			this.f12 = new Train(12, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains10.add(f12);
 			}
-			this.c10 = new trainComposition(trains10, types10, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c10 = new trainComposition(trains10, types10, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types10.add(SLT4);
 			
 			// Eleventh composition ========================================================
@@ -332,7 +332,7 @@ public class initializeData {
 			this.f13 = new Train(13, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains11.add(f13);
 			}
-			this.c11 = new trainComposition(trains11, types11, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c11 = new trainComposition(trains11, types11, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types11.add(VIRM4);
 			
 			// Twelfth composition ========================================================
@@ -351,7 +351,7 @@ public class initializeData {
 			this.f15 = new Train(15, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains12.add(f15);
 			}
-			this.c12 = new trainComposition(trains12, types12, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c12 = new trainComposition(trains12, types12, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types12.add(SLT6);
 			types12.add(SLT4);
 			
@@ -369,7 +369,7 @@ public class initializeData {
 				this.f16 = new Train(16, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains13.add(f16);
 			}
-			this.c13 = new trainComposition(trains13, types13, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c13 = new trainComposition(trains13, types13, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types13.add(VIRM6);
 			
 			// 14 composition ========================================================
@@ -386,7 +386,7 @@ public class initializeData {
 				this.f17 = new Train(17, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains14.add(f17);
 			}
-			this.c14 = new trainComposition(trains14, types14, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c14 = new trainComposition(trains14, types14, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types14.add(DDZ6);
 			
 			// 15 composition ========================================================
@@ -405,7 +405,7 @@ public class initializeData {
 			this.f19 = new Train(19, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains15.add(f19);
 			}
-			this.c15 = new trainComposition(trains15, types15, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c15 = new trainComposition(trains15, types15, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types15.add(DDZ6);
 			types15.add(VIRM6);
 			
@@ -424,7 +424,7 @@ public class initializeData {
 				this.f20 = new Train(20, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains16.add(f20);
 			}
-			this.c16 = new trainComposition(trains16, types16, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c16 = new trainComposition(trains16, types16, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types16.add(VIRM6);
 			
 			// 17 composition ========================================================
@@ -443,7 +443,7 @@ public class initializeData {
 			this.f22 = new Train(22, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains17.add(f22);
 			}
-			this.c17 = new trainComposition(trains17, types17, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c17 = new trainComposition(trains17, types17, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types17.add(VIRM6);
 			types17.add(VIRM4);
 			
@@ -467,7 +467,7 @@ public class initializeData {
 			this.f25 = new Train(25, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f25);
 			}
-			this.c18 = new trainComposition(trains18, types18, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c18 = new trainComposition(trains18, types18, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types18.add(SLT4);
 			types18.add(SLT4);
 			types18.add(SLT6);
@@ -488,7 +488,7 @@ public class initializeData {
 			this.f27 = new Train(27, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains19.add(f27);
 			}
-			this.c19 = new trainComposition(trains19, types19, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c19 = new trainComposition(trains19, types19, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types19.add(VIRM4);
 			types19.add(VIRM4);
 			
@@ -507,7 +507,7 @@ public class initializeData {
 			trains20.add(f28);
 		
 			}
-			this.c20 = new trainComposition(trains20, types20, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c20 = new trainComposition(trains20, types20, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types20.add(VIRM4);
 			
 			
@@ -530,7 +530,7 @@ public class initializeData {
 			trains21.add(f31);
 		
 			}
-			this.c21 = new trainComposition(trains21, types21, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c21 = new trainComposition(trains21, types21, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types21.add(SLT6);
 			types21.add(SLT4);
 			types21.add(SLT4);
@@ -551,7 +551,7 @@ public class initializeData {
 			trains22.add(f32);
 	
 			}
-			this.c22 = new trainComposition(trains22, types22, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c22 = new trainComposition(trains22, types22, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types22.add(VIRM4);
 	
 			// 23 composition ========================================================
@@ -569,7 +569,7 @@ public class initializeData {
 			trains23.add(f33);
 	
 			}
-			this.c23 = new trainComposition(trains23, types23, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c23 = new trainComposition(trains23, types23, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types23.add(DDZ4);
 			
 			// 24 composition ========================================================
@@ -587,7 +587,7 @@ public class initializeData {
 			trains24.add(f33);
 	
 			}
-			this.c24 = new trainComposition(trains24, types24, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c24 = new trainComposition(trains24, types24, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types24.add(VIRM4);
 			
 			// 25 composition ========================================================
@@ -607,7 +607,7 @@ public class initializeData {
 			trains25.add(f36);
 	
 			}
-			this.c25 = new trainComposition(trains25, types25, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c25 = new trainComposition(trains25, types25, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types25.add(VIRM4);
 			types25.add(VIRM4);
 			
@@ -626,7 +626,7 @@ public class initializeData {
 			trains26.add(f37);
 	
 			}
-			this.c26 = new trainComposition(trains26, types26, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c26 = new trainComposition(trains26, types26, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types26.add(SLT6);
 			
 			// 27 composition ========================================================
@@ -644,7 +644,7 @@ public class initializeData {
 			trains27.add(f38);
 	
 			}
-			this.c27 = new trainComposition(trains27, types27, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c27 = new trainComposition(trains27, types27, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types27.add(SLT4);
 			
 			// 28 composition ========================================================
@@ -662,7 +662,7 @@ public class initializeData {
 			trains28.add(f39);
 	
 			}
-			this.c28 = new trainComposition(trains28, types28, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c28 = new trainComposition(trains28, types28, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types28.add(VIRM4);
 	
 			// 29 composition ========================================================
@@ -681,7 +681,7 @@ public class initializeData {
 			this.f41 = new Train(41, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains29.add(f41);
 			}
-			this.c29 = new trainComposition(trains29, types29, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c29 = new trainComposition(trains29, types29, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types29.add(SLT6);
 			types29.add(SLT4);
 			
@@ -700,7 +700,7 @@ public class initializeData {
 			trains30.add(f42);
 	
 			}
-			this.c30 = new trainComposition(trains30, types30, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c30 = new trainComposition(trains30, types30, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types30.add(VIRM6);
 			
 			// 31 composition ========================================================
@@ -718,7 +718,7 @@ public class initializeData {
 			trains31.add(f43);
 	
 			}
-			this.c31 = new trainComposition(trains31, types31, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c31 = new trainComposition(trains31, types31, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types31.add(DDZ6);
 			
 			// 32 composition ========================================================
@@ -738,7 +738,7 @@ public class initializeData {
 			trains32.add(f45);
 	
 			}
-			this.c32 = new trainComposition(trains32, types32, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c32 = new trainComposition(trains32, types32, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types32.add(VIRM4);
 			types32.add(VIRM6);
 
@@ -757,7 +757,7 @@ public class initializeData {
 			trains33.add(f46);
 	
 			}
-			this.c33 = new trainComposition(trains33, types33, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c33 = new trainComposition(trains33, types33, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types33.add(VIRM6);
 			
 			// 34 composition ========================================================
@@ -775,7 +775,7 @@ public class initializeData {
 			trains34.add(f47);
 	
 			}
-			this.c34 = new trainComposition(trains34, types34, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c34 = new trainComposition(trains34, types34, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types34.add(VIRM6);
 			
 			// 35 composition ========================================================
@@ -793,7 +793,7 @@ public class initializeData {
 			trains35.add(f48);
 	
 			}
-			this.c35 = new trainComposition(trains35, types35, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c35 = new trainComposition(trains35, types35, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types35.add(VIRM4);
 			
 			// 36 composition ========================================================
@@ -813,7 +813,7 @@ public class initializeData {
 			trains36.add(f50);
 	
 			}
-			this.c36 = new trainComposition(trains36, types36, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c36 = new trainComposition(trains36, types36, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types36.add(SLT4);
 			types36.add(SLT4);
 			
@@ -832,7 +832,7 @@ public class initializeData {
 			trains37.add(f51);
 	
 			}
-			this.c37 = new trainComposition(trains37, types37, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c37 = new trainComposition(trains37, types37, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types37.add(SLT6);
 			
 			// 38 composition ========================================================
@@ -853,7 +853,7 @@ public class initializeData {
 			this.f54 = new Train(54, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f54);
 			}
-			this.c38 = new trainComposition(trains38, types38, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c38 = new trainComposition(trains38, types38, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types38.add(VIRM4);
 			types38.add(VIRM4);
 			types38.add(VIRM4);
@@ -876,7 +876,7 @@ public class initializeData {
 			this.f57 = new Train(57, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f57);
 			}
-			this.c39 = new trainComposition(trains39, types39, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c39 = new trainComposition(trains39, types39, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types39.add(SLT6);
 			types39.add(SLT4);
 			types39.add(SLT4);
@@ -895,7 +895,7 @@ public class initializeData {
 				this.f58 = new Train(58, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains40.add(f58);
 			}
-			this.c40 = new trainComposition(trains40, types40, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
+			this.c40 = new trainComposition(trains40, types40, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types40.add(VIRM4);
 			
 			
