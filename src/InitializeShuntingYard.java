@@ -30,7 +30,7 @@ public class InitializeShuntingYard {
 
 	public void initializeShuntingYard() throws FileNotFoundException, IOException{
 
-		FileReader fr = new FileReader("Connections.txt");
+		FileReader fr = new FileReader("Connections.csv");
 		BufferedReader br = new BufferedReader(fr);
 		String cvsSplitBy = ";"; 
 		String line = "";
@@ -40,7 +40,7 @@ public class InitializeShuntingYard {
 		try {
 
 			line = br.readLine();
-			String [] track = line.split(cvsSplitBy);
+			String[] track = line.split(cvsSplitBy);
 			Integer[] con = new Integer[track.length - 1];
 			for(int i = 1;i < track.length;i++)
 			{
