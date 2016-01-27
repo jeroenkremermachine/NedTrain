@@ -12,6 +12,66 @@ public class initializeData {
 	public trainType SLT4;
 	public trainType SLT6;
 	
+	public Train f1;
+	public Train f2;
+	public Train f3;
+	public Train f4;
+	public Train f5;
+	public Train f6;
+	public Train f7;
+	public Train f8;
+	public Train f9;
+	public Train f10;
+	public Train f11;
+	public Train f12;
+	public Train f13;
+	public Train f14;
+	public Train f15;
+	public Train f16;
+	public Train f17;
+	public Train f18;
+	public Train f19;
+	public Train f20;
+	public Train f21;
+	public Train f22;
+	public Train f23;
+	public Train f24;
+	public Train f25;
+	public Train f26;
+	public Train f27;
+	public Train f28;
+	public Train f29;
+	public Train f30;
+	public Train f31;
+	public Train f32;
+	public Train f33;
+	public Train f34;
+	public Train f35;
+	public Train f36;
+	public Train f37;
+	public Train f38;
+	public Train f39;
+	public Train f40;
+	public Train f41;
+	public Train f42;
+	public Train f43;
+	public Train f44;
+	public Train f45;
+	public Train f46;
+	public Train f47;
+	public Train f48;
+	public Train f49;
+	public Train f50;
+	public Train f51;
+	public Train f52;
+	public Train f53;
+	public Train f54;
+	public Train f55;
+	public Train f56;
+	public Train f57;
+	public Train f58;
+
+	
 	public trainComposition c1;
 	public trainComposition c2;
 	public trainComposition c3;
@@ -53,8 +113,6 @@ public class initializeData {
 	public trainComposition c39;
 	public trainComposition c40;
 
-
-
 	public initializeData(){
 		initializeCompositions();
 		initializeTypes();
@@ -94,7 +152,7 @@ public class initializeData {
 			
 			boolean arr = data[1].equals("A");
 			if(arr=true){
-			Train f1 = new Train(1, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f1 = new Train(1, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains1.add(f1);
 			}
 			this.c1 = new trainComposition(trains1, types1, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -111,9 +169,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f2 = new Train(2, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f2 = new Train(2, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains2.add(f2);
-			Train f3 = new Train(3, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f3 = new Train(3, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains2.add(f3);
 			}
 			this.c2 = new trainComposition(trains2, types2, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -131,7 +189,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f4 = new Train(4, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f4 = new Train(4, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains3.add(f4);
 			}
 			this.c3 = new trainComposition(trains3, types3, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -149,7 +207,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f5 = new Train(5, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f5 = new Train(5, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains4.add(f5);
 			}
 			this.c4 = new trainComposition(trains4, types4, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -166,7 +224,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f6 = new Train(6, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f6 = new Train(6, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains5.add(f6);
 			}
 			this.c5 = new trainComposition(trains5, types5, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -183,7 +241,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f7 = new Train(7, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f7 = new Train(7, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains6.add(f7);
 			}
 			this.c6 = new trainComposition(trains6, types6, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -200,7 +258,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f8 = new Train(8, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f8 = new Train(8, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains7.add(f8);
 			}
 			this.c7 = new trainComposition(trains7, types7, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -217,9 +275,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f9 = new Train(9, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f9 = new Train(9, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains8.add(f9);
-			Train f10 = new Train(10, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f10 = new Train(10, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains8.add(f10);
 			}
 			this.c8 = new trainComposition(trains8, types8, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -237,7 +295,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f11 = new Train(11, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f11 = new Train(11, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains9.add(f11);
 			}
 			this.c9 = new trainComposition(trains9, types9, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -254,7 +312,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f12 = new Train(12, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f12 = new Train(12, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains10.add(f12);
 			}
 			this.c10 = new trainComposition(trains10, types10, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -271,7 +329,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f13 = new Train(13, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f13 = new Train(13, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains11.add(f13);
 			}
 			this.c11 = new trainComposition(trains11, types11, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -288,9 +346,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f14 = new Train(14, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f14 = new Train(14, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains12.add(f14);
-			Train f15 = new Train(15, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f15 = new Train(15, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains12.add(f15);
 			}
 			this.c12 = new trainComposition(trains12, types12, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -308,7 +366,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f16 = new Train(16, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f16 = new Train(16, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains13.add(f16);
 			}
 			this.c13 = new trainComposition(trains13, types13, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -325,7 +383,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f17 = new Train(17, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f17 = new Train(17, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains14.add(f17);
 			}
 			this.c14 = new trainComposition(trains14, types14, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -342,9 +400,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f18 = new Train(18, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f18 = new Train(18, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains15.add(f18);
-			Train f19 = new Train(19, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f19 = new Train(19, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains15.add(f19);
 			}
 			this.c15 = new trainComposition(trains15, types15, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -363,7 +421,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f20 = new Train(20, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f20 = new Train(20, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains16.add(f20);
 			}
 			this.c16 = new trainComposition(trains16, types16, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -380,9 +438,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f21 = new Train(21, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f21 = new Train(21, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains17.add(f21);
-			Train f22 = new Train(22, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f22 = new Train(22, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains17.add(f22);
 			}
 			this.c17 = new trainComposition(trains17, types17, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -402,11 +460,11 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f23 = new Train(23, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f23 = new Train(23, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f23);
-			Train f24= new Train(24, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f24= new Train(24, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f24);
-			Train f25 = new Train(25, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f25 = new Train(25, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f25);
 			}
 			this.c18 = new trainComposition(trains18, types18, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -425,9 +483,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f26 = new Train(26, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f26 = new Train(26, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains19.add(f26);
-			Train f27 = new Train(27, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f27 = new Train(27, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains19.add(f27);
 			}
 			this.c19 = new trainComposition(trains19, types19, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -445,7 +503,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f28 = new Train(28, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f28 = new Train(28, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains20.add(f28);
 		
 			}
@@ -464,11 +522,11 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f29 = new Train(29, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f29 = new Train(29, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f29);
-			Train f30 = new Train(30, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f30 = new Train(30, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f30);
-			Train f31 = new Train(31, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f31 = new Train(31, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f31);
 		
 			}
@@ -489,7 +547,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f32 = new Train(32, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f32 = new Train(32, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains22.add(f32);
 	
 			}
@@ -507,7 +565,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f33 = new Train(33, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f33 = new Train(33, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains23.add(f33);
 	
 			}
@@ -525,7 +583,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f33 = new Train(33, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f33 = new Train(33, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains24.add(f33);
 	
 			}
@@ -543,9 +601,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f35 = new Train(35, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f35 = new Train(35, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains25.add(f35);
-			Train f36 = new Train(36, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f36 = new Train(36, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains25.add(f36);
 	
 			}
@@ -564,7 +622,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f37 = new Train(37, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f37 = new Train(37, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains26.add(f37);
 	
 			}
@@ -582,7 +640,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f38 = new Train(38, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f38 = new Train(38, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains27.add(f38);
 	
 			}
@@ -600,7 +658,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f39 = new Train(39, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f39 = new Train(39, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains28.add(f39);
 	
 			}
@@ -618,9 +676,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f40 = new Train(40, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f40 = new Train(40, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains29.add(f40);
-			Train f41 = new Train(41, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f41 = new Train(41, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains29.add(f41);
 			}
 			this.c29 = new trainComposition(trains29, types29, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -638,7 +696,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f42 = new Train(42, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f42 = new Train(42, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains30.add(f42);
 	
 			}
@@ -656,7 +714,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f43 = new Train(43, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f43 = new Train(43, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains31.add(f43);
 	
 			}
@@ -674,9 +732,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f44 = new Train(44, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f44 = new Train(44, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains32.add(f44);
-			Train f45 = new Train(45, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f45 = new Train(45, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains32.add(f45);
 	
 			}
@@ -695,7 +753,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f46 = new Train(46, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f46 = new Train(46, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains33.add(f46);
 	
 			}
@@ -713,7 +771,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f47 = new Train(47, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f47 = new Train(47, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains34.add(f47);
 	
 			}
@@ -731,7 +789,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f48 = new Train(48, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f48 = new Train(48, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains35.add(f48);
 	
 			}
@@ -749,9 +807,9 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f49 = new Train(49, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f49 = new Train(49, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains36.add(f49);
-			Train f50 = new Train(50, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f50 = new Train(50, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains36.add(f50);
 	
 			}
@@ -770,7 +828,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f51 = new Train(51, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f51 = new Train(51, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains37.add(f51);
 	
 			}
@@ -788,11 +846,11 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f52 = new Train(52, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f52 = new Train(52, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f52);
-			Train f53 = new Train(53, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f53 = new Train(53, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f53);
-			Train f54 = new Train(54, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f54 = new Train(54, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f54);
 			}
 			this.c38 = new trainComposition(trains38, types38, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -811,11 +869,11 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f55 = new Train(55, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f55 = new Train(55, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f55);
-			Train f56 = new Train(56, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f56 = new Train(56, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f56);
-			Train f57 = new Train(57, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+			this.f57 = new Train(57, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f57);
 			}
 			this.c39 = new trainComposition(trains39, types39, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
@@ -834,7 +892,7 @@ public class initializeData {
 			
 			arr = data[1].equals("A");
 			if(arr=true){
-			Train f58 = new Train(58, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
+				this.f58 = new Train(58, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains40.add(f58);
 			}
 			this.c40 = new trainComposition(trains40, types40, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]));
