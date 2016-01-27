@@ -7,6 +7,7 @@ public class Main {
 		// TODO Auto-generated method stub
 	initializeData data = new initializeData(); //create the data set
 	InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
+	initializeEventList eventList = new initializeEventList(); //create the eventlist
 	
 	optimizingModel model = new optimizingModel(data, yard); //create the model
 	model.optimization(); //run the model and obtain output
@@ -17,9 +18,6 @@ public class Main {
 
 	}
 }
-
-
-
 
 
 
