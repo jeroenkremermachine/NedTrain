@@ -119,9 +119,9 @@ public class initializeData {
 	}
 	
 	public void initializeCompositions(){
-		String csvFile = "C:/Users/piepj_000/OneDrive/Documenten/Econometrie/Master/Seminar/Data/KleineBinckhorstTimes.csv";
+		String csvFile = "KleineBinckhorstTimes.csv";
 		BufferedReader br = null;
-		String csvFile2 = "C:/Users/piepj_000/OneDrive/Documenten/Econometrie/Master/Seminar/Data/KleineBinckhorstCompositions.csv";
+		String csvFile2 = "KleineBinckhorstCompositions.csv";
 		BufferedReader br2 = null;
 		String cvsSplitBy = ";"; 
 		String line = "";
