@@ -12,9 +12,9 @@ public class shuntingMovements {
 
 
 
-		public shuntingMovements(int TrainID, int start, int end, int[][] tp, ArrayList<Integer> wp, ArrayList<Integer> rp, ArrayList<Integer> positions) 
+		public shuntingMovements(int TrainID, int start, int end, int[][] tp, ArrayList<Integer> positions) 
 		{
-
+			
 			this.positions = positions;
 			
 			// first, adjust tpm to cancel out filled tracks
@@ -29,8 +29,9 @@ public class shuntingMovements {
 					}
 			}
 	
-			// check if desired movement is possible
+			// check if desired movement is possible with dijkstra
 
+			
 			if (newtp[start][end] == 0 )
 			{
 				possibleMove = false ;
@@ -41,10 +42,6 @@ public class shuntingMovements {
 				positions.set(end, TrainID);
 			}  
 
-			if (possibleMove == true && wp.get(0) == end)
-			{ wash = true ;
-
-			}
 
 		}
 
@@ -52,9 +49,6 @@ public class shuntingMovements {
 			return possibleMove ; 
 		} 
 
-		public boolean getWashed() {
-			return wash ; 
-		} 
 
 		public ArrayList<Integer> getPositions() {
 			return positions;

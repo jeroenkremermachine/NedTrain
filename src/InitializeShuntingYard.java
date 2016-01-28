@@ -23,6 +23,7 @@ public class InitializeShuntingYard {
 	public Track t63;
 	public Track t104a;
 	public int[][] travelMatrix;
+	public int[][] tpm;
 
 	public InitializeShuntingYard() throws FileNotFoundException, IOException{
 		initializeShuntingYard();
@@ -243,7 +244,7 @@ public class InitializeShuntingYard {
 
 		};
 
-		int [][] tpm = new int [65][65];
+		this.tpm = new int [65][65];
 		for (int i = 0; i<=64;i++){
 			for (int j=0; j<= 64; j++){
 				tpm[i][j] = 0;
@@ -332,8 +333,12 @@ public class InitializeShuntingYard {
 
 
 
-
 	}
+	public  int[][] returnTPM(){
+		return tpm;
+	}
+	
+
 }
 
 

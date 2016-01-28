@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -11,10 +13,14 @@ public class newdijkstra
     private Set<Integer> unsettled;
     private int          number_of_nodes;
     private int          adjacencyMatrix[][];
+    public int[][] tpm;
  
-    public newdijkstra(int number_of_nodes)
+    
+    
+    public newdijkstra()
     {
-        this.number_of_nodes = number_of_nodes;
+        this.number_of_nodes = 65;
+
         distances = new int[number_of_nodes + 1];
         settled = new HashSet<Integer>();
         unsettled = new HashSet<Integer>();
@@ -89,7 +95,9 @@ public class newdijkstra
         }
     }
  
-    public static void main(String... arg)
+    
+    /// main method 
+    public static void main(String... arg) throws FileNotFoundException, IOException
     {
         int adjacency_matrix[][];
         int number_of_vertices;
@@ -97,8 +105,8 @@ public class newdijkstra
         Scanner scan = new Scanner(System.in);
         try
         {
-            System.out.println("Enter the number of vertices");
-            number_of_vertices = scan.nextInt();
+           
+            number_of_vertices = 65;
             adjacency_matrix = new int[number_of_vertices + 1][number_of_vertices + 1];
             
 //            for (int i = 1; i <= number_of_vertices+1; i++)
@@ -111,15 +119,14 @@ public class newdijkstra
 //                System.out.println("");}
 //            System.out.println(number_of_vertices);
             
-    		int[][] tpm = {
-    				{1, 0, 1, 1, 0},
-    				{0, 1, 1, 0, 0},
-    				{1, 1, 1, 0, 1},
-    				{1, 0, 0, 1, 1},
-    				{0, 0, 1, 1, 1},
-    		};
+//    		HOE DIT EFFICIENTER MAKEN??
+
+
+            InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
+        	yard.tpmbuilder();
+        	int[][] tpm = yard.returnTPM();
+        	
     		
-            System.out.println("Enter the Weighted Matrix for the graph");
             for (int i = 1; i <= number_of_vertices; i++)
             {
                 for (int j = 1; j <= number_of_vertices; j++)
@@ -138,27 +145,34 @@ public class newdijkstra
                 }
             }
  
-            System.out.println("Enter the source ");
-            source = scan.nextInt();
-           
-            System.out.println("Enter the destination ");
-            destination = scan.nextInt();
+            source = 1;
+            destination = 900;
  
             newdijkstra dijkstrasAlgorithm = new newdijkstra(
-                    number_of_vertices);
+                    );
             dijkstrasAlgorithm.dijkstra_algorithm(adjacency_matrix, source);
  
-            System.out.println("The Shorted Path from " + source + " to " + destination + " is: ");
+           boolean possibleMovement = false;
             for (int i = 1; i <= dijkstrasAlgorithm.distances.length - 1; i++)
             {
+            	// System.out.println(dijkstrasAlgorithm.distances[i]);
                 if (i == destination)
+                {
                     System.out.println(source + " to " + i + " is "
                             + dijkstrasAlgorithm.distances[i]);
+                    possibleMovement = true;
+                }
+          
+                	
+                
             }
-        } catch (InputMismatchException inputMismatch)
+            System.out.println("het is mogelijk om te bewegen:   "+possibleMovement);
+
+        } 
+            catch (InputMismatchException inputMismatch)
         {
             System.out.println("Wrong Input Format");
         }
-        scan.close();
+        
     }
 }
