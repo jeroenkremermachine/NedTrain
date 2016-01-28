@@ -15,7 +15,7 @@ public class InitializeShuntingYard {
 	public Track t57;
 	public Track t58;
 	public Track t59;
-	public Track t64;
+	// WEG TOCH? public Track t64;
 	public Track t51b;
 	public Track t60;
 	public Track t61;
@@ -150,17 +150,17 @@ public class InitializeShuntingYard {
 			}
 
 			counter++; 
-			this.t64 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
-			line = br.readLine();
-			track = line.split(cvsSplitBy);
-			for(int i = 1;i < track.length;i++)
-			{
-				con[i-1]=Integer.parseInt(track[i]);
-				travelMatrix[counter][i-1] = Integer.parseInt(track[i]);
-			}
-
-			counter++; 
+//			this.t64 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
+//
+//			line = br.readLine();
+//			track = line.split(cvsSplitBy);
+//			for(int i = 1;i < track.length;i++)
+//			{
+//				con[i-1]=Integer.parseInt(track[i]);
+//				travelMatrix[counter][i-1] = Integer.parseInt(track[i]);
+//			}
+//
+//			counter++; 
 			this.t51b = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
 
 			line = br.readLine();
@@ -226,32 +226,32 @@ public class InitializeShuntingYard {
 		int[][] positions = {
 				{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{2, 3, 4, 5, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{12, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{18, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{20, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{22, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{24, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{26, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{29, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{31, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{33, 34, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{9, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{16, 17, 18, 19, 20, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{22, 23, 24, 25, 26, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{28, 29, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{32, 33, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{35, 36, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{38, 39, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{42, 43, 44, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{46, 47, 48, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{50, 51,52, 53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{54, 55, 56, 57, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{59, 60, 61, 62, 63, 64, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+
 
 		};
 
-		int [][] tpm = new int [36][36];
-		for (int i = 0; i<=35;i++){
-			for (int j=0; j<= 35; j++){
+		int [][] tpm = new int [65][65];
+		for (int i = 0; i<=64;i++){
+			for (int j=0; j<= 64; j++){
 				tpm[i][j] = 0;
 			}
 		}
 
-		for (int i = 0; i<=15;i++){
-			for (int j=0; j<= 15; j++){
+		for (int i = 0; i<=14;i++){
+			for (int j=0; j<= 14; j++){
 
 				if (travelMatrix[i][j] == 1){
 
@@ -264,7 +264,7 @@ public class InitializeShuntingYard {
 
 					firstPosition = positions[i][1];
 					int maxvalue = 0;
-					for (int p=0;p<=15;p++){
+					for (int p=0;p<=14;p++){
 						if (positions[j][p] > maxvalue){
 							maxvalue = positions[j][p];
 						}
@@ -278,7 +278,7 @@ public class InitializeShuntingYard {
 
 
 					int maxvalue = 0;
-					for (int p=0;p<=15;p++){
+					for (int p=0;p<=14;p++){
 						if (positions[i][p] > maxvalue){
 							maxvalue = positions[i][p];
 						}
@@ -292,14 +292,14 @@ public class InitializeShuntingYard {
 
 					int maxvalue = 0;
 					firstPosition = positions[j][1];
-					for (int p=0;p<=15;p++){
+					for (int p=0;p<=14;p++){
 						if (positions[i][p] > maxvalue){
 							maxvalue = positions[i][p];
 						}
 					}
 
 					maxvalue = 0;
-					for (int p=0;p<=15;p++){
+					for (int p=0;p<=14;p++){
 						if (positions[j][p] > maxvalue){
 							maxvalue = positions[j][p];
 						}
@@ -313,7 +313,7 @@ public class InitializeShuntingYard {
 			}
 		}
 		
-		for (int i = 0; i<=15;i++){
+		for (int i = 0; i<=14;i++){
 			for (int j=0; j<= 10; j++){
 				if (positions[i][j] == positions[i][j+1]-1) {
 					tpm[positions[i][j]-1][positions[i][j+1]-1] = 1; 
@@ -323,8 +323,8 @@ public class InitializeShuntingYard {
 		}
 
 		
-		for (int k =0; k<= 35; k++){
-			for (int l = 0; l<= 35; l++){
+		for (int k =0; k<= 64; k++){
+			for (int l = 0; l<= 64; l++){
 				System.out.print(tpm[k][l]+" ");
 			}
 			System.out.println(" ");
