@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class optimizingModel {
@@ -5,13 +7,14 @@ public class optimizingModel {
 	private InitializeShuntingYard Yard;
 	public int timeMovement;
 	public boolean movement;
+	public double movementTime;
 
 	public optimizingModel(initializeData Data, InitializeShuntingYard Yard){
 		this.Data = Data;
 		this.Yard = Yard;
 	}
 
-	public void  optimization(int[][] tpm){
+	public void  optimization(int[][] tpm) throws FileNotFoundException, IOException{
 		//This should all be implemented in the data set, and the shunting yard
 		trainType typeX = new trainType(50, 5, 15, 5, 5);
 		Train myTrain = new Train(313, typeX, true, true, true, true, true, 4); // moet uitgelezen worden vanuit data
@@ -33,19 +36,22 @@ public class optimizingModel {
 			// movement ending event: if time is movement ending dan movement = false
 			if (movement == false){
 			// check of er bewegingsverzoek op de eventlist staat, bijvoorbeeld nu: 
-				
-			positions.set(3, myTrain.getID()); // voor de test		
-			int start = 3; // deze komen uit eventlist
-			int end = 40;  // deze komen uit eventlist
+
 				
 			System.out.println("We gaan verplaatsen!! the old position vector was:   "+ positions);
-			shuntingMovements move = new shuntingMovements(myTrain.getID(), start,end, tpm, positions);
-			movement = move.getpossibleMove();
-			positions = move.getPositions();
-			timeMovement = move.getTimeMove();
+			dijkstraMovement move = new dijkstraMovement();
+			movementTime = move.possibleMovement(3, 7, positions);
+			double timeMovement = 0;
+			if (movementTime!=0){
+				System.out.println("true");
+				positions.set(3, 0);
+				positions.set(7, myTrain.getID());
+				timeMovement = movementTime;
+				movement = true;
+			}
 			System.out.println("startminuut van verplaatsing:   "+ minuut);
 			System.out.println("the new position vector is:   "+ positions);
-			System.out.println("movement possible?   "+ movement);
+			System.out.println("movement possible?   "+ movementTime);
 			
 			// We krijgen uit de shuntingmovements door of deze beweging mogelijk is, zoniet: Probeer volgende beweging
 			}	
