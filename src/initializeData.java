@@ -112,6 +112,9 @@ public class initializeData {
 	public trainComposition c38;
 	public trainComposition c39;
 	public trainComposition c40;
+	
+	public ArrayList<Train> allTrains;
+	public ArrayList<trainComposition> allCompositions;
 
 	public initializeData(){
 		initializeCompositions();
@@ -136,8 +139,8 @@ public class initializeData {
 			line = br2.readLine(); //english line
 			line = br2.readLine(); //dutch line
 			
-			ArrayList<Train> allTrains = new ArrayList<Train>();
-			ArrayList<trainComposition> allCompositions = new ArrayList<trainComposition>();
+			ArrayList<Train> allTrains2 = new ArrayList<Train>();
+			ArrayList<trainComposition> allCompositions2 = new ArrayList<trainComposition>();
 			
 			// First composition ========================================================
 			line = br.readLine();
@@ -158,11 +161,11 @@ public class initializeData {
 			if(arr=true){
 			this.f1 = new Train(1, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains1.add(f1);
-			allTrains.add(f1);
+			allTrains2.add(f1);
 			}
 			this.c1 = new trainComposition(trains1, types1, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types1.add(SLT4);
-			allCompositions.add(c1);
+			allCompositions2.add(c1);
 			
 			// Second composition ========================================================
 			line = br.readLine();
@@ -177,15 +180,15 @@ public class initializeData {
 			if(arr=true){
 			this.f2 = new Train(2, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains2.add(f2);
-			allTrains.add(f2);
+			allTrains2.add(f2);
 			this.f3 = new Train(3, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains2.add(f3);
-			allTrains.add(f3);
+			allTrains2.add(f3);
 			}
 			this.c2 = new trainComposition(trains2, types2, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types2.add(VIRM4);
 			types2.add(VIRM6);
-			allCompositions.add(c2);
+			allCompositions2.add(c2);
 			
 			// Third composition ========================================================
 			line = br.readLine();
@@ -200,12 +203,12 @@ public class initializeData {
 			if(arr=true){
 			this.f4 = new Train(4, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains3.add(f4);
-			allTrains.add(f4);
+			allTrains2.add(f4);
 			}
 			this.c3 = new trainComposition(trains3, types3, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types3.add(VIRM4);
 			types3.add(VIRM6);
-			allCompositions.add(c3);
+			allCompositions2.add(c3);
 			
 			// Fourth composition ========================================================
 			line = br.readLine();
@@ -220,11 +223,11 @@ public class initializeData {
 			if(arr=true){
 			this.f5 = new Train(5, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains4.add(f5);
-			allTrains.add(f5);
+			allTrains2.add(f5);
 			}
 			this.c4 = new trainComposition(trains4, types4, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types4.add(VIRM4);
-			allCompositions.add(c4);
+			allCompositions2.add(c4);
 			
 			// Fifth composition ========================================================
 			line = br.readLine();
@@ -239,11 +242,11 @@ public class initializeData {
 			if(arr=true){
 			this.f6 = new Train(6, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains5.add(f6);
-			allTrains.add(f6);
+			allTrains2.add(f6);
 			}
 			this.c5 = new trainComposition(trains5, types5, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types5.add(VIRM6);
-			allCompositions.add(c5);
+			allCompositions2.add(c5);
 			
 			// Sixth composition ========================================================
 			line = br.readLine();
@@ -258,11 +261,11 @@ public class initializeData {
 			if(arr=true){
 			this.f7 = new Train(7, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains6.add(f7);
-			allTrains.add(f7);
+			allTrains2.add(f7);
 			}
 			this.c6 = new trainComposition(trains6, types6, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), false);
 			types6.add(DDZ4);
-			allCompositions.add(c6);
+			allCompositions2.add(c6);
 			
 			// Seventh composition ========================================================
 			line = br.readLine();
@@ -277,11 +280,11 @@ public class initializeData {
 			if(arr=true){
 			this.f8 = new Train(8, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains7.add(f8);
-			allTrains.add(f8);
+			allTrains2.add(f8);
 			}
 			this.c7 = new trainComposition(trains7, types7, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types7.add(VIRM4);
-			allCompositions.add(c7);
+			allCompositions2.add(c7);
 			
 			// Eigth composition ========================================================
 			line = br.readLine();
@@ -296,15 +299,15 @@ public class initializeData {
 			if(arr=true){
 			this.f9 = new Train(9, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains8.add(f9);
-			allTrains.add(f9);
+			allTrains2.add(f9);
 			this.f10 = new Train(10, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains8.add(f10);
-			allTrains.add(f10);
+			allTrains2.add(f10);
 			}
 			this.c8 = new trainComposition(trains8, types8, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), false);
 			types8.add(VIRM4);
 			types8.add(VIRM4);
-			allCompositions.add(c8);
+			allCompositions2.add(c8);
 			
 			// Ninth composition ========================================================
 			line = br.readLine();
@@ -319,11 +322,11 @@ public class initializeData {
 			if(arr=true){
 			this.f11 = new Train(11, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains9.add(f11);
-			allTrains.add(f11);
+			allTrains2.add(f11);
 			}
 			this.c9 = new trainComposition(trains9, types9, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types9.add(SLT6);
-			allCompositions.add(c9);
+			allCompositions2.add(c9);
 			
 			// Tenth composition ========================================================
 			line = br.readLine();
@@ -338,11 +341,11 @@ public class initializeData {
 			if(arr=true){
 			this.f12 = new Train(12, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains10.add(f12);
-			allTrains.add(f12);
+			allTrains2.add(f12);
 			}
 			this.c10 = new trainComposition(trains10, types10, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),true);
 			types10.add(SLT4);
-			allCompositions.add(c10);
+			allCompositions2.add(c10);
 			
 			// Eleventh composition ========================================================
 			line = br.readLine();
@@ -357,11 +360,11 @@ public class initializeData {
 			if(arr=true){
 			this.f13 = new Train(13, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains11.add(f13);
-			allTrains.add(f13);
+			allTrains2.add(f13);
 			}
 			this.c11 = new trainComposition(trains11, types11, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types11.add(VIRM4);
-			allCompositions.add(c11);
+			allCompositions2.add(c11);
 			
 			// Twelfth composition ========================================================
 			line = br.readLine();
@@ -376,15 +379,15 @@ public class initializeData {
 			if(arr=true){
 				this.f14 = new Train(14, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains12.add(f14);
-			allTrains.add(f14);
+			allTrains2.add(f14);
 			this.f15 = new Train(15, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains12.add(f15);
-			allTrains.add(f15);
+			allTrains2.add(f15);
 			}
 			this.c12 = new trainComposition(trains12, types12, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types12.add(SLT6);
 			types12.add(SLT4);
-			allCompositions.add(c12);
+			allCompositions2.add(c12);
 			
 			// Thirteen composition ========================================================
 			line = br.readLine();
@@ -399,11 +402,11 @@ public class initializeData {
 			if(arr=true){
 				this.f16 = new Train(16, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains13.add(f16);
-			allTrains.add(f16);
+			allTrains2.add(f16);
 			}
 			this.c13 = new trainComposition(trains13, types13, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types13.add(VIRM6);
-			allCompositions.add(c13);
+			allCompositions2.add(c13);
 			
 			// 14 composition ========================================================
 			line = br.readLine();
@@ -418,11 +421,11 @@ public class initializeData {
 			if(arr=true){
 				this.f17 = new Train(17, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains14.add(f17);
-			allTrains.add(f17);
+			allTrains2.add(f17);
 			}
 			this.c14 = new trainComposition(trains14, types14, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types14.add(DDZ6);
-			allCompositions.add(c14);
+			allCompositions2.add(c14);
 			
 			// 15 composition ========================================================
 			line = br.readLine();
@@ -437,15 +440,15 @@ public class initializeData {
 			if(arr=true){
 				this.f18 = new Train(18, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains15.add(f18);
-			allTrains.add(f18);
+			allTrains2.add(f18);
 			this.f19 = new Train(19, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains15.add(f19);
-			allTrains.add(f19);
+			allTrains2.add(f19);
 			}
 			this.c15 = new trainComposition(trains15, types15, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types15.add(DDZ6);
 			types15.add(VIRM6);
-			allCompositions.add(c15);
+			allCompositions2.add(c15);
 			
 
 			// 16 composition ========================================================
@@ -461,11 +464,11 @@ public class initializeData {
 			if(arr=true){
 				this.f20 = new Train(20, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains16.add(f20);
-			allTrains.add(f20);
+			allTrains2.add(f20);
 			}
 			this.c16 = new trainComposition(trains16, types16, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types16.add(VIRM6);
-			allCompositions.add(c16);
+			allCompositions2.add(c16);
 			
 			// 17 composition ========================================================
 			line = br.readLine();
@@ -480,15 +483,15 @@ public class initializeData {
 			if(arr=true){
 				this.f21 = new Train(21, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains17.add(f21);
-			allTrains.add(f21);
+			allTrains2.add(f21);
 			this.f22 = new Train(22, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains17.add(f22);
-			allTrains.add(f22);
+			allTrains2.add(f22);
 			}
 			this.c17 = new trainComposition(trains17, types17, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types17.add(VIRM6);
 			types17.add(VIRM4);
-			allCompositions.add(c17);
+			allCompositions2.add(c17);
 			
 			
 			// 18 composition ========================================================
@@ -504,19 +507,19 @@ public class initializeData {
 			if(arr=true){
 			this.f23 = new Train(23, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f23);
-			allTrains.add(f23);
+			allTrains2.add(f23);
 			this.f24= new Train(24, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f24);
-			allTrains.add(f24);
+			allTrains2.add(f24);
 			this.f25 = new Train(25, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains18.add(f25);
-			allTrains.add(f25);
+			allTrains2.add(f25);
 			}
 			this.c18 = new trainComposition(trains18, types18, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types18.add(SLT4);
 			types18.add(SLT4);
 			types18.add(SLT6);
-			allCompositions.add(c18);
+			allCompositions2.add(c18);
 			
 			// 19 composition ========================================================
 			line = br.readLine();
@@ -531,15 +534,15 @@ public class initializeData {
 			if(arr=true){
 			this.f26 = new Train(26, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains19.add(f26);
-			allTrains.add(f26);
+			allTrains2.add(f26);
 			this.f27 = new Train(27, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains19.add(f27);
-			allTrains.add(f27);
+			allTrains2.add(f27);
 			}
 			this.c19 = new trainComposition(trains19, types19, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types19.add(VIRM4);
 			types19.add(VIRM4);
-			allCompositions.add(c19);
+			allCompositions2.add(c19);
 			
 			// 20 composition ========================================================
 			line = br.readLine();
@@ -554,12 +557,12 @@ public class initializeData {
 			if(arr=true){
 				this.f28 = new Train(28, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains20.add(f28);
-			allTrains.add(f28);
+			allTrains2.add(f28);
 		
 			}
 			this.c20 = new trainComposition(trains20, types20, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types20.add(VIRM4);
-			allCompositions.add(c20);
+			allCompositions2.add(c20);
 			
 			// 21 composition ========================================================
 			line = br.readLine();
@@ -574,20 +577,20 @@ public class initializeData {
 			if(arr=true){
 				this.f29 = new Train(29, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f29);
-			allTrains.add(f29);
+			allTrains2.add(f29);
 			this.f30 = new Train(30, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f30);
-			allTrains.add(f30);
+			allTrains2.add(f30);
 			this.f31 = new Train(31, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains21.add(f31);
-			allTrains.add(f31);
+			allTrains2.add(f31);
 		
 			}
 			this.c21 = new trainComposition(trains21, types21, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types21.add(SLT6);
 			types21.add(SLT4);
 			types21.add(SLT4);
-			allCompositions.add(c21);
+			allCompositions2.add(c21);
 			
 			
 			// 22 composition ========================================================
@@ -603,12 +606,12 @@ public class initializeData {
 			if(arr=true){
 				this.f32 = new Train(32, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains22.add(f32);
-			allTrains.add(f32);
+			allTrains2.add(f32);
 	
 			}
 			this.c22 = new trainComposition(trains22, types22, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types22.add(VIRM4);
-			allCompositions.add(c22);
+			allCompositions2.add(c22);
 	
 			// 23 composition ========================================================
 			line = br.readLine();
@@ -623,12 +626,12 @@ public class initializeData {
 			if(arr=true){
 				this.f33 = new Train(33, DDZ4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains23.add(f33);
-			allTrains.add(f33);
+			allTrains2.add(f33);
 	
 			}
 			this.c23 = new trainComposition(trains23, types23, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types23.add(DDZ4);
-			allCompositions.add(c23);
+			allCompositions2.add(c23);
 			
 			// 24 composition ========================================================
 			line = br.readLine();
@@ -643,12 +646,12 @@ public class initializeData {
 			if(arr=true){
 				this.f34 = new Train(34, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains24.add(f34);
-			allTrains.add(f34);
+			allTrains2.add(f34);
 	
 			}
 			this.c24 = new trainComposition(trains24, types24, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types24.add(VIRM4);
-			allCompositions.add(c24);
+			allCompositions2.add(c24);
 			
 			// 25 composition ========================================================
 			line = br.readLine();
@@ -663,15 +666,15 @@ public class initializeData {
 			if(arr=true){
 				this.f35 = new Train(35, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains25.add(f35);
-			allTrains.add(f35);
+			allTrains2.add(f35);
 			this.f36 = new Train(36, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains25.add(f36);
-			allTrains.add(f36);
+			allTrains2.add(f36);
 			}
 			this.c25 = new trainComposition(trains25, types25, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types25.add(VIRM4);
 			types25.add(VIRM4);
-			allCompositions.add(c25);
+			allCompositions2.add(c25);
 			
 			// 26 composition ========================================================
 			line = br.readLine();
@@ -686,11 +689,11 @@ public class initializeData {
 			if(arr=true){
 				this.f37 = new Train(37, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains26.add(f37);
-			allTrains.add(f37);
+			allTrains2.add(f37);
 			}
 			this.c26 = new trainComposition(trains26, types26, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types26.add(SLT6);
-			allCompositions.add(c26);
+			allCompositions2.add(c26);
 			
 			// 27 composition ========================================================
 			line = br.readLine();
@@ -705,12 +708,12 @@ public class initializeData {
 			if(arr=true){
 				this.f38 = new Train(38, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains27.add(f38);
-			allTrains.add(f38);
+			allTrains2.add(f38);
 	
 			}
 			this.c27 = new trainComposition(trains27, types27, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types27.add(SLT4);
-			allCompositions.add(c27);
+			allCompositions2.add(c27);
 			
 			// 28 composition ========================================================
 			line = br.readLine();
@@ -725,12 +728,12 @@ public class initializeData {
 			if(arr=true){
 				this.f39 = new Train(39, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains28.add(f39);
-			allTrains.add(f39);
+			allTrains2.add(f39);
 	
 			}
 			this.c28 = new trainComposition(trains28, types28, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types28.add(VIRM4);
-			allCompositions.add(c28);
+			allCompositions2.add(c28);
 	
 			// 29 composition ========================================================
 			line = br.readLine();
@@ -745,15 +748,15 @@ public class initializeData {
 			if(arr=true){
 				this.f40 = new Train(40, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains29.add(f40);
-			allTrains.add(f40);
+			allTrains2.add(f40);
 			this.f41 = new Train(41, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains29.add(f41);
-			allTrains.add(f41);
+			allTrains2.add(f41);
 			}
 			this.c29 = new trainComposition(trains29, types29, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types29.add(SLT6);
 			types29.add(SLT4);
-			allCompositions.add(c29);
+			allCompositions2.add(c29);
 			
 			// 30 composition ========================================================
 			line = br.readLine();
@@ -768,12 +771,12 @@ public class initializeData {
 			if(arr=true){
 				this.f42 = new Train(42, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains30.add(f42);
-			allTrains.add(f42);
+			allTrains2.add(f42);
 	
 			}
 			this.c30 = new trainComposition(trains30, types30, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types30.add(VIRM6);
-			allCompositions.add(c30);
+			allCompositions2.add(c30);
 			
 			// 31 composition ========================================================
 			line = br.readLine();
@@ -788,12 +791,12 @@ public class initializeData {
 			if(arr=true){
 				this.f43 = new Train(43, DDZ6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains31.add(f43);
-			allTrains.add(f43);
+			allTrains2.add(f43);
 	
 			}
 			this.c31 = new trainComposition(trains31, types31, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types31.add(DDZ6);
-			allCompositions.add(c31);
+			allCompositions2.add(c31);
 			
 			// 32 composition ========================================================
 			line = br.readLine();
@@ -808,16 +811,16 @@ public class initializeData {
 			if(arr=true){
 				this.f44 = new Train(44, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains32.add(f44);
-			allTrains.add(f44);
+			allTrains2.add(f44);
 			this.f45 = new Train(45, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains32.add(f45);
-			allTrains.add(f45);
+			allTrains2.add(f45);
 	
 			}
 			this.c32 = new trainComposition(trains32, types32, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types32.add(VIRM4);
 			types32.add(VIRM6);
-			allCompositions.add(c32);
+			allCompositions2.add(c32);
 
 			// 33 composition ========================================================
 			line = br.readLine();
@@ -832,12 +835,12 @@ public class initializeData {
 			if(arr=true){
 				this.f46 = new Train(46, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains33.add(f46);
-			allTrains.add(f46);
+			allTrains2.add(f46);
 	
 			}
 			this.c33 = new trainComposition(trains33, types33, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types33.add(VIRM6);
-			allCompositions.add(c33);
+			allCompositions2.add(c33);
 			
 			// 34 composition ========================================================
 			line = br.readLine();
@@ -852,12 +855,12 @@ public class initializeData {
 			if(arr=true){
 				this.f47 = new Train(47, VIRM6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains34.add(f47);
-			allTrains.add(f47);
+			allTrains2.add(f47);
 	
 			}
 			this.c34 = new trainComposition(trains34, types34, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]),false);
 			types34.add(VIRM6);
-			allCompositions.add(c34);
+			allCompositions2.add(c34);
 			
 			// 35 composition ========================================================
 			line = br.readLine();
@@ -872,12 +875,12 @@ public class initializeData {
 			if(arr=true){
 				this.f48 = new Train(48, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains35.add(f48);
-			allTrains.add(f48);
+			allTrains2.add(f48);
 	
 			}
 			this.c35 = new trainComposition(trains35, types35, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types35.add(VIRM4);
-			allCompositions.add(c35);
+			allCompositions2.add(c35);
 			
 			// 36 composition ========================================================
 			line = br.readLine();
@@ -892,16 +895,16 @@ public class initializeData {
 			if(arr=true){
 				this.f49 = new Train(49, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains36.add(f49);
-			allTrains.add(f49);
+			allTrains2.add(f49);
 			this.f50 = new Train(50, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains36.add(f50);
-			allTrains.add(f50);
+			allTrains2.add(f50);
 	
 			}
 			this.c36 = new trainComposition(trains36, types36, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types36.add(SLT4);
 			types36.add(SLT4);
-			allCompositions.add(c36);
+			allCompositions2.add(c36);
 			
 			// 37 composition ========================================================
 			line = br.readLine();
@@ -916,12 +919,12 @@ public class initializeData {
 			if(arr=true){
 				this.f51 = new Train(51, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains37.add(f51);
-			allTrains.add(f51);
+			allTrains2.add(f51);
 	
 			}
 			this.c37 = new trainComposition(trains37, types37, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types37.add(SLT6);
-			allCompositions.add(c37);
+			allCompositions2.add(c37);
 			
 			// 38 composition ========================================================
 			line = br.readLine();
@@ -936,19 +939,19 @@ public class initializeData {
 			if(arr=true){
 				this.f52 = new Train(52, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f52);
-			allTrains.add(f52);
+			allTrains2.add(f52);
 			this.f53 = new Train(53, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f53);
-			allTrains.add(f53);
+			allTrains2.add(f53);
 			this.f54 = new Train(54, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains38.add(f54);
-			allTrains.add(f54);
+			allTrains2.add(f54);
 			}
 			this.c38 = new trainComposition(trains38, types38, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types38.add(VIRM4);
 			types38.add(VIRM4);
 			types38.add(VIRM4);
-			allCompositions.add(c38);
+			allCompositions2.add(c38);
 			
 			// 39 composition ========================================================
 			line = br.readLine();
@@ -963,19 +966,19 @@ public class initializeData {
 			if(arr=true){
 				this.f55 = new Train(55, SLT6, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f55);
-			allTrains.add(f55);
+			allTrains2.add(f55);
 			this.f56 = new Train(56, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f56);
-			allTrains.add(f56);
+			allTrains2.add(f56);
 			this.f57 = new Train(57, SLT4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains39.add(f57);
-			allTrains.add(f57);
+			allTrains2.add(f57);
 			}
 			this.c39 = new trainComposition(trains39, types39, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types39.add(SLT6);
 			types39.add(SLT4);
 			types39.add(SLT4);
-			allCompositions.add(c39);
+			allCompositions2.add(c39);
 			
 			// 40 composition ========================================================
 			line = br.readLine();
@@ -990,11 +993,14 @@ public class initializeData {
 			if(arr=true){
 				this.f58 = new Train(58, VIRM4, interchangable, inspect, repair, clean, wash, Integer.parseInt(data[2]));
 			trains40.add(f58);
-			allTrains.add(f58);
+			allTrains2.add(f58);
 			}
 			this.c40 = new trainComposition(trains40, types40, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types40.add(VIRM4);
-			allCompositions.add(c40);
+			allCompositions2.add(c40);
+			
+			this.allTrains = allTrains2;
+			this.allCompositions = allCompositions2;
 			
 			
 		} catch (FileNotFoundException e) {
