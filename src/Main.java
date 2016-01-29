@@ -12,7 +12,7 @@ public class Main {
 	initializeEventList eventList = new initializeEventList(); //create the eventlist
 	
 	
-	optimizingModel model = new optimizingModel(data, yard); //create the model
+	optimizingModel model = new optimizingModel(data, yard, eventList); //create the model
 
 	yard.tpmbuilder();
 int[][] test = yard.returnTPM();

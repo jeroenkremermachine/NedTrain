@@ -26,14 +26,14 @@ public class dijkstraMovement {
         adjacencyMatrix = new int[number_of_nodes + 1][number_of_nodes + 1];
     }
 	
-    public double possibleMovement(int start, int end, ArrayList<Integer> positions) throws FileNotFoundException, IOException{
+    public int possibleMovement(int start, int end, ArrayList<Integer> positions) throws FileNotFoundException, IOException{
     	 int adjacency_matrix[][];
          int number_of_vertices;
          int source = 0, destination = 0;
          Scanner scan = new Scanner(System.in);
          
          //boolean possibleMovement = false;
-         double possibleMovement = 0;
+         int possibleMovement = 0;
          try
          {
             

@@ -5,59 +5,141 @@ import java.util.ArrayList;
 public class optimizingModel {
 	private initializeData Data;
 	private InitializeShuntingYard Yard;
+	private initializeEventList List;
 	public int timeMovement;
 	public boolean movement;
-	public double movementTime;
+	public int movementTime;
 
-	public optimizingModel(initializeData Data, InitializeShuntingYard Yard){
+	public optimizingModel(initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist){
 		this.Data = Data;
 		this.Yard = Yard;
+		this.List = eventlist;
 	}
 
 	public void  optimization(int[][] tpm) throws FileNotFoundException, IOException{
 		//This should all be implemented in the data set, and the shunting yard
-		trainType typeX = new trainType(50, 5, 15, 5, 5);
-		Train myTrain = new Train(313, typeX, true, true, true, true, true, 4); // moet uitgelezen worden vanuit data
-		ArrayList<Integer> positions = new ArrayList<Integer>(); // moet naar initialize shunting yard
+		ArrayList<Integer> positions = new ArrayList<Integer>(); // Alle posities leeg
+		dijkstraMovement move = new dijkstraMovement();
 		for (int i = 0; i<=64; i++){
 			positions.add(i, 0);
 		}
-		
-		timeMovement = 0;
+
 		int minuut = 0; 
 		movement = false;
 
 		// daadwerklijke optimization programma
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
-	
+
 		while ( minuut <= 20)
 		{	
-			// arrival of departure checken, deze gaan namelijk ook door als er een movement plaats vind
-			// movement ending event: if time is movement ending dan movement = false
-			if (movement == false){
-			// check of er bewegingsverzoek op de eventlist staat, bijvoorbeeld nu: 
+			int[] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
+			int[] arrivalMin = getMin(a);
+			int[] d = List.departurelist;
+			int[] departureMin = getMin(d);
+			int end = List.endmovement;//create set methods
 
-				
-			System.out.println("We gaan verplaatsen!! the old position vector was:   "+ positions);
-			dijkstraMovement move = new dijkstraMovement();
-			movementTime = move.possibleMovement(3, 7, positions);
-			double timeMovement = 0;
-			if (movementTime!=0){
-				System.out.println("true");
-				positions.set(3, 0);
-				positions.set(7, myTrain.getID());
-				timeMovement = movementTime;
-				movement = true;
+			if(arrivalMin[1]==minuut){
+				//do arrival
 			}
-			System.out.println("startminuut van verplaatsing:   "+ minuut);
-			System.out.println("the new position vector is:   "+ positions);
-			System.out.println("movement possible?   "+ movementTime);
-			
-			// We krijgen uit de shuntingmovements door of deze beweging mogelijk is, zoniet: Probeer volgende beweging
+			if(departureMin[1]==minuut){
+				//do departure
+			}
+			if(end==minuut){
+				movement=false; //endmovement aanpassen
+			}
+
+			//asap weg van arrival spoor als arrival track bezet
+
+			//if arrival set arriving train on position 1 -> create trainevents({inpection, clean, repair}->behandel, wash, departarea ,depart)
+
+			//if departure remove departing train from position x
+
+			if (movement == false){
+				//Check arrival track
+				if(positions.get(0)!=0){ // a train is on the track
+					//move train to arrival tracks
+				}
+			}
+
+			if (movement == false){
+				// check of er bewegingsverzoek op de eventlist staat, bijvoorbeeld nu: 
+				int[][] m = List.movementlist;
+				int[] movementMin = getMin(m,0); //what type of movement on which train
+				int movementType = List.movementlist[movementMin[0]][1];
+				int movementTrainID = List.movementlist[movementMin[0]][2];
+				//find current position of train
+				int currentPosition = getIndex(positions, movementTrainID);
+				int endPositions[] = {-1, -1};
+				int endPosition = -1;
+				if(movementType ==1){
+					//do traincity
+				} else if(movementType ==2){
+					//do wash
+				} else if(movementType ==3){
+					//do departure
+				} else if(movementType ==4){
+
+				}
+
+				int timeMovement = 0; //later set eventlist endmovement method
+				//priority of emptying washing machine en platforms (zelfde als beweging naar beginspoor)
+				if(endPositions[0]!=-1){
+					for (int i=0;i<endPositions.length;i++){
+						movementTime = move.possibleMovement(currentPosition, endPositions[i], positions);
+						if(movementTime!=0){
+							endPosition = endPositions[i];
+							positions.set(currentPosition, 0);
+							positions.set(endPosition, movementTrainID);
+							timeMovement = movementTime;
+							movement = true;
+							//set end movement
+							break;
+						}
+					}
+				}
+
+				// if not possible do something else
+
 			}	
 			minuut++;
 		}
-	
+
+	}
+
+	public int[] getMin(int[] x){
+		int minvalue = Integer.MAX_VALUE;
+		int index = -1;
+		for (int i=0;i<x.length;i++){
+			if(x[i]<minvalue){
+				index = i;
+				minvalue = x[i];
+			}
+		}
+		int[] y = {index, minvalue};
+		return y;
+	}
+
+	public int[] getMin(int[][] x, int z){
+		int minvalue = Integer.MAX_VALUE;
+		int index = -1;
+		for (int i=0;i<x.length;i++){
+			if(x[i][z]<minvalue){
+				index = i;
+				minvalue = x[i][z];
+			}
+		}
+		int[] y = {index, minvalue};
+		return y;
+	}
+
+	public int getIndex(ArrayList<Integer> x, int ID){
+		int index = -1;
+		for (int i=0;i<x.size();i++){
+			if(x.get(i)==ID){
+				index = i;
+			}
+		}
+		return index;
 	}
 
 }
