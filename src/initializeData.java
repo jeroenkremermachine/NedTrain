@@ -5,6 +5,7 @@ import java.util.Random;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+
 public class initializeData {
 	public trainType VIRM4;
 	public trainType VIRM6;

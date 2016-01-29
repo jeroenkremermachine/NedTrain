@@ -1,4 +1,5 @@
 
+
 public class trainType {
 	public double length;
 	public double inspectionTime;
