@@ -324,12 +324,12 @@ public class InitializeShuntingYard {
 		}
 
 		
-		for (int k =0; k<= 64; k++){
-			for (int l = 0; l<= 64; l++){
-				System.out.print(tpm[k][l]+" ");
-			}
-			System.out.println(" ");
-		}
+//		for (int k =0; k<= 64; k++){
+//			for (int l = 0; l<= 64; l++){
+//				System.out.print(tpm[k][l]+" ");
+//			}
+//			System.out.println(" ");
+//		}
 
 
 
