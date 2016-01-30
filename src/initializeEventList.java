@@ -19,6 +19,11 @@ public class initializeEventList {
 		  int [] arrivallist = new int [50];
 		  Arrays.fill(arrivallist, Integer.MAX_VALUE);
 		  // nog vullen met informatie uit de data arrivals
+		  
+			
+			for (int i = 0; i<arrivallist.length ; i++){
+			System.out.println(arrivallist[i]);
+			}
 	}
 	
 	public  void initializeDeparturelist() {
@@ -31,8 +36,11 @@ public class initializeEventList {
 	public  void initializeMovementlist() {
 		
 		  int [][] movementlist = new int [1000][3]; //tijden types trainID
-		  Arrays.fill(movementlist, Integer.MAX_VALUE);		
-		
+		  for (int i = 0; i<3 ; i++){
+			  for (int j=0; j<1000; j++){
+		 movementlist[j][i] = Integer.MAX_VALUE;		
+			  }
+		  }
 	}
 	
 
