@@ -31,26 +31,32 @@ public class optimizingModel {
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
 
 		// test om te kijken wat er mis ging, maar de arrivallist is leeg volgens deze printer, terwijl die wel vol is in de eventlist method.
-		int[] a = List.arrivallist;
+		int[][] a = List.arrivallist;
 		for (int i = 0; i<a.length ; i++){
-		System.out.println(a[i]);
+		System.out.println(a[i][0]);
 		}
 		while ( minuut <= 20)
 		{	
-		//	int[] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
-			int[] arrivalMin = getMin(a);
-			int[] d = List.departurelist;
-			int[] departureMin = getMin(d);
+		//	int[][] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
+			int[] arrivalMin = getMin(a, 0);
+			int[][] d = List.departurelist;
+			int[] departureMin = getMin(d, 0);
 			int end = List.endmovement;//create set methods
 
 			if(arrivalMin[1]==minuut){
 				//do arrival
+				positions.set(0, List.arrivallist[arrivalMin[0]][1]); //put train on position
+				List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); //set arrival time on inf
 			}
 			if(departureMin[1]==minuut){
 				//do departure
+				int departurePosition = getIndex(positions, List.departurelist[departureMin[0]][1]); //find leaving train
+				positions.set(departurePosition, 0); //remove leaving train
+				List.setDeparturelist(Integer.MAX_VALUE, departureMin[0]); // set departure time on inf
 			}
 			if(end==minuut){
 				movement=false; //endmovement aanpassen
+				List.setEndmovement(Integer.MAX_VALUE);
 			}
 
 			//asap weg van arrival spoor als arrival track bezet
@@ -63,6 +69,7 @@ public class optimizingModel {
 				//Check arrival track
 				if(positions.get(0)!=0){ // a train is on the track
 					//move train to arrival tracks
+					
 				}
 			}
 
