@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,21 +22,81 @@ public class initializeEventList {
 	}	
 
 	public  int[][] initializeArrivallist() {
-
 		int[][] arrivallist = new int [50][2]; //tijden trainID
+		String csvFile = "CompositionTimes.csv";
+		BufferedReader br = null;
+		String cvsSplitBy = ";"; 
+		String line = "";
+		int count = -1;
+		try {
+			br = new BufferedReader(new FileReader(csvFile));
+			line = br.readLine(); //title line
+			
+			//while ((line = br.readLine()) != null) { TELT EEN STAP TELANG DOOR GEEN ZIN OM NU TE FIXEN
+			while(count<=21){
+			count = count+1;
+			String[] data = line.split(cvsSplitBy);  //IDshort IDA IDD timeA timeD trackA trackD
 
-		for (int j=0; j<50; j++){
-			arrivallist[j][0] = Integer.MAX_VALUE;		
+			arrivallist[count][0] = Integer.parseInt(data[3]); //timeA
+			arrivallist[count][1] = Integer.parseInt(data[0]); //ID short to get compositiontype
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+
+//
+//		for (int j=0; j<50; j++){
+//			arrivallist[j][0] = Integer.MAX_VALUE;		
+//		}
 		return arrivallist;
 	}
 
 	public  int[][] initializeDeparturelist() {
-
 		int [][] departurelist = new int [50][2]; //tijden trainID
-		for (int j=0; j<50; j++){
-			departurelist[j][0] = Integer.MAX_VALUE;		
+		String csvFile = "CompositionTimes.csv";
+		BufferedReader br = null;
+		String cvsSplitBy = ";"; 
+		String line = "";
+		int count = -1;
+		try {
+			br = new BufferedReader(new FileReader(csvFile));
+			line = br.readLine(); //title line
+			
+			//while ((line = br.readLine()) != null) {
+			while(count<=21){
+			count = count+1;
+			String[] data = line.split(cvsSplitBy);  //IDshort IDA IDD timeA timeD trackA trackD
+				
+			departurelist[count][0] = Integer.parseInt(data[4]); //timeD
+			departurelist[count][1] = Integer.parseInt(data[0]); //ID short (since only one ID necessary)
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+		
+//		for (int j=0; j<50; j++){
+//			departurelist[j][0] = Integer.MAX_VALUE;		
+//		}
 		return departurelist;
 
 	}
