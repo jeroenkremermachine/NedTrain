@@ -32,11 +32,11 @@ public class initializeEventList {
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine(); //title line
 			
-			//while ((line = br.readLine()) != null) { TELT EEN STAP TELANG DOOR GEEN ZIN OM NU TE FIXEN
-			while(count<=21){
+			while ((line = br.readLine()) != null) { //TELT EEN STAP TELANG DOOR GEEN ZIN OM NU TE FIXEN
+			//while(count<=21){
 			count = count+1;
 			String[] data = line.split(cvsSplitBy);  //IDshort IDA IDD timeA timeD trackA trackD
-
+			
 			arrivallist[count][0] = Integer.parseInt(data[3]); //timeA
 			arrivallist[count][1] = Integer.parseInt(data[0]); //ID short to get compositiontype
 			}
@@ -72,8 +72,8 @@ public class initializeEventList {
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine(); //title line
 			
-			//while ((line = br.readLine()) != null) {
-			while(count<=21){
+			while ((line = br.readLine()) != null) {
+			//while(count<=21){
 			count = count+1;
 			String[] data = line.split(cvsSplitBy);  //IDshort IDA IDD timeA timeD trackA trackD
 				
