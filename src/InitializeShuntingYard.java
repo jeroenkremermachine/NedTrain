@@ -24,7 +24,7 @@ public class InitializeShuntingYard {
 	public Track t104a;
 	public int[][] travelMatrix;
 	public int[][] tpm;
-	public ArrayList<Track> Tracks; 
+	public ArrayList<Track> Tracks = new ArrayList<Track>(); 
 
 	public InitializeShuntingYard() throws FileNotFoundException, IOException{
 		initializeShuntingYard();
@@ -210,6 +210,8 @@ public class InitializeShuntingYard {
 
 			this.t63 = new Track(Integer.parseInt(track[0]),true,false,false,con,inTrainTrack);
 			Tracks.add(t63);
+			
+			
 		} 
 
 		catch (IOException e) {

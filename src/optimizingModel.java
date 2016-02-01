@@ -30,15 +30,9 @@ public class optimizingModel {
 		// daadwerklijke optimization programma
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
 
-		// test om te kijken wat er mis ging, maar de arrivallist is leeg volgens deze printer, terwijl die wel vol is in de eventlist method.
-		int[][] a = List.getArrivallist();
-		System.out.println(a[1][0]);
-		for (int i = 0; i<a.length ; i++){
-			System.out.println(a[i][0]);
-		}
 		while ( minuut <= 20)
 		{	
-			//	int[][] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
+			int[][] a = List.getArrivallist();
 			int[] arrivalMin = getMin(a, 0);
 			int[][] d = List.getDeparturelist();
 			int[] departureMin = getMin(d, 0);

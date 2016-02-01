@@ -11,10 +11,6 @@ public class Main {
 	InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
 	initializeEventList eventList = new initializeEventList(); //create the eventlist
 	
-	int[][] a = eventList.getArrivallist();
-	System.out.println(a[1][0]);
-	
-	
 	optimizingModel model = new optimizingModel(data, yard, eventList); //create the model
 
 	yard.tpmbuilder();

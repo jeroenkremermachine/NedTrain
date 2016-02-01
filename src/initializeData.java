@@ -120,7 +120,7 @@ public class initializeData {
 
 	public initializeData(){
 		initializeTypes();
-		System.out.println(SLT4.getCleanprob());
+//		System.out.println(SLT4.getCleanprob());
 		initializeCompositions();
 	}
 
