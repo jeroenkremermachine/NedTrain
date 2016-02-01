@@ -26,7 +26,7 @@ public class dijkstraMovement {
         adjacencyMatrix = new int[number_of_nodes + 1][number_of_nodes + 1];
     }
 	
-    public int possibleMovement(int start, int end, ArrayList<Integer> positions) throws FileNotFoundException, IOException{
+    public int possibleMovement(int start, int end, ArrayList<Integer> positions, initializeData Data) throws FileNotFoundException, IOException{
     	 int adjacency_matrix[][];
          int number_of_vertices;
          int source = 0, destination = 0;
@@ -102,7 +102,42 @@ public class dijkstraMovement {
          {
              System.out.println("Wrong Input Format");
          }
-    	
+         
+         
+ 		int[][] positionsPerTrack = {
+				{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{2, 3, 4, 5, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{9, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{16, 17, 18, 19, 20, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{22, 23, 24, 25, 26, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{28, 29, 30, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{32, 33, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{35, 36, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{38, 39, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{42, 43, 44, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{46, 47, 48, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{50, 51,52, 53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{54, 55, 56, 57, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+				{59, 60, 61, 62, 63, 64, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		};
+ /// start find length movingtrain
+        int id =  positions.get(start);
+        double movingTrainLength = getLength(id, Data);
+    	int track = -1;
+        for (int i = 0; i<15; i++){
+        	for (int j = 0; j<10; j++){
+        		if (positionsPerTrack[i][j] == end){
+        			track = i;
+        		}
+        	}
+        }
+        double currentTrainLength =0;
+        for (int i =0 ; i<10; i++){
+        	id = positions.get(positionsPerTrack[track][i]);
+        	currentTrainLength = currentTrainLength + getLength(id, Data); 
+        }
+  /// end find length movingtrain
     	
     	return possibleMovement;
     }
@@ -179,5 +214,28 @@ public class dijkstraMovement {
 	    	System.out.println("in method" + distances[i]);
 	    	return distances[i];
 	    }
+		public double getLength(int id, initializeData Data){
+			String x = Integer.toString(id);
+			double length=0;
+			if (id != 0){
+			if (x.length() == 5){
+				ArrayList<trainComposition> comp = Data.getCompositions();
+				for (int i = 0; i< comp.size(); i++){
+					if (comp.get(i).getID()==id){
+						length = comp.get(i).getLength();
+					}
+				}
+			}
+			else {
+				ArrayList<Train> train = Data.getTrains();
+				for (int i = 0; i< train.size(); i++){
+					if (train.get(i).getID()==id){
+						length = train.get(i).getType().getLength();
+					}
+				}
+			}
+			}
+			return length;
+		}
 	 
 }

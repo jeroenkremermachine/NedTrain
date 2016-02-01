@@ -224,7 +224,7 @@ public class InitializeShuntingYard {
 
 		int firstPosition = 0;
 		int secondPosition =0;
-		int[][] positions = {
+		int[][] positionsPerTrack = {
 				{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{2, 3, 4, 5, 6, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 				{9, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -256,18 +256,18 @@ public class InitializeShuntingYard {
 
 				if (travelMatrix[i][j] == 1){
 
-					firstPosition = positions[i][1];
-					secondPosition = positions[j][1];
+					firstPosition = positionsPerTrack[i][1];
+					secondPosition = positionsPerTrack[j][1];
 					tpm[firstPosition][secondPosition] = 1;
 
 				}
 				if (travelMatrix[i][j] == 2){
 
-					firstPosition = positions[i][1];
+					firstPosition = positionsPerTrack[i][1];
 					int maxvalue = 0;
 					for (int p=0;p<=14;p++){
-						if (positions[j][p] > maxvalue){
-							maxvalue = positions[j][p];
+						if (positionsPerTrack[j][p] > maxvalue){
+							maxvalue = positionsPerTrack[j][p];
 						}
 					}
 					secondPosition = maxvalue;
@@ -280,29 +280,29 @@ public class InitializeShuntingYard {
 
 					int maxvalue = 0;
 					for (int p=0;p<=14;p++){
-						if (positions[i][p] > maxvalue){
-							maxvalue = positions[i][p];
+						if (positionsPerTrack[i][p] > maxvalue){
+							maxvalue = positionsPerTrack[i][p];
 						}
 					}
 					firstPosition = maxvalue;
-					secondPosition = positions[j][1];
+					secondPosition = positionsPerTrack[j][1];
 					tpm[firstPosition-1][secondPosition] = 1;	
 
 				}
 				if (travelMatrix[i][j] == 4){
 
 					int maxvalue = 0;
-					firstPosition = positions[j][1];
+					firstPosition = positionsPerTrack[j][1];
 					for (int p=0;p<=14;p++){
-						if (positions[i][p] > maxvalue){
-							maxvalue = positions[i][p];
+						if (positionsPerTrack[i][p] > maxvalue){
+							maxvalue = positionsPerTrack[i][p];
 						}
 					}
 
 					maxvalue = 0;
 					for (int p=0;p<=14;p++){
-						if (positions[j][p] > maxvalue){
-							maxvalue = positions[j][p];
+						if (positionsPerTrack[j][p] > maxvalue){
+							maxvalue = positionsPerTrack[j][p];
 						}
 					}
 					secondPosition = maxvalue;
@@ -316,9 +316,9 @@ public class InitializeShuntingYard {
 		
 		for (int i = 0; i<=14;i++){
 			for (int j=0; j<= 10; j++){
-				if (positions[i][j] == positions[i][j+1]-1) {
-					tpm[positions[i][j]-1][positions[i][j+1]-1] = 1; 
-					tpm[positions[i][j+1]-1][positions[i][j]-1] = 1; 
+				if (positionsPerTrack[i][j] == positionsPerTrack[i][j+1]-1) {
+					tpm[positionsPerTrack[i][j]-1][positionsPerTrack[i][j+1]-1] = 1; 
+					tpm[positionsPerTrack[i][j+1]-1][positionsPerTrack[i][j]-1] = 1; 
 			}
 		}
 		}

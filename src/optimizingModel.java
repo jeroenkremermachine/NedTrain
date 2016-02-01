@@ -31,15 +31,16 @@ public class optimizingModel {
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
 
 		// test om te kijken wat er mis ging, maar de arrivallist is leeg volgens deze printer, terwijl die wel vol is in de eventlist method.
-		int[][] a = List.arrivallist;
+		int[][] a = List.getArrivallist();
+		System.out.println(a[1][0]);
 		for (int i = 0; i<a.length ; i++){
-		System.out.println(a[i][0]);
+			System.out.println(a[i][0]);
 		}
 		while ( minuut <= 20)
 		{	
-		//	int[][] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
+			//	int[][] a = List.arrivallist; //puur voor aanmaken en verwijderen van treinen
 			int[] arrivalMin = getMin(a, 0);
-			int[][] d = List.departurelist;
+			int[][] d = List.getDeparturelist();
 			int[] departureMin = getMin(d, 0);
 			int end = List.endmovement;//create set methods
 
@@ -69,16 +70,16 @@ public class optimizingModel {
 				//Check arrival track
 				if(positions.get(0)!=0){ // a train is on the track
 					//move train to arrival tracks
-					
+
 				}
 			}
 
 			if (movement == false){
 				// check of er bewegingsverzoek op de eventlist staat, bijvoorbeeld nu: 
-				int[][] m = List.movementlist;
+				int[][] m = List.getMovementlist();
 				int[] movementMin = getMin(m,0); //what type of movement on which train
-				int movementType = List.movementlist[movementMin[0]][1];
-				int movementTrainID = List.movementlist[movementMin[0]][2];
+				int movementType = m[movementMin[0]][1];
+				int movementTrainID = m[movementMin[0]][2];
 				//find current position of train
 				int currentPosition = getIndex(positions, movementTrainID);
 				int endPositions[] = {-1, -1};
@@ -97,7 +98,7 @@ public class optimizingModel {
 				//priority of emptying washing machine en platforms (zelfde als beweging naar beginspoor)
 				if(endPositions[0]!=-1){
 					for (int i=0;i<endPositions.length;i++){
-						movementTime = move.possibleMovement(currentPosition, endPositions[i], positions);
+						movementTime = move.possibleMovement(currentPosition, endPositions[i], positions, Data);
 						if(movementTime!=0){
 							endPosition = endPositions[i];
 							positions.set(currentPosition, 0);
@@ -122,7 +123,7 @@ public class optimizingModel {
 		int minvalue = Integer.MAX_VALUE;
 		int index = -1;
 		for (int i=0;i<x.length;i++){
-			if(x[i]<minvalue){
+			if(x[i]<=minvalue){
 				index = i;
 				minvalue = x[i];
 			}
@@ -135,7 +136,7 @@ public class optimizingModel {
 		int minvalue = Integer.MAX_VALUE;
 		int index = -1;
 		for (int i=0;i<x.length;i++){
-			if(x[i][z]<minvalue){
+			if(x[i][z]<=minvalue){
 				index = i;
 				minvalue = x[i][z];
 			}
@@ -153,6 +154,30 @@ public class optimizingModel {
 		}
 		return index;
 	}
+
+	public double getLength(int id){
+		String x = Integer.toString(id);
+		double length=0;
+		if (x.length() == 5){
+			ArrayList<trainComposition> comp = Data.getCompositions();
+			for (int i = 0; i< comp.size(); i++){
+				if (comp.get(i).getID()==id){
+					length = comp.get(i).getLength();
+				}
+			}
+		}
+		else {
+			ArrayList<Train> train = Data.getTrains();
+			for (int i = 0; i< train.size(); i++){
+				if (train.get(i).getID()==id){
+					length = train.get(i).getType().getLength();
+				}
+			}
+		}
+		
+		return length;
+	}
+
 
 }
 

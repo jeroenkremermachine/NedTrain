@@ -1389,6 +1389,14 @@ public class initializeData {
 		Random rand = new Random();
 		boolean x=rand.nextDouble()<p;
 		return x;
+	
 	}
-
+	
+	public ArrayList<trainComposition> getCompositions(){
+		return allCompositions;
+	}
+	
+	public ArrayList<Train> getTrains(){
+		return allTrains;
+	}
 }

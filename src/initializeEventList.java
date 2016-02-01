@@ -7,41 +7,45 @@ public class initializeEventList {
 	public int[][] movementlist;
 	public int endmovement;
 	
+	
 	public initializeEventList(){
-		initializeArrivallist();
-		initializeDeparturelist();
-		initializeMovementlist();
+		
+		this.arrivallist = initializeArrivallist();
+		this.departurelist = initializeDeparturelist();
+		this.movementlist = initializeMovementlist();
 		this.endmovement=0;
+		
 	}	
 
-	public  void initializeArrivallist() {
-	
-		  int [][] arrivallist = new int [50][2]; //tijden trainID
-		  Arrays.fill(arrivallist, Integer.MAX_VALUE);
-		  // nog vullen met informatie uit de data arrivals
-		  
-			
-			for (int i = 0; i<arrivallist.length ; i++){
-			System.out.println(arrivallist[i]);
-			}
+	public  int[][] initializeArrivallist() {
+
+		int[][] arrivallist = new int [50][2]; //tijden trainID
+
+		for (int j=0; j<50; j++){
+			arrivallist[j][0] = Integer.MAX_VALUE;		
+		}
+		return arrivallist;
 	}
-	
-	public  void initializeDeparturelist() {
-		
-		  int [][] departurelist = new int [50][2]; //tijden trainID
-		  Arrays.fill(departurelist, Integer.MAX_VALUE);
-		// nog vullen met informatie uit de data departures
+
+	public  int[][] initializeDeparturelist() {
+
+		int [][] departurelist = new int [50][2]; //tijden trainID
+		for (int j=0; j<50; j++){
+			departurelist[j][0] = Integer.MAX_VALUE;		
+		}
+		return departurelist;
+
 	}
-	
-	public  void initializeMovementlist() {
-		
-		  int [][] movementlist = new int [1000][3]; //tijden types trainID
-		  for (int i = 0; i<3 ; i++){
-			  for (int j=0; j<1000; j++){
-		 movementlist[j][i] = Integer.MAX_VALUE;		
-			  }
-		  }
+
+	public  int[][] initializeMovementlist() {
+
+		int [][] movementlist = new int [1000][3]; //tijden types trainID
+		for (int j=0; j<1000; j++){
+			movementlist[j][0] = Integer.MAX_VALUE;		
+		}
+		return movementlist;
 	}
+
 	
 	public void setArrivallist(int time, int location){
 		this.arrivallist[location][0] = time;
@@ -58,5 +62,17 @@ public class initializeEventList {
 	
 	public void setEndmovement(int time){
 		this.endmovement = time;
+	}
+	
+	public int[][] getArrivallist(){
+		return arrivallist;
+	}
+	
+	public int[][] getDeparturelist(){
+		return departurelist;
+	}
+	
+	public int[][] getMovementlist(){
+		return movementlist;
 	}
 }
