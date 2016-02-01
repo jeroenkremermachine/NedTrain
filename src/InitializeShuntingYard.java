@@ -24,6 +24,7 @@ public class InitializeShuntingYard {
 	public Track t104a;
 	public int[][] travelMatrix;
 	public int[][] tpm;
+	public ArrayList<Track> Tracks; 
 
 	public InitializeShuntingYard() throws FileNotFoundException, IOException{
 		initializeShuntingYard();
@@ -53,7 +54,8 @@ public class InitializeShuntingYard {
 
 
 			this.t906a = new Track(Integer.parseInt(track[0]),false,false,true,con,inTrainTrack);
-
+			Tracks.add(t906a);
+			
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -64,7 +66,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t52 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t52);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -75,7 +77,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t53 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t53);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -86,7 +88,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t54 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t54);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -97,7 +99,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t55 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t55);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -108,7 +110,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t56 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t56);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -119,7 +121,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t57 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t57);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -130,7 +132,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t58 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t58);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -141,7 +143,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t59 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t59);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -163,7 +165,7 @@ public class InitializeShuntingYard {
 //
 //			counter++; 
 			this.t51b = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t51b);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -174,7 +176,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t60 = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
-
+			Tracks.add(t60);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -185,7 +187,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t61 = new Track(Integer.parseInt(track[0]),false,true,false,con,inTrainTrack);
-
+			Tracks.add(t61);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -196,7 +198,7 @@ public class InitializeShuntingYard {
 
 			counter++; 
 			this.t62 = new Track(Integer.parseInt(track[0]),false,true,false,con,inTrainTrack);
-
+			Tracks.add(t62);
 			line = br.readLine();
 			track = line.split(cvsSplitBy);
 			for(int i = 1;i < track.length;i++)
@@ -207,7 +209,7 @@ public class InitializeShuntingYard {
 			counter++; 
 
 			this.t63 = new Track(Integer.parseInt(track[0]),true,false,false,con,inTrainTrack);
-
+			Tracks.add(t63);
 		} 
 
 		catch (IOException e) {
@@ -338,6 +340,9 @@ public class InitializeShuntingYard {
 		return tpm;
 	}
 	
+	public ArrayList<Track> getTracks(){
+		return Tracks;
+	}
 
 }
 

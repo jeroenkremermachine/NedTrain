@@ -98,7 +98,7 @@ public class optimizingModel {
 				//priority of emptying washing machine en platforms (zelfde als beweging naar beginspoor)
 				if(endPositions[0]!=-1){
 					for (int i=0;i<endPositions.length;i++){
-						movementTime = move.possibleMovement(currentPosition, endPositions[i], positions, Data);
+						movementTime = move.possibleMovement(currentPosition, endPositions[i], positions, Data, Yard);
 						if(movementTime!=0){
 							endPosition = endPositions[i];
 							positions.set(currentPosition, 0);

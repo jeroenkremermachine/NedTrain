@@ -26,7 +26,7 @@ public class dijkstraMovement {
         adjacencyMatrix = new int[number_of_nodes + 1][number_of_nodes + 1];
     }
 	
-    public int possibleMovement(int start, int end, ArrayList<Integer> positions, initializeData Data) throws FileNotFoundException, IOException{
+    public int possibleMovement(int start, int end, ArrayList<Integer> positions, initializeData Data, InitializeShuntingYard Yard) throws FileNotFoundException, IOException{
     	 int adjacency_matrix[][];
          int number_of_vertices;
          int source = 0, destination = 0;
@@ -137,7 +137,10 @@ public class dijkstraMovement {
         	id = positions.get(positionsPerTrack[track][i]);
         	currentTrainLength = currentTrainLength + getLength(id, Data); 
         }
-  /// end find length movingtrain
+
+        if (currentTrainLength + movingTrainLength > Yard.getTracks().get(track).getLength()){
+        	possibleMovement = 0; 
+        }
     	
     	return possibleMovement;
     }
