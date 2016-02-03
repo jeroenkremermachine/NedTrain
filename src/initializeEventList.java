@@ -18,12 +18,19 @@ public class initializeEventList {
 		this.arrivallist = initializeArrivallist();
 		this.departurelist = initializeDeparturelist();
 		this.movementlist = initializeMovementlist();
+		this.activitylist = initializeActivitylist();
 		this.endmovement=0;
 		
 	}	
 
 	public  int[][] initializeArrivallist() {
 		int[][] arrivallist = new int [50][2]; //tijden trainID
+		
+		
+		for (int j=0; j<50; j++){
+			arrivallist[j][0] = Integer.MAX_VALUE;		
+		}
+		
 		String csvFile = "CompositionTimes.csv";
 		BufferedReader br = null;
 		String cvsSplitBy = ";"; 
@@ -55,15 +62,17 @@ public class initializeEventList {
 			}
 		}
 
-//
-//		for (int j=0; j<50; j++){
-//			arrivallist[j][0] = Integer.MAX_VALUE;		
-//		}
+
 		return arrivallist;
 	}
 
 	public  int[][] initializeDeparturelist() {
 		int [][] departurelist = new int [50][2]; //tijden trainID
+		
+		for (int j=0; j<50; j++){
+			departurelist[j][0] = Integer.MAX_VALUE;		
+		}
+			
 		String csvFile = "CompositionTimes.csv";
 		BufferedReader br = null;
 		String cvsSplitBy = ";"; 
@@ -95,9 +104,7 @@ public class initializeEventList {
 			}
 		}
 		
-//		for (int j=0; j<50; j++){
-//			departurelist[j][0] = Integer.MAX_VALUE;		
-//		}
+		
 		return departurelist;
 
 	}
