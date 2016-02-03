@@ -15,7 +15,7 @@ public class Main {
 	int[] priorityDeparture = {2, 9, 16, 22, 3, 10, 17, 23, 4, 11, 18, 24, 5, 12, 19, 25, 6, 13, 20, 26, 7, 14, 21, 27, 8, 15};
 	int[] priorityType1 = {45, 49, 46, 50, 47, 51, 48, 52}; // Inspection, cleaning and repair
 	int[] priorityType2 = {54, 55, 56, 57, 58}; // Wasmachine
-	
+	int[] departureTrack = {1}; //departing track
 	
 	optimizingModel model = new optimizingModel(data, yard, eventList, priorityArrival, priorityDeparture, priorityType1,priorityType2); //create the model
 
@@ -26,10 +26,16 @@ model.optimization(test); //run the model and obtain output
 
 
 				
-			
 
 		
 
+	}
+	
+	public static void printIteration(ArrayList<Integer> p){
+		for (int i=0;i<p.size();i++){
+			System.out.print(p.get(i) + " ");
+		}
+		System.out.println("");
 	}
 }
 
