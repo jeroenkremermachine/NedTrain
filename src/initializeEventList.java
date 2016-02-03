@@ -46,6 +46,7 @@ public class initializeEventList {
 			String[] data = line.split(cvsSplitBy);  //IDshort IDA IDD timeA timeD trackA trackD
 			
 			arrivallist[count][0] = Integer.parseInt(data[3]); //timeA
+//			System.out.println(Integer.parseInt(data[3]));
 			arrivallist[count][1] = Integer.parseInt(data[0]); //ID short to get compositiontype
 			}
 		} catch (FileNotFoundException e) {
@@ -142,6 +143,7 @@ public class initializeEventList {
 	public void setMovementlist(int time, int id, int type, int location){
 		this.movementlist[location][0] = time;
 		this.movementlist[location][1] = type;
+		this.movementlist[location][2] = id;
 	}
 	
 	public void setEndmovement(int time){

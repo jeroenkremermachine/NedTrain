@@ -42,7 +42,7 @@ public class optimizingModel {
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
 
 
-		while (minuut <= 30)
+		while (minuut <= 1382)
 		{	
 			//printIteration(positions);
 
@@ -55,16 +55,16 @@ public class optimizingModel {
 			int[] activityMin = getMin(activitylist, 0);
 
 //			System.out.println("in while: " + end);
-			System.out.println("minuut: " + minuut);
-			System.out.println(movement);
+//			System.out.println("minuut: " + minuut);
+//			System.out.println(movement);
 
-			if(arrivalMin[1]==minuut){
+			if(arrivalMin[1]<=minuut){
 				//do arrival
-				System.out.println("ärrival");
+//				System.out.println("ärrival");
 				positions.set(0, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 				List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); //set arrival time on inf
 			}
-			if(departureMin[1]==minuut){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
+			if(departureMin[1]<=minuut){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
 				//do departure
 				int departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[0]][1]); //find leaving train
 				positions.set(departurePosition, 0); //remove leaving train
@@ -79,13 +79,13 @@ public class optimizingModel {
 				List.setActivitylist(activityMin[0], 1, Integer.MAX_VALUE);
 			}
 
-			printIteration(positions);
-			System.out.println("Moving?:" + movement);
+			printIteration(positions, minuut);
+//			System.out.println("Moving?:" + movement);
 
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
 				if(positions.get(0)!=0){ 
-					System.out.println("remove from arrival");
+//					System.out.println("remove from arrival");
 					int endPosition = -1;
 					for (int i=0;i<priorityArrival.length;i++){
 						movementTime = move.possibleMovement(1, priorityArrival[i], positions, Data, Yard);
@@ -148,18 +148,18 @@ public class optimizingModel {
 					
 					int[][] m = List.getMovementlist(); 
 					int[] movementMin = getPossibleMin(m,0); //check index -1
-					System.out.println("Start move: " + movementMin[0]);
+//					System.out.println("Start move: " + movementMin[0]);
 					if(movementMin[0] !=-1){
 						int movementType = m[movementMin[0]][1];
 						int movementTrainID = m[movementMin[0]][2];
-						System.out.println("ID?????: " +  movementTrainID);
+//						System.out.println("ID?????: " +  movementTrainID);
 						int currentPosition = getIndex(positions, movementTrainID);
 						int endPosition = -1;
 
 
 
 						if(movementType ==1){
-							System.out.println("move type 1");
+//							System.out.println("move type 1");
 							for (int i=0;i<priorityType1.length;i++){
 								movementTime = move.possibleMovement(1, priorityType1[i], positions, Data, Yard);
 								if(movementTime!=0){
@@ -177,7 +177,7 @@ public class optimizingModel {
 							}
 						}
 						else if(movementType ==2){
-							System.out.println("move type 2");
+//							System.out.println("move type 2");
 							for (int i=0;i<priorityType2.length;i++){
 								movementTime = move.possibleMovement(1, priorityType2[i], positions, Data, Yard);
 								if(movementTime!=0){
@@ -196,7 +196,7 @@ public class optimizingModel {
 						// Check volgorde in wasmachine, evt kan de verste nooit weg nu. 
 
 						else if(movementType ==3){
-							System.out.println("move type 3");
+//							System.out.println("move type 3");
 							for (int i=0;i<priorityDeparture.length;i++){
 								movementTime = move.possibleMovement(1, priorityDeparture[i], positions, Data, Yard);
 								if(movementTime!=0){
@@ -216,7 +216,7 @@ public class optimizingModel {
 
 						else if(movementType ==4)
 						{	
-							System.out.println("move type 4");
+//							System.out.println("move type 4");
 							for (int i=0;i<departureTrack.length;i++){
 								movementTime = move.possibleMovement(1, departureTrack[i], positions, Data, Yard);
 								if(movementTime!=0){
@@ -462,21 +462,21 @@ public class optimizingModel {
 				List.setActivitylist(location, 1, arrival+washIntern);
 				List.setActivitylist(location, 3, 1);
 				List.setActivitylist(location, 5, 0);
-				List.setActivitylist(location, 8, List.getActivitylist()[location][8]+1);
+				List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
 			}
 		} else if(type ==2){ //external
 			if(List.getActivitylist()[location][3]==1){ //needs washing
 				List.setActivitylist(location, 1, arrival+washExtern);
 				List.setActivitylist(location, 3, 1);
 				List.setActivitylist(location, 4, 0);
-				List.setActivitylist(location, 8, List.getActivitylist()[location][8]+1);
+				List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
 			}
 		} else if(type ==3){ //repair
 			if(List.getActivitylist()[location][6]==1){ //needs washing
 				List.setActivitylist(location, 1, arrival+repair);
 				List.setActivitylist(location, 3, 1);
 				List.setActivitylist(location, 7, 0);
-				List.setActivitylist(location, 8, List.getActivitylist()[location][8]+1);
+				List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
 			}
 		} else if(type ==0){ //repair
 			if(List.getActivitylist()[location][5]==1){ //inspection
@@ -520,7 +520,8 @@ public class optimizingModel {
 
 
 
-	public void printIteration(ArrayList<Integer> p){
+	public void printIteration(ArrayList<Integer> p, int minuut){
+		System.out.print("Minuut: " + minuut + "  ");
 		for (int i=0;i<p.size();i++){
 			System.out.print(p.get(i) + " ");
 		}
