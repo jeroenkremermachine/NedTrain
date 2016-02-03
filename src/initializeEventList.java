@@ -9,6 +9,7 @@ public class initializeEventList {
 	public int[][] arrivallist;
 	public int[][] departurelist;
 	public int[][] movementlist;
+	public int[][] activitylist;
 	public int endmovement;
 	
 	
@@ -109,6 +110,14 @@ public class initializeEventList {
 		}
 		return movementlist;
 	}
+	
+	public int[][] initializeActivitylist(){
+		int[][] activitylist = new int[50][8];// TIME, ID,CURRENT event,WASHEXTERN,WASHINTERN ,INSPECTION, REPAIR ,event counter
+		for (int j=0; j<50; j++){
+			activitylist[j][0] = Integer.MAX_VALUE;		
+		}
+		return activitylist; 
+	}
 
 	
 	public void setArrivallist(int time, int location){
@@ -117,6 +126,10 @@ public class initializeEventList {
 	
 	public void setDeparturelist(int time, int location){
 		this.departurelist[location][0] = time;
+	}
+	
+	public void setActivitylist(int location, int type, int value){
+		this.activitylist[location][type-1] = value;
 	}
 	
 	public void setMovementlist(int time, int id, int type, int location){
@@ -138,5 +151,9 @@ public class initializeEventList {
 	
 	public int[][] getMovementlist(){
 		return movementlist;
+	}
+	
+	public int[][] getActivitylist(){
+		return activitylist;
 	}
 }
