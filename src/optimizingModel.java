@@ -127,6 +127,7 @@ public class optimizingModel {
 //									List.setEndmovement(timeMovement);
 //									break;
 //								}
+				//movementlijst eruit halen want move hoeft niet meer
 //						}
 //					}
 
@@ -238,7 +239,7 @@ public class optimizingModel {
 		return y;
 	}
 
-	public int getIndex(ArrayList<Integer> x, int ID){
+	public int getIndex(ArrayList<Integer> x, int ID){ //getposition
 		int index = -1;
 		for (int i=0;i<x.size();i++){
 			if(x.get(i)==ID){
@@ -271,15 +272,71 @@ public class optimizingModel {
 		return length;
 	}
 
-// public int getLastMoveTime(int id){ // vult de movementmatrix met uiterlijke tijden voor het rijden naar area's. 
-//
-//		 // per train ID moeten we de volgende dingen uit gaan lezen: 
-//	
-//	 	 // departureTime;
-//		 boolean washExtern = true;
-//		 boolean washIntern = true;
-//		 boolean inspection = true;
-//		 boolean repair = true;
+	public int getBooleans(int id, int bool){ //inspect, repair, clean, wash
+		int time = 0;
+//		if (x.length() == 5){
+			ArrayList<trainComposition> comp = Data.getCompositions();
+			for (int i = 0; i< comp.size(); i++){
+				if (comp.get(i).getID()==id){
+					for (int j=0; j<comp.get(i).getTrains().size();j++){
+						if(bool == 1){
+							if(comp.get(i).getTrains().get(j).getInspect()==true){
+								time = time + (int) comp.get(i).getTrains().get(j).getType().getInspectiontime();
+							}
+						} else if(bool == 2){
+							if(comp.get(i).getTrains().get(j).getRepair()==true){
+								time = time + (int) comp.get(i).getTrains().get(j).getType().getRepairtime();
+							}
+						} else if(bool == 3){
+							if(comp.get(i).getTrains().get(j).getClean()==true){
+								time = time + (int) comp.get(i).getTrains().get(j).getType().getCleaningtime();
+							}
+						} else if(bool == 4){
+							if(comp.get(i).getTrains().get(j).getWash()==true){
+								time = time + (int) comp.get(i).getTrains().get(j).getType().getWashingtime();
+							}
+						}
+					}
+			}
+		}
+		return time;
+	}
+
+	public double getDepartureTime(int id){ //inspect, repair, clean, wash
+		String x = Integer.toString(id);
+		double time=0;
+			//ArrayList<trainComposition> comp = Data.getCompositions();
+			int[][] list = List.getDeparturelist();
+			for (int i = 0; i< 50; i++){
+				if (list[i][1]==id){
+					time = list[i][0];
+			}
+		}		
+		return time;
+	}
+	
+	public void setMovementList(int id){ // vult de movementmatrix met uiterlijke tijden voor het rijden naar area's. 
+
+		 // per train ID moeten we de volgende dingen uit gaan lezen: 
+	 	 double departureTime = getDepartureTime(id);
+		 int washExtern = getBooleans(id, 4);
+		 int washIntern = getBooleans(id, 3);
+		 int inspection = getBooleans(id, 1);
+		 int repair = getBooleans(id, 2);
+		 double movementtime = 2;
+		 double type1Event = Integer.MAX_VALUE;
+		 double type2Event = Integer.MAX_VALUE;
+		 double type3Event = Integer.MAX_VALUE;
+		 double type4Event = Integer.MAX_VALUE;
+		 
+		 int location = -1;
+		 for(int i=0; i<1000;i++){
+			 if(List.getMovementlist()[i][0]>10000){
+				 location = i;
+				 break;
+			 }
+		 }
+		 
 		 
 		 // type 4: To depart track (Every train)
 		 // type 3: to depart area (every train. some trains get repaired there)
@@ -287,50 +344,42 @@ public class optimizingModel {
 		 // type 1: to internal cleaning area (some trains)
 		 
 		 
-// SET TYPE 4 EVENT (MOVING TO THE DEPART TRACK)
-		 // get departure time:		
-		 // type4Event = departure time - movementtime to depart track
-		 // fill movement list met type 5 event. 	
-	 
+// SET TYPE 4 EVENT (MOVING TO THE DEPART TRACK)	
+		 type4Event = departureTime - movementtime;  //create event time
+		 List.setMovementlist((int) type4Event, id, 4, location); //fill list	
+		 location++;
 // --------------------------------------------------------------------------------------------------		 
-// IF BOOLEAN REPAIR = TRUE: SET TYPE 3 TO BE THE ULTIMATE_START_REPAIR_EVENT	
-		 // get type 4 event time: 
-		 // type 3 event  = type4 event - repairtime - movementtime to repair/depart area		
-		 
-// IF BOOLEAN REPAIR = FALSE: SET TYPE 3 TO BE THE TIME THAT YOU HAVE TO GO TO DEPART AREA
-		 // get type 4 event time: 
-		 // type 3 event  = type4 event - movementtime to repair/depart area	 
-		 
+//SET TYPE 3 TO BE THE ULTIMATE_START_REPAIR_EVENT	
+		 type3Event = type4Event - repair - movementtime;
+		 List.setMovementlist((int) type3Event,  id,  3, location);
+		 location++;
 // --------------------------------------------------------------------------------------------------				 
 // IF BOOLEAN CLEANINGEXTERN = TRUE: SET TYPE 2 TO BE THE TIME THAT YOU HAVE TO GO TO THE CLEANING EXTERN AREA		 
-		 // get type 3 event time
-		 // type 2 event: Type 3 event - washing extern time - movement to extern wash area 
+		 if(washExtern>0){
+			 type2Event = type3Event - washExtern - movementtime;
+			 List.setMovementlist((int) type2Event, id, 2, location);
+			 location++;
+		 }
 
 // --------------------------------------------------------------------------------------------------		
 // IF BOOLEAN CLEANINGINTERN = TRUE: SET TYPE 1 TO BE THE TIME THAT YOU HAVE TO GO TTHE CLEANING INTERN AREA	
-		 // IF BOOLEAN CLEANING EXTERN = TRUE: 
-		 // type1 move =  type 2 - interncleaning time - movement time to internal cleaning platform
-		 
-		 // IF BOOLEAN CLEANING INTERN = FALSE:
-		 // type1 move =  Type 3 - interncleaning event - movement time to internal cleaning platofrm
+		 if(washExtern>0){
+			 type1Event = type2Event - washIntern - movementtime;
+		 } else {
+			 type1Event = type3Event - washIntern - movementtime;
+		 }
+		 List.setMovementlist((int) type1Event, id, 1, location);
 
-// --------------------------------------------------------------------------------------------------
-
-		 
-		 // all types events go to the movement list, they consist of the ultimate time the train has to move
-		 // all other events go to an event list, they correspond to an event is taking place. If an event is taking place it cannot move, AT START TIME MAKE END TIME. 
-		 // Only start an event if type5 - eventtime > 0 . (so there is always time to travel to the departure track). 
+// -------------------------------------------------------------------------------------------------- 
+		 // Only start an event if type4 - eventtime > 0. (so there is always time to travel to the departure track). 
 		 // THE REAL start event is making sure that the train cannot move, and that the train makes an end event after which it can move. 
+ }
 
-	 
-// return lastMoveTime;
-// 
-// }
-// 
+	
 // public int StartEvent(int id){ // vult de eventlist met events (ANDERS DAN DE MOVEMENTLIST!)  
 //
 //	 // IF A TRAIN ARRIVES, OR IF A END MOVEMENT EVENT OCCURS, WE WILL CALL THIS METHOD. PER TRAIN ID SHOULD EXIST A EVENT MATRIX:
-//	 // matrix:  ID -- CURRENT event -- WASHEXTERN -- WASHINTERN --- INSPECTION -- REPAIR -- event counter
+//	 // matrix:  TIME -- ID -- CURRENT event -- WASHEXTERN -- WASHINTERN --- INSPECTION -- REPAIR -- event counter
 //	 
 //	 // get current train position
 //	 // depending on position check which boolean should be true

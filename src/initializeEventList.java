@@ -119,7 +119,7 @@ public class initializeEventList {
 		this.departurelist[location][0] = time;
 	}
 	
-	public void setMovementlist(int time, int type, int location){
+	public void setMovementlist(int time, int id, int type, int location){
 		this.movementlist[location][0] = time;
 		this.movementlist[location][1] = type;
 	}
