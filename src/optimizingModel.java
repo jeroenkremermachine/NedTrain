@@ -9,27 +9,34 @@ public class optimizingModel {
 	public int timeMovement;
 	public boolean movement;
 	public int movementTime;
-	public int[] priorityArrival;
-	public int[] priorityDeparture;
+	public int[] priorityArrivalarea;
+	public int[] priorityArrivaltrack;
 	public int[] priorityType1;
 	public int[] priorityType2;
-	public int[] departureTrack;
+	public int[] priorityType3;
+	public int[] priorityType4;
 
-	public optimizingModel(initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist, int[]priorityArrival, int[] priorityDeparture, int[] priorityType1, int[]  priorityType2){
+
+	public optimizingModel(initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist, int[] priorityArrivaltrack, int[]priorityArrivalarea, int[] priorityType1, int[]  priorityType2, int[] priorityType3, int[] priorityType4){
+
+
+		
 		this.Data = Data;
 		this.Yard = Yard;
 		this.List = eventlist;
-		this.priorityArrival = priorityArrival;
-		this.priorityDeparture = priorityDeparture; 
+		this.priorityArrivalarea = priorityArrivalarea;
+		this.priorityArrivaltrack = priorityArrivaltrack; 
 		this.priorityType1 = priorityType1;
-		this.priorityType2 =  priorityType2;
+		this.priorityType2 = priorityType2;
+		this.priorityType3 = priorityType3;
+		this.priorityType4 = priorityType4;
 	}
 
 	public void  optimization(int[][] tpm) throws FileNotFoundException, IOException{
 		//This should all be implemented in the data set, and the shunting yard
 		ArrayList<Integer> positions = new ArrayList<Integer>(); // Alle posities leeg
 		dijkstraMovement move = new dijkstraMovement();
-		for (int i = 0; i<=63; i++){
+		for (int i = 0; i<=66; i++){
 			positions.add(i, 0);
 		}
 		fillInitialActivitylist(); //create lines for all arriving traincompositions
@@ -42,9 +49,10 @@ public class optimizingModel {
 		// eventlist updates e.d. met als input welke beweging moet plaats vinden, en return is of deze beweging kan of niet + beweginstijd.
 
 
-		while (minuut <= 1382)
+		while (minuut <= 500)
 		{	
-			//printIteration(positions);
+			
+
 
 			int[][] a = List.getArrivallist();
 			int[] arrivalMin = getMin(a, 0);
@@ -54,17 +62,34 @@ public class optimizingModel {
 			int[][] activitylist = List.getActivitylist();
 			int[] activityMin = getMin(activitylist, 0);
 
-//			System.out.println("in while: " + end);
-//			System.out.println("minuut: " + minuut);
-//			System.out.println(movement);
+			
+//			if (minuut == 28
+//					){
+//
+//				for (int i = 0; i< 10; i++){
+//					for (int j=0; j< 8; j++){
+//						System.out.print("   "+activitylist[i][j]);
+//					}
+//					System.out.println();
+//				}
+//			}
+//			if (minuut == 430
+//					){
+//
+//				for (int i = 0; i< 10; i++){
+//					for (int j=0; j< 8; j++){
+//						System.out.print("   "+activitylist[i][j]);
+//					}
+//					System.out.println();
+//				}
+//			}
 
 			if(arrivalMin[1]<=minuut){
 				//do arrival
-//				System.out.println("ärrival");
 				positions.set(0, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 				List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); //set arrival time on inf
 			}
-			if(departureMin[1]<=minuut){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
+			if(departureMin[1]==minuut){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
 				//do departure
 				int departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[0]][1]); //find leaving train
 				positions.set(departurePosition, 0); //remove leaving train
@@ -73,24 +98,31 @@ public class optimizingModel {
 			if(end==minuut){
 				movement=false; //endmovement aanpassen
 				List.setEndmovement(Integer.MAX_VALUE);
+				
 			}
 
 			if (activityMin[1] == minuut){ // nog checken: meerdere events op dezelfde minuut klaar?
 				List.setActivitylist(activityMin[0], 1, Integer.MAX_VALUE);
+				List.setActivitylist(activityMin[0], 3, 0);
+
 			}
 
+	
 			printIteration(positions, minuut);
-//			System.out.println("Moving?:" + movement);
+			
+			
+
 
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
 				if(positions.get(0)!=0){ 
 //					System.out.println("remove from arrival");
 					int endPosition = -1;
-					for (int i=0;i<priorityArrival.length;i++){
-						movementTime = move.possibleMovement(1, priorityArrival[i], positions, Data, Yard);
+					for (int i=0;i<priorityArrivalarea.length;i++){
+						movementTime = move.possibleMovement(1, priorityArrivalarea[i], positions, Data, Yard);
 						if(movementTime!=0 && movementTime<100){
-							endPosition = priorityArrival[i];
+							
+							endPosition = priorityArrivalarea[i];
 							int id = positions.get(0);
 							positions.set(endPosition, id);
 							positions.set(0, 0);
@@ -104,6 +136,7 @@ public class optimizingModel {
 
 					}
 				}
+
 
 				// bij beide onderstaande methodes, moeten we gaan bedenken waar naar toe de beweging gaat. Mogelijk conflict met de movementlist als je een keuze maakt;			
 				//				if (movement == false){
@@ -144,30 +177,30 @@ public class optimizingModel {
 				//						}
 				//					}
 
+				
+		
 				if (movement == false){
 					
 					int[][] m = List.getMovementlist(); 
 					int[] movementMin = getPossibleMin(m,0); //check index -1
-//					System.out.println("Start move: " + movementMin[0]);
 					if(movementMin[0] !=-1){
 						int movementType = m[movementMin[0]][1];
 						int movementTrainID = m[movementMin[0]][2];
-//						System.out.println("ID?????: " +  movementTrainID);
 						int currentPosition = getIndex(positions, movementTrainID);
 						int endPosition = -1;
 
 
 
-						if(movementType ==1){
-//							System.out.println("move type 1");
+						if(movementType ==1){  // internal cleaning
+
 							for (int i=0;i<priorityType1.length;i++){
 								movementTime = move.possibleMovement(1, priorityType1[i], positions, Data, Yard);
-								if(movementTime!=0){
+								if(movementTime!=0 && movementTime<100){
+									
 									endPosition = priorityType1[i];
 									int id = movementTrainID;
 									positions.set(endPosition, id);
 									positions.set(currentPosition, 0);
-									//								System.out.println("end: " +  id);
 									timeMovement = minuut + movementTime;
 									movement = true;
 									List.setEndmovement(timeMovement);
@@ -176,31 +209,11 @@ public class optimizingModel {
 								}
 							}
 						}
-						else if(movementType ==2){
-//							System.out.println("move type 2");
+						else if(movementType ==2){ // external cleaning
 							for (int i=0;i<priorityType2.length;i++){
 								movementTime = move.possibleMovement(1, priorityType2[i], positions, Data, Yard);
-								if(movementTime!=0){
+								if(movementTime!=0 && movementTime<100){
 									endPosition = priorityType2[i];
-									int id = movementTrainID;
-									positions.set(endPosition, id);
-									positions.set(currentPosition, 0);
-									timeMovement = minuut + movementTime;
-									movement = true;
-									List.setEndmovement(timeMovement);
-									StartEvent(id, 2, timeMovement);
-									break;
-								}
-							}
-						} 
-						// Check volgorde in wasmachine, evt kan de verste nooit weg nu. 
-
-						else if(movementType ==3){
-//							System.out.println("move type 3");
-							for (int i=0;i<priorityDeparture.length;i++){
-								movementTime = move.possibleMovement(1, priorityDeparture[i], positions, Data, Yard);
-								if(movementTime!=0){
-									endPosition = priorityDeparture[i];
 									int id = movementTrainID;
 									positions.set(endPosition, id);
 									positions.set(currentPosition, 0);
@@ -214,13 +227,29 @@ public class optimizingModel {
 						} 
 
 
-						else if(movementType ==4)
-						{	
-//							System.out.println("move type 4");
-							for (int i=0;i<departureTrack.length;i++){
-								movementTime = move.possibleMovement(1, departureTrack[i], positions, Data, Yard);
-								if(movementTime!=0){
-									endPosition = departureTrack[i];
+						else if(movementType ==3){ //move to depart area
+							for (int i=0;i<priorityType3.length;i++){
+								movementTime = move.possibleMovement(1, priorityType3[i], positions, Data, Yard);
+								if(movementTime!=0 && movementTime<100){
+									endPosition = priorityType3[i];
+									int id = movementTrainID;
+									positions.set(endPosition, id);
+									positions.set(currentPosition, 0);
+									timeMovement = minuut + movementTime;
+									movement = true;
+									List.setEndmovement(timeMovement);
+									StartEvent(id, 3, timeMovement);
+									break;
+								}
+							}
+						} 
+
+
+						else if(movementType ==4){	
+							for (int i=0;i<priorityType4.length;i++){
+								movementTime = move.possibleMovement(1, priorityType4[i], positions, Data, Yard);
+								if(movementTime!=0 && movementTime<100){
+									endPosition = priorityType4[i];
 									int id = movementTrainID;
 									positions.set(endPosition, id);
 									positions.set(currentPosition, 0);
@@ -241,12 +270,8 @@ public class optimizingModel {
 	}
 
 
-	// Het moet mogelijk zijn om een event te skippen in het geval er geen tijd meer voor is. 
 	// SKIP EVENT IF: TYPE 4 event - (eventime + minuut) < 0
-	// bouw dit in de eventmatrix method.
 
-
-	// methodes
 
 
 
@@ -404,7 +429,7 @@ public class optimizingModel {
 
 		int location = -1;
 		for(int i=0; i<1000;i++){
-			if(List.getMovementlist()[i][0]>10000){
+			if(List.getMovementlist()[i][2]==0){
 				location = i;
 				break;
 			}
@@ -456,7 +481,7 @@ public class optimizingModel {
 			}
 		}
 
-
+		
 		if(type ==1){ //internal
 			if(List.getActivitylist()[location][4]==1){ //needs cleaning
 				List.setActivitylist(location, 1, arrival+washIntern);
@@ -481,7 +506,7 @@ public class optimizingModel {
 		} else if(type ==0){ //repair
 			if(List.getActivitylist()[location][5]==1){ //inspection
 				List.setActivitylist(location, 1, arrival+inspection);
-				List.setActivitylist(location, 3, 1);
+				List.setActivitylist(location, 3, 1); 
 				List.setActivitylist(location, 6, 0);
 				List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
 			}
