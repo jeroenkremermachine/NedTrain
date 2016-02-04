@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class optimizingModel {
 	private initializeData Data;
@@ -266,7 +268,7 @@ public class optimizingModel {
 			} //if movement is false
 			minuut++;
 		}//while
-
+		printPerformance(List.activitylist);
 	}
 
 
@@ -543,7 +545,40 @@ public class optimizingModel {
 		}
 	}
 
-
+	public void printPerformance(int[][] activity){
+//		TIME(1) -- ID(2) -- CURRENT event(3) -- WASHEXTERN(4) -- WASHINTERN(5) --- INSPECTION(6) -- REPAIR(7) -- event counter(8)
+		double[] performance = new double[50];//create vector with performance per train
+		double minPerformance =0;
+		double maxPerformance=0;
+		double totalPerformance=0;
+		double countPerformance=0;
+		double allDone = 0;
+		
+		for (int i=0;i<8;i++){
+			if(activity[i][1]!=0){ //a train is assigned to the row
+				double unperformed = activity[i][3]+activity[i][4]+activity[i][5]+activity[i][6]; //needed but undone binary
+				performance[i] = activity[i][7]/(activity[i][7]+unperformed); 
+				
+				totalPerformance=totalPerformance+performance[i];
+				countPerformance=countPerformance+1;
+				if(minPerformance>performance[i]){
+					minPerformance=performance[i];
+				}
+				if(maxPerformance<performance[i]){
+					maxPerformance=performance[i];
+				}
+				if(performance[i]==1){
+					allDone = allDone+1;
+				}
+			}
+		}
+		System.out.println("Dit gaat nog alleen over de eerste 8 treinen!!");//verander for loop
+		System.out.println("The lowest performing train performs " + minPerformance*100 + " percent of their tasks.");
+		System.out.println("The highest performing train performs " + maxPerformance*100 + " percent of their tasks.");
+		System.out.println("The average performing train performs " + (totalPerformance/countPerformance)*100 + " percent of their tasks.");
+		System.out.println("The percentage of trains performing all tasks is " + (allDone/countPerformance)*100 + " percent.");
+		
+	}
 
 	public void printIteration(ArrayList<Integer> p, int minuut){
 		System.out.print("Minuut: " + minuut + "  ");
