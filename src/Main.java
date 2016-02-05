@@ -25,6 +25,9 @@ public class Main {
 		//newdijkstra dijkstra = new newdijkstra(test);
 		model.optimization(test); //run the model and obtain output
 
+		
+		
+
 		//	int[][] positionsPerTrack = {
 		//			{1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t906a vrijhouden / aankomst+depart area
 		//			{5, 6, 7, 8, 9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t52 depart area

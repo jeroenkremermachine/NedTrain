@@ -157,12 +157,18 @@ public class dijkstraMovement {
 		}
 
 		if (currentTrainLength + movingTrainLength > Yard.getTracks().get(track).getLength()){
+			
 			possibleMovement = 0; 
 		}
 
 		return possibleMovement;
 	}
 
+	public void lengtetrein (int id, initializeData Data){
+		double movingTrainLength = getLength(id, Data);
+		System.out.println("id van de trein" + id +"   lengte van de trein:  "+movingTrainLength);
+				}
+	
 	public void dijkstra_algorithm(int adjacency_matrix[][], int source)
 	{
 		int evaluationNode;
