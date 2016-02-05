@@ -37,7 +37,7 @@ public class InitializeShuntingYard {
 		String cvsSplitBy = ";"; 
 		String line = "";
 		ArrayList<Train> inTrainTrack = new ArrayList<Train>(); // initial empty LrrayList for all tracks
-		this.travelMatrix = new int[16][16];
+		this.travelMatrix = new int[14][14];
 		int counter = 0;
 		try {
 
@@ -259,14 +259,14 @@ public class InitializeShuntingYard {
 
 				if (travelMatrix[i][j] == 1){
 
-					firstPosition = positionsPerTrack[i][1];
-					secondPosition = positionsPerTrack[j][1];
-					tpm[firstPosition][secondPosition] = 1;
+					firstPosition = positionsPerTrack[i][0];
+					secondPosition = positionsPerTrack[j][0];
+					tpm[firstPosition-1][secondPosition-1] = 1;
 
 				}
 				if (travelMatrix[i][j] == 2){
 
-					firstPosition = positionsPerTrack[i][1];
+					firstPosition = positionsPerTrack[i][0];
 					int maxvalue = 0;
 					for (int p=0;p<=13;p++){
 						if (positionsPerTrack[j][p] > maxvalue){
@@ -275,7 +275,7 @@ public class InitializeShuntingYard {
 					}
 					secondPosition = maxvalue;
 
-					tpm[firstPosition][secondPosition-1] = 1;						
+					tpm[firstPosition-1][secondPosition-1] = 1;						
 
 				}
 				if (travelMatrix[i][j] == 3){
@@ -288,19 +288,20 @@ public class InitializeShuntingYard {
 						}
 					}
 					firstPosition = maxvalue;
-					secondPosition = positionsPerTrack[j][1];
-					tpm[firstPosition-1][secondPosition] = 1;	
+					secondPosition = positionsPerTrack[j][0];
+					tpm[firstPosition-1][secondPosition-1] = 1;	
 
 				}
 				if (travelMatrix[i][j] == 4){
 
 					int maxvalue = 0;
-					firstPosition = positionsPerTrack[j][1];
+					
 					for (int p=0;p<=13;p++){
 						if (positionsPerTrack[i][p] > maxvalue){
 							maxvalue = positionsPerTrack[i][p];
 						}
 					}
+					firstPosition = maxvalue;
 
 					maxvalue = 0;
 					for (int p=0;p<=13;p++){
@@ -326,8 +327,12 @@ public class InitializeShuntingYard {
 		}
 		}
 
-		
-
+//		for (int i = 0; i<67;i++){
+//			for (int j=0; j< 67; j++){
+//				System.out.print("  "+tpm[i][j]);
+//			}
+//			System.out.println();
+//		}
 
 
 	}

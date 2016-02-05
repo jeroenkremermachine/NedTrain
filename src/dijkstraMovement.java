@@ -44,16 +44,31 @@ public class dijkstraMovement {
 			yard.tpmbuilder();
 			int[][] tp = yard.returnTPM();
 
-			int[][] tpm = tp;
+
+			
+			
+			int[][] tpm =  new int[67][67] ;
+			
+			for (int i = 0; i<67;i++){
+				for (int j = 0; j<67;j++){
+					tpm[i][j] = tp[i][j];
+				}
+			}
+			
 			for (int i = 1; i<=66;i++)
 			{
 
-				if (positions.get(i) !=0)
+				if (positions.get(i) !=0){
+				
 					for (int p = 0; p<=66; p++) 
 					{
-						tpm[p][i] = 0;
+						tpm[p][i-1] = 0;
 					}
 			}
+			}
+			
+
+		
 
 
 			for (int i = 1; i <= number_of_vertices; i++)

@@ -12,7 +12,7 @@ public class Main {
 		initializeEventList eventList = new initializeEventList(); //create the eventlist
 
 		int[] priorityArrivaltrack = {1, 2, 3, 4}; 
-		int[] priorityArrival =  {31, 35, 38, 41, 32, 36, 39, 42, 33, 37, 40, 43, 34};  
+		int[] priorityArrival =  {31, 35, 38, 32, 36, 39, 33, 37, 40, 34,25, 19, 26, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12};  
 		int[] priorityType1 = {48, 52, 49, 53, 50, 54, 51, 55}; // Internal
 		int[] priorityType2 = {56, 57, 58, 59, 60}; // External
 		int[] priorityType3 = {11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
