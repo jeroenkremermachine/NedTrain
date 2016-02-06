@@ -168,9 +168,9 @@ int indexcheck = -1;
 				boolean activity = false;
 				int idextra = -1;
 				
-				if (movement == false){
+				if (movement == false){//reinigingsperron
 					for (int i = 47; i<54;i++){
-						activity = false;
+						activity = false; //trein mag verplaatsen
 						if(positions.get(i)!=0 && movement == false){	
 					
 							idextra = positions.get(i);
@@ -190,7 +190,7 @@ int indexcheck = -1;
 
 						}
 				
-						if (activity == true){
+						if (activity == true){//????
 							int endPosition = -1;
 							for (int q=0;q<priorityArrivalarea.length;q++){
 								movementTime = move.possibleMovement(intWashposition, priorityArrivalarea[q], positions, Data, Yard);
@@ -217,14 +217,14 @@ int indexcheck = -1;
 				idextra = -1;
 				
 				if (movement == false){
-					for (int i = 55; i<59;i++){
+					for (int i = 55; i<59;i++){//wasmachine
 						activity = false;
 						if(positions.get(i)!=0 && movement == false){	
 							idextra = positions.get(i);
 							for(int j=0;j<50;j++){
 								if(List.getActivitylist()[j][1]==idextra){
 									if(List.getActivitylist()[j][2]==0){ //activity check							
-										activity = true;
+										activity = true; //if finished activity
 										extWashposition = i+1;
 
 										
@@ -232,7 +232,6 @@ int indexcheck = -1;
 									}
 								}
 							}
-
 						}
 				
 						if (activity == true){
@@ -257,7 +256,7 @@ int indexcheck = -1;
 				}
 
 				 indexcheck = -1;
-				if (movement == false){			
+				if (movement == false){			//rest of movements
 					int[][] m = List.getMovementlist(); 				
 					int[] movementMin = getPossibleMin(m,0); //check index -1
 					if(movementMin[0] !=-1){
@@ -345,10 +344,10 @@ int indexcheck = -1;
 							}
 						} 
 
-						else if(movementType ==4  ){	
+						else if(movementType ==4  ){	//naar departuretrack
 							counter4++;
 
-							if (minuut > time - 5){
+							if (minuut > time - 5){//not infinite on track
 							for (int i=0;i<priorityType4.length;i++){
 								movementTime = move.possibleMovement(currentPosition, priorityType4[i], positions, Data, Yard);
 								System.out.println("movement time:    " + movementTime);
@@ -381,11 +380,11 @@ int indexcheck = -1;
 		System.out.println("");
 		printpositionTrainMatrix(matrix);
 		
-//		int[][] o = List.getArrivallist();
-//		for (int i = 0; i<30; i++){
-//			int roo = o[i][1];
-//			move.lengtetrein(rook, Data);
-//		}
+		int[][] o = List.getArrivallist();
+		for (int i = 0; i<30; i++){
+			int roo = o[i][1];
+			move.lengtetrein(roo, Data);
+		}
 //		
 		
 
