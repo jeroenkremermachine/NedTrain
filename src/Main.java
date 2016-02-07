@@ -17,8 +17,9 @@ public class Main {
 		int[] priorityType2 = {56, 57, 58, 59, 60}; // External
 		int[] priorityType3 = {11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
 		int[] priorityType4 = {4, 3, 2, 1}; //departing track
+		int[] priorityType4extra = {61, 62}; // other departing track
 
-		optimizingModel model = new optimizingModel(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4); //create the model
+		optimizingModel model = new optimizingModel(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
 
 		yard.tpmbuilder();
 		int[][] test = yard.returnTPM();

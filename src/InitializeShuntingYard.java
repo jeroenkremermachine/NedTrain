@@ -210,7 +210,20 @@ public class InitializeShuntingYard {
 
 			this.t63 = new Track(Integer.parseInt(track[0]),true,false,false,con,inTrainTrack);
 			Tracks.add(t63);
-			
+			line = br.readLine();
+			track = line.split(cvsSplitBy);
+			for(int i = 1;i < track.length;i++)
+			{
+				con[i-1]=Integer.parseInt(track[i]);
+				travelMatrix[counter][i-1] = Integer.parseInt(track[i]);
+			}
+			counter++;
+
+			this.t104a = new Track(Integer.parseInt(track[0]),false,false,false,con,inTrainTrack);
+			Tracks.add(t104a);
+
+
+
 			
 		} 
 

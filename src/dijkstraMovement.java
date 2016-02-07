@@ -144,14 +144,14 @@ public class dijkstraMovement {
 			for (int j = 0; j<10; j++){
 				if (positionsPerTrack[i][j] == end){
 					track = i;
+
 				}
 			}
 		}
 		double currentTrainLength =0;
 		for (int i =0 ; i<10; i++){
 			if(positionsPerTrack[track][i]!=0){ // dont look at start position
-				id = positions.get(positionsPerTrack[track][i]);
-//				System.out.println(id + " possibleM " + getLength(id, Data));
+				id = positions.get(positionsPerTrack[track][i]-1);
 				currentTrainLength = currentTrainLength + getLength(id, Data); 
 			}
 		}
