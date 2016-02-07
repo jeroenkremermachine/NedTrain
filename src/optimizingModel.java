@@ -414,13 +414,13 @@ int positiearrival = -1;
 		System.out.println("aantal keer echte beweging naar departure track" + counter);
 		System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
 		System.out.println("");
-		printpositionTrainMatrix(matrix);
+//		printpositionTrainMatrix(matrix);
 		
-		int[][] o = List.getArrivallist();
-		for (int i = 0; i<30; i++){
-			int roo = o[i][1];
-			move.lengtetrein(roo, Data);
-		}
+//		int[][] o = List.getArrivallist();
+//		for (int i = 0; i<30; i++){
+//			int roo = o[i][1];
+//			move.lengtetrein(roo, Data);
+//		}
 //		
 		
 
