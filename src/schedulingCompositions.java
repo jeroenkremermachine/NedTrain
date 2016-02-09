@@ -77,15 +77,17 @@ public class schedulingCompositions {
 //		System.out.println(departures.size());
 
 		//Check if remaining departing number of types are equal to remaining arriving types
-//		int arr = 0;
-//		int dep = 0;
-//		for(int x=0;x<arrivals.size();x++){
-//			arr = arr + arrivals.get(x).getTypes().size();
-//		}
-//		for(int x=0;x<departures.size();x++){
-//			dep = dep + departures.get(x).getTypes().size();
-//		}
-//		System.out.println("Arrivals: " + arr + " Departures: " + dep);
+		int arr = 0;
+		int dep = 0;
+		for(int x=0;x<arrivals.size();x++){
+			arr = arr + arrivals.get(x).getTypes().size();
+		}
+		for(int x=0;x<departures.size();x++){
+			dep = dep + departures.get(x).getTypes().size();
+		}
+		if(arr!=dep){
+			System.out.println("Unfeasible schedule, number of trains does not match.");
+		}
 		
 		
 		
