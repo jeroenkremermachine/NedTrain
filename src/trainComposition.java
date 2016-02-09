@@ -60,4 +60,11 @@ public class trainComposition {
 	public ArrayList<trainType> getTypes(){
 		return types;
 	}
+	
+	public void setTypes(ArrayList<trainType> x){
+		this.types.clear();
+		for (int i=0;i<x.size();i++){
+			this.types.set(i, x.get(i));
+		}
+	}
 }

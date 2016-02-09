@@ -19,14 +19,14 @@ public class schedulingCompositions {
 				departures.add(data.allCompositions.get(i));
 			}
 		}
-		//		System.out.println("Arrivals");
-		//		for(int i=0;i<arrivals.size();i++){
-		//			System.out.println(arrivals.get(i).getID());
-		//		}
-		//		System.out.println("Departure");
-		//		for(int i=0;i<departures.size();i++){
-		//			System.out.println(departures.get(i).getID());
-		//		}
+		//				System.out.println("Arrivals");
+		//				for(int i=0;i<arrivals.size();i++){
+		//					System.out.println(arrivals.get(i).getID());
+		//				}
+		//				System.out.println("Departure");
+		//				for(int i=0;i<departures.size();i++){
+		//					System.out.println(departures.get(i).getID());
+		//				}
 
 		int countlink = 0;
 		int i=0;
@@ -60,10 +60,10 @@ public class schedulingCompositions {
 					departures.remove(j);
 					i=i-1;
 
-//					for(int s=0;s<7;s++){
-//						System.out.print(linking[countlink][s] + "  ");
-//					}
-//					System.out.println("Linking added");
+					//					for(int s=0;s<7;s++){
+					//						System.out.print(linking[countlink][s] + "  ");
+					//					}
+					//					System.out.println("Linking added");
 					countlink = countlink+1;
 					foundj =1;
 				}
@@ -73,8 +73,8 @@ public class schedulingCompositions {
 		}
 
 		//// Now all identical compositions have been linked
-//		System.out.println(arrivals.size());
-//		System.out.println(departures.size());
+		//				System.out.println(arrivals.size());
+		//				System.out.println(departures.size());
 
 		//Check if remaining departing number of types are equal to remaining arriving types
 		int arr = 0;
@@ -88,11 +88,240 @@ public class schedulingCompositions {
 		if(arr!=dep){
 			System.out.println("Unfeasible schedule, number of trains does not match.");
 		}
-		
-		
-		
-		//Sort the arrival and departing compositions on number of types
 
+
+		//Sort the arrival and departing compositions on number of types
+		sortArrayList(arrivals);
+		sortArrayList(departures);
+
+		System.out.println("Arrivals");
+		for(int x=0;x<arrivals.size();x++){
+			System.out.println(arrivals.get(x).getID());
+		}
+		System.out.println("Departures");
+		for(int x=0;x<departures.size();x++){
+			System.out.println(departures.get(x).getID());
+		}
+
+		ArrayList<trainType> departurestotal = new ArrayList<trainType>();
+		ArrayList<trainType> departuresfirst = new ArrayList<trainType>();
+		ArrayList<trainType> departuressecond = new ArrayList<trainType>();
+		trainComposition create = new trainComposition(new ArrayList<Train>(), departurestotal, 1, true, 5, true);
+		while(!arrivals.isEmpty() || !departures.isEmpty()){
+			System.out.println("arrival now: " + arrivals.size());
+			System.out.println("departure now: " + departures.size());
+			////////////Link largest arrival
+			System.out.println("Find arrival link ");
+			trainComposition now = arrivals.get(0);//biggest arrival
+			//			for (int x= 0;x<departures.size();x++){ //find same start departure composition x
+			//				System.out.println("x" + x);
+			int x=0;
+			while(x<departures.size()){
+				System.out.println("x: " + x);
+				boolean first = true;
+				for (int frst=0;frst<departures.get(x).getTypes().size();frst++){
+					if(frst>=now.getTypes().size()){
+						first = false;
+					}
+					if(departures.get(x).getTypes().get(frst)!=now.getTypes().get(frst)){
+						first = false; //so if all the same found first linking comp
+					}
+				}
+				if(first == true){
+					int y=0;
+					//						for(int y=0; y<departures.size();y++){//find the second position
+					while(y<departures.size()){
+						System.out.println("Y: "+y);
+						boolean second = true;
+						int countfrom = departures.get(x).getTypes().size();
+						for (int scnd=0;scnd<departures.get(y).getTypes().size();scnd++){
+							if(countfrom>=now.getTypes().size()){
+								second = false;
+							}
+							if(departures.get(y).getTypes().get(scnd)!=now.getTypes().get(countfrom)){ //second list also right
+								//check size
+								second = false;
+							}
+						}
+						if(second==true){ //list checks out
+							int sizenow = now.getTypes().size();
+							int sizenew = departures.get(x).getTypes().size()+departures.get(y).getTypes().size();
+							if(sizenow==sizenew){ //create links
+								System.out.println("Arrival link found with " + x + "," + y);
+								System.out.println(departures.get(x).getID() + " with " + now.getID());
+								linking[countlink][0] = departures.get(x).getID();
+								linking[countlink][1] = now.getID();
+								linking[countlink][2] = departures.get(x).getID();
+								linking[countlink][3] = now.getTime();
+								linking[countlink][4] = departures.get(x).getTime();
+								int arrivaltrack = 0;
+								if(now.get906a()){
+									arrivaltrack = 906;
+								} else {
+									arrivaltrack = 104;
+								}
+								int departuretrack = 0;
+								if(departures.get(x).get906a()){
+									departuretrack = 906;
+								} else {
+									departuretrack = 104;
+								}
+								linking[countlink][5] = arrivaltrack;
+								linking[countlink][6] = departuretrack;
+
+								arrivals.remove(0);//remove the assigned links
+								departures.remove(x);
+
+								for(int s=0;s<7;s++){
+									System.out.print(linking[countlink][s] + "  ");
+								}
+								System.out.println("Linking added");
+
+								countlink = countlink+1;
+
+								linking[countlink][0] = departures.get(y).getID();
+								linking[countlink][1] = now.getID();
+								linking[countlink][2] = departures.get(y).getID();
+								linking[countlink][3] = now.getTime();
+								linking[countlink][4] = departures.get(y).getTime();
+								arrivaltrack = 0;
+								if(now.get906a()){
+									arrivaltrack = 906;
+								} else {
+									arrivaltrack = 104;
+								}
+								departuretrack = 0;
+								if(departures.get(y).get906a()){
+									departuretrack = 906;
+								} else {
+									departuretrack = 104;
+								}
+								linking[countlink][5] = arrivaltrack;
+								linking[countlink][6] = departuretrack;
+
+								arrivals.remove(0);//remove the assigned links
+								departures.remove(y);
+
+								for(int s=0;s<7;s++){
+									System.out.print(linking[countlink][s] + "  ");
+								}
+								System.out.println("Linking added");
+
+								countlink = countlink+1;
+								x = 100;//jump out of for loop
+								y = 100;
+							}
+						}
+						y = y+1;
+					}
+				}
+				x = x+1;
+			}
+			////////////Link largest departure
+			System.out.println("Find departure link ");
+			trainComposition now2 = departures.get(0);//biggest arrival
+			int x2=0;
+//			for (int x2= 0;x2<arrivals.size();x2++){ //find same start departure
+			while(x2<arrivals.size()){
+				boolean first2 = true;
+				for (int frst2=0;frst2<arrivals.get(x2).getTypes().size();frst2++){
+					if(frst2>=now2.getTypes().size()){
+						first2 = false;
+					}
+					if(arrivals.get(x2).getTypes().get(frst2)!=now2.getTypes().get(frst2)){
+						first2 = false; //so if all the same found first linking comp
+					}
+				}
+				if(first2==true){
+					int y2=0;
+//					for(int y2=0; y2<arrivals.size();y2++){//find the second position
+					while(y2<arrivals.size()){
+						boolean second2 = true;
+						int countfrom2 = arrivals.get(x2).getTypes().size();
+						for (int scnd2=0;scnd2<arrivals.get(y2).getTypes().size();scnd2++){
+							if(countfrom2>=now.getTypes().size()){
+								second2 = false;
+							}
+							if(arrivals.get(y2).getTypes().get(scnd2)!=now2.getTypes().get(countfrom2)){ //second list also right
+								//check size
+								second2 = false;
+							}
+						}
+						if(second2==true){ //list checks out
+							int sizenow2 = now2.getTypes().size();
+							int sizenew2 = arrivals.get(x2).getTypes().size()+arrivals.get(y2).getTypes().size();
+							if(sizenow2==sizenew2){ //create links
+								System.out.println("Departure link found with " + x2 + "," + y2);
+								linking[countlink][0] = arrivals.get(x2).getID();
+								linking[countlink][1] = arrivals.get(x2).getID();
+								linking[countlink][2] = now2.getID();
+								linking[countlink][3] = arrivals.get(x2).getTime();
+								linking[countlink][4] = now.getTime();
+								int arrivaltrack = 0;
+								if(arrivals.get(x2).get906a()){
+									arrivaltrack = 906;
+								} else {
+									arrivaltrack = 104;
+								}
+								int departuretrack = 0;
+								if(now2.get906a()){
+									departuretrack = 906;
+								} else {
+									departuretrack = 104;
+								}
+								linking[countlink][5] = arrivaltrack;
+								linking[countlink][6] = departuretrack;
+
+								arrivals.remove(x2);//remove the assigned links
+								departures.remove(0);
+
+								for(int s=0;s<7;s++){
+									System.out.print(linking[countlink][s] + "  ");
+								}
+								System.out.println("Linking added");
+
+								countlink = countlink+1;
+
+								linking[countlink][0] = arrivals.get(y2).getID();
+								linking[countlink][1] = arrivals.get(y2).getID();
+								linking[countlink][2] = now2.getID();
+								linking[countlink][3] = arrivals.get(y2).getTime();
+								linking[countlink][4] = now.getTime();
+								arrivaltrack = 0;
+								if(arrivals.get(y2).get906a()){
+									arrivaltrack = 906;
+								} else {
+									arrivaltrack = 104;
+								}
+								departuretrack = 0;
+								if(now2.get906a()){
+									departuretrack = 906;
+								} else {
+									departuretrack = 104;
+								}
+								linking[countlink][5] = arrivaltrack;
+								linking[countlink][6] = departuretrack;
+
+								arrivals.remove(y2);//remove the assigned links
+								departures.remove(0);
+
+								for(int s=0;s<7;s++){
+									System.out.print(linking[countlink][s] + "  ");
+								}
+								System.out.println("Linking added");
+
+								countlink = countlink+1;
+								
+								x2 = Integer.MAX_VALUE;
+								y2 = Integer.MAX_VALUE;
+							}
+						}
+						y2 = y2+1;
+					}
+				}
+				x2 = x2+1;
+			}
+		}
 		//while compositionlist not empty	
 
 		//for largest departing compositions, make list of all arriving compositions that fit in it
@@ -121,7 +350,7 @@ public class schedulingCompositions {
 			System.out.println();
 		}
 	}
-	
+
 	public void sortArrayList(ArrayList<trainComposition> bb){
 		boolean sorted = false;
 		while(sorted == false){
@@ -141,7 +370,7 @@ public class schedulingCompositions {
 			}
 		}
 	}
-	
+
 	public boolean compareCompositions(trainComposition a, trainComposition b){
 		ArrayList<trainType> aType= a.getTypes();
 		ArrayList<trainType> bType= b.getTypes();
@@ -167,7 +396,7 @@ public class schedulingCompositions {
 		}
 		return equal;
 	}
-	
+
 
 	public ArrayList<trainComposition> createList(ArrayList<trainComposition> small, trainComposition big){
 		//create a list with all compositions from small that fit in big
@@ -209,7 +438,7 @@ public class schedulingCompositions {
 		return smallList;
 	}
 
-	
+
 	public void fillExcel(){
 		//write everyting in right layout for reading the eventlist filling
 	}
