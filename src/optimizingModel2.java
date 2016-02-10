@@ -914,7 +914,7 @@ public void fillInitialActivitylist(){
 public void printPerformance(int[][] activity){
 	//		TIME(1) -- ID(2) -- CURRENT event(3) -- WASHEXTERN(4) -- WASHINTERN(5) --- INSPECTION(6) -- REPAIR(7) -- event counter(8)
 	double[] performance = new double[50];//create vector with performance per train
-	double minPerformance =0;
+	double minPerformance =100;
 	double maxPerformance=0;
 	double totalPerformance=0;
 	double countPerformance=0;
