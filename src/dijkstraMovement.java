@@ -55,17 +55,63 @@ public class dijkstraMovement {
 				}
 			}
 			
+
 			for (int i = 1; i<=66;i++)
 			{
 
 				if (positions.get(i) !=0){
-				
+
 					for (int p = 0; p<=66; p++) 
 					{
 						tpm[p][i-1] = 0;
 					}
 			}
 			}
+			
+//	 		int[][] positionsPerTrack2 = {
+//					{1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t906a
+//					{5, 6, 7, 8, 9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t52
+//					{12, 13, 14, 15, 16, 17, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0},//53
+//					{19, 20, 21, 22, 23, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//54
+//					{25, 26, 27, 28, 29, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t55
+//					{31, 32, 33, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t56
+//					{35, 36, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t57
+//					{38, 39, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t58
+//					{41, 42, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t59
+//					{44,45, 46, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t60
+//					{48, 49, 50,51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t61
+//					{52, 53, 54, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t62
+//					{56, 57, 58, 59, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t63
+//					{61, 62, 63, 64, 65, 66, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t104
+//			};
+//	 		
+//			int id =  positions.get(start);
+//			double movingTrainLength = getLength(id, Data);
+//
+//			for (int i = 0; i < 14; i++){
+//				double currentTrainLength =0;
+//				for (int j =0 ; j<10; j++){
+//					if(positionsPerTrack2[i][j]!=0){ // dont look at start position
+//						id = positions.get(positionsPerTrack2[i][j]-1);
+//						currentTrainLength = currentTrainLength + getLength(id, Data);  
+//					}
+//				}
+//				if (currentTrainLength + movingTrainLength > Yard.getTracks().get(i).getLength()){
+//					for (int p =0; p<66; p++){
+//						for (int k = 0 ; k<10; k++ ){
+//							if (positionsPerTrack2[i][k] != 0){
+//								tpm[p][positionsPerTrack2[i][k]-1] = 0;
+//							}
+//						}
+//					}
+//				}
+//			}
+//			
+			
+			
+			
+			
+			
 			
 
 		

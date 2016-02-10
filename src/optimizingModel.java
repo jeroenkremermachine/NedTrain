@@ -59,14 +59,8 @@ public class optimizingModel {
 
 		while (minuut <= 1500)
 		{	
-//			
-//			if(minuut==1500){
-//			for (int i=0; i<30;i++){
-//				for(int j=0; j<15;j++){
-//					System.out.print("  "+matrix[i][j]);
-//				}System.out.println();
-//			}
-//			}
+			
+
 			
 
 
@@ -139,6 +133,14 @@ public class optimizingModel {
 			printIteration(positions, minuut);
 int indexcheck = -1;
 int positiearrival = -1;
+
+if(minuut==1225){
+for (int i=0; i<100;i++){
+	for(int j=0; j<3;j++){
+		System.out.print("  "+List.getMovementlist()[i][j]);
+	}System.out.println();
+}
+}
 
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
@@ -267,6 +269,8 @@ int positiearrival = -1;
 
 					}
 				}
+				
+				System.out.println("are we moving now?:   "+movement);
 
 				 indexcheck = -1;
 				if (movement == false){			//rest of movements
@@ -278,6 +282,7 @@ int positiearrival = -1;
 						int currentPosition = getIndex(positions, movementTrainID);
 						int endPosition = -1;
 						int time = movementMin[2];
+						System.out.println("type is: "+ movementType);
 							if(movementType ==1){  // internal cleaning
 							for (int i=0;i<priorityType1.length;i++){
 								movementTime = move.possibleMovement(currentPosition, priorityType1[i], positions, Data, Yard);
@@ -358,13 +363,10 @@ int positiearrival = -1;
 
 						else if(movementType ==4  ){	//naar departuretrack
 							counter4++;
-
-							if (minuut > time - 5){//not infinite on track
+							System.out.println("movementtrain id:   "+movementTrainID);
+							if (minuut > time - 10){//not infinite on track
 								if (movementTrainID == 80428 || movementTrainID == 80206 || movementTrainID == 83071){
 									for (int i=0;i<priorityType4extra.length;i++){
-										System.out.println(currentPosition);
-										System.out.println(priorityType4extra[i]);
-						
 										movementTime = move.possibleMovement(currentPosition, priorityType4extra[i], positions, Data, Yard);
 										if(movementTime!=0 && movementTime<100){
 											endPosition = priorityType4extra[i];
@@ -385,8 +387,7 @@ int positiearrival = -1;
 								else {
 							for (int i=0;i<priorityType4.length;i++){
 								movementTime = move.possibleMovement(currentPosition, priorityType4[i], positions, Data, Yard);
-								System.out.println("movement time:    " + movementTime);
-								System.out.println("positie:   " + priorityType4[i]);
+								System.out.println("the reason why he can't move is: "+movementTime);
 								if(movementTime!=0 && movementTime<100){
 									endPosition = priorityType4[i];
 									int id = movementTrainID;
@@ -414,13 +415,13 @@ int positiearrival = -1;
 		System.out.println("aantal keer echte beweging naar departure track" + counter);
 		System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
 		System.out.println("");
-//		printpositionTrainMatrix(matrix);
+		printpositionTrainMatrix(matrix);
 		
-//		int[][] o = List.getArrivallist();
-//		for (int i = 0; i<30; i++){
-//			int roo = o[i][1];
-//			move.lengtetrein(roo, Data);
-//		}
+		int[][] o = List.getArrivallist();
+		for (int i = 0; i<30; i++){
+			int roo = o[i][1];
+			move.lengtetrein(roo, Data);
+		}
 //		
 		
 
@@ -622,6 +623,7 @@ int positiearrival = -1;
 		location++;
 		// --------------------------------------------------------------------------------------------------		 
 		//SET TYPE 3 TO BE THE ULTIMATE_START_REPAIR_EVENT	
+		
 		type3Event = type4Event - repair - movementtime;
 		List.setMovementlist((int) type3Event,  id,  3, location);
 		location++;
@@ -728,7 +730,7 @@ int positiearrival = -1;
 	public void printPerformance(int[][] activity){
 //		TIME(1) -- ID(2) -- CURRENT event(3) -- WASHEXTERN(4) -- WASHINTERN(5) --- INSPECTION(6) -- REPAIR(7) -- event counter(8)
 		double[] performance = new double[50];//create vector with performance per train
-		double minPerformance =100;
+		double minPerformance =0;
 		double maxPerformance=0;
 		double totalPerformance=0;
 		double countPerformance=0;

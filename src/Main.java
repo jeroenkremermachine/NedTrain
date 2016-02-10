@@ -12,23 +12,22 @@ public class Main {
 		initializeEventList eventList = new initializeEventList(); //create the eventlist
 
 		int[] priorityArrivaltrack = {1, 2, 3, 4}; 
-		int[] priorityArrival =  {31, 35, 38, 32, 36, 39, 33, 37, 40, 34,25, 19, 26, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12};  
+		int[] priorityArrival =  {31, 35, 38, 32, 36, 39, 33, 37, 40};  
 		int[] priorityType1 = {48, 52, 49, 53, 50, 54, 51, 55}; // Internal
 		int[] priorityType2 = {56, 57, 58, 59, 60}; // External
-		int[] priorityType3 = {11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
+		int[] priorityType3 = {11, 5, 18, 12, 24,19, 30, 25, 34, 31, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
 		int[] priorityType4 = {4, 3, 2, 1}; //departing track
 		int[] priorityType4extra = {61, 62}; // other departing track
 
-		optimizingModel model = new optimizingModel(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
+		optimizingModel2 model = new optimizingModel2(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
 
 		yard.tpmbuilder();
 		int[][] test = yard.returnTPM();
-		//newdijkstra dijkstra = new newdijkstra(test);
 		model.optimization(test); //run the model and obtain output
 
 		
 		
-
+// 34,25, 19, 26, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12
 		//	int[][] positionsPerTrack = {
 		//			{1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t906a vrijhouden / aankomst+depart area
 		//			{5, 6, 7, 8, 9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t52 depart area

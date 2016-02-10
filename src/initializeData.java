@@ -162,7 +162,7 @@ public class initializeData {
 			boolean wash= true;
 			// First composition ========================================================
 			boolean arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -186,7 +186,7 @@ public class initializeData {
 			ArrayList<trainType> types2 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -219,7 +219,7 @@ public class initializeData {
 			ArrayList<trainType> types3 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -232,7 +232,6 @@ public class initializeData {
 			this.c3 = new trainComposition(trains3, types3, Integer.parseInt(data[0]), arr, Integer.parseInt(data[2]), true);
 			types3.add(SLT4);
 			allCompositions2.add(c3);
-			
 
 			// Fourth composition ========================================================
 			line = br.readLine();
@@ -244,7 +243,7 @@ public class initializeData {
 			ArrayList<trainType> types4 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -268,7 +267,7 @@ public class initializeData {
 			ArrayList<trainType> types5 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -292,7 +291,7 @@ public class initializeData {
 			ArrayList<trainType> types6 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(DDZ4.getInterchangeprob());
 				inspect=Rand(DDZ4.getInspectionprob());
 				repair=Rand(DDZ4.getRepairprob());
@@ -316,7 +315,7 @@ public class initializeData {
 			ArrayList<trainType> types7 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -340,7 +339,7 @@ public class initializeData {
 			ArrayList<trainType> types8 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -373,7 +372,7 @@ public class initializeData {
 			ArrayList<trainType> types9 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -397,7 +396,7 @@ public class initializeData {
 			ArrayList<trainType> types10 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -421,7 +420,7 @@ public class initializeData {
 			ArrayList<trainType> types11 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -445,7 +444,7 @@ public class initializeData {
 			ArrayList<trainType> types12 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -478,7 +477,7 @@ public class initializeData {
 			ArrayList<trainType> types13 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -502,7 +501,7 @@ public class initializeData {
 			ArrayList<trainType> types14 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(DDZ6.getInterchangeprob());
 				inspect=Rand(DDZ6.getInspectionprob());
 				repair=Rand(DDZ6.getRepairprob());
@@ -526,7 +525,7 @@ public class initializeData {
 			ArrayList<trainType> types15 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -560,7 +559,7 @@ public class initializeData {
 			ArrayList<trainType> types16 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -584,7 +583,7 @@ public class initializeData {
 			ArrayList<trainType> types17 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -618,7 +617,7 @@ public class initializeData {
 			ArrayList<trainType> types18 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -660,7 +659,7 @@ public class initializeData {
 			ArrayList<trainType> types19 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -693,7 +692,7 @@ public class initializeData {
 			ArrayList<trainType> types20 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -718,7 +717,7 @@ public class initializeData {
 			ArrayList<trainType> types21 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -762,7 +761,7 @@ public class initializeData {
 			ArrayList<trainType> types22 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -787,7 +786,7 @@ public class initializeData {
 			ArrayList<trainType> types23 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(DDZ4.getInterchangeprob());
 				inspect=Rand(DDZ4.getInspectionprob());
 				repair=Rand(DDZ4.getRepairprob());
@@ -812,7 +811,7 @@ public class initializeData {
 			ArrayList<trainType> types24 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -837,7 +836,7 @@ public class initializeData {
 			ArrayList<trainType> types25 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -870,7 +869,7 @@ public class initializeData {
 			ArrayList<trainType> types26 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -894,7 +893,7 @@ public class initializeData {
 			ArrayList<trainType> types27 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -919,7 +918,7 @@ public class initializeData {
 			ArrayList<trainType> types28 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -944,7 +943,7 @@ public class initializeData {
 			ArrayList<trainType> types29 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -977,7 +976,7 @@ public class initializeData {
 			ArrayList<trainType> types30 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -1002,7 +1001,7 @@ public class initializeData {
 			ArrayList<trainType> types31 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(DDZ6.getInterchangeprob());
 				inspect=Rand(DDZ6.getInspectionprob());
 				repair=Rand(DDZ6.getRepairprob());
@@ -1027,7 +1026,7 @@ public class initializeData {
 			ArrayList<trainType> types32 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -1061,7 +1060,7 @@ public class initializeData {
 			ArrayList<trainType> types33 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -1086,7 +1085,7 @@ public class initializeData {
 			ArrayList<trainType> types34 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM6.getInterchangeprob());
 				inspect=Rand(VIRM6.getInspectionprob());
 				repair=Rand(VIRM6.getRepairprob());
@@ -1111,7 +1110,7 @@ public class initializeData {
 			ArrayList<trainType> types35 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -1136,7 +1135,7 @@ public class initializeData {
 			ArrayList<trainType> types36 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT4.getInterchangeprob());
 				inspect=Rand(SLT4.getInspectionprob());
 				repair=Rand(SLT4.getRepairprob());
@@ -1170,7 +1169,7 @@ public class initializeData {
 			ArrayList<trainType> types37 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -1195,7 +1194,7 @@ public class initializeData {
 			ArrayList<trainType> types38 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
@@ -1237,7 +1236,7 @@ public class initializeData {
 			ArrayList<trainType> types39 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(SLT6.getInterchangeprob());
 				inspect=Rand(SLT6.getInspectionprob());
 				repair=Rand(SLT6.getRepairprob());
@@ -1279,7 +1278,7 @@ public class initializeData {
 			ArrayList<trainType> types40 = new ArrayList<trainType>();
 
 			arr = data[1].equals("A");
-			if(arr==true){
+			if(arr=true){
 				interchangable = Rand(VIRM4.getInterchangeprob());
 				inspect=Rand(VIRM4.getInspectionprob());
 				repair=Rand(VIRM4.getRepairprob());
