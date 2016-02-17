@@ -38,7 +38,7 @@ public class optimizingModel2 {
 		this.priorityType4extra =  priorityType4extra;
 	}
 
-	public void  optimization(int[][] tpm) throws FileNotFoundException, IOException{
+	public double[]  optimization(int[][] tpm) throws FileNotFoundException, IOException{
 		//This should all be implemented in the data set, and the shunting yard
 		ArrayList<Integer> positions = new ArrayList<Integer>(); // Alle posities leeg
 		dijkstraMovement move = new dijkstraMovement();
@@ -158,7 +158,7 @@ public class optimizingModel2 {
 			int indexcheck = -1;
 			int positiearrival = -1;
 
-			if(minuut==1500){
+			if(minuut==1200){
 				for (int i=0; i<100;i++){
 					for(int j=0; j<3;j++){
 						System.out.print("  "+List.getMovementlist()[i][j]);
@@ -177,9 +177,10 @@ public class optimizingModel2 {
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
 						movementTime = move.possibleMovement(1, priorityArrivalarea[i], positions, Data, Yard);
+//						System.out.println(movementTime + " movement time");
 						if(movementTime!=0 && movementTime<100){							
 							endPosition = priorityArrivalarea[i];
-							System.out.println(endPosition + "end is");
+//							System.out.println(endPosition + "end is");
 //							System.out.println(positiearrival + "begin is");
 							int id = positions.get(positiearrival);
 							positions.set(endPosition, id);
@@ -211,7 +212,7 @@ public class optimizingModel2 {
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
 				if(positions.get(1)!=0){
-					System.out.println("positie 1"  + positions.get(1));
+//					System.out.println("positie 1"  + positions.get(1));
 				positiearrival = 1;}
 				if (positions.get(62) !=0)
 				{positiearrival = 62; }
@@ -274,6 +275,41 @@ public class optimizingModel2 {
 					}
 
 					if (activity == true){//????
+						int idcheck = positions.get(intWashposition-1);
+						int location = -1;
+						for(int j=0; j<50;j++){
+							if(List.getActivitylist()[j][1]==idcheck){
+								location = j;
+							}
+						}
+					
+						
+						if (List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][6] == 0){
+							int endPosition = -1;
+							for (int q=0;q<priorityType3.length;q++){
+								movementTime = move.possibleMovement(intWashposition, priorityType3[q], positions, Data, Yard);
+								if(movementTime!=0 && movementTime <100){
+									endPosition = priorityType3[q];
+									int id = positions.get(intWashposition-1);
+									positions.set(endPosition, id);
+									positions.set(intWashposition-1, 0);
+									timeMovement = minuut + 2;
+									movement = true;
+									List.setEndmovement(timeMovement);
+									positionTrainMatrix(endPosition, id, matrix);
+									minuutTrainMatrix(minuut, id, movementtijdmatrix);
+									int finalt = -1;
+									for (int t = 0; t<100; t++){
+										if (List.getMovementlist()[t][2] == id){
+											finalt = t;
+										}
+									}
+									List.setMovementlist(Integer.MAX_VALUE, id, 3 , finalt);
+									break;
+								}
+							}
+						}
+						else{
 						int endPosition = -1;
 						for (int q=0;q<priorityArrivalarea.length;q++){
 							movementTime = move.possibleMovement(intWashposition, priorityArrivalarea[q], positions, Data, Yard);
@@ -289,6 +325,7 @@ public class optimizingModel2 {
 								minuutTrainMatrix(minuut, id, movementtijdmatrix);
 								break;
 							}
+						}
 						}
 					}
 
@@ -319,6 +356,41 @@ public class optimizingModel2 {
 					}
 
 					if (activity == true){
+						int idcheck = positions.get(extWashposition-1);
+						int location = -1;
+						for(int j=0; j<50;j++){
+							if(List.getActivitylist()[j][1]==idcheck){
+								location = j;
+							}
+						}
+						if (List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][6] == 0){
+						
+							int endPosition = -1;
+							for (int q=0;q<priorityType3.length;q++){
+								movementTime = move.possibleMovement(extWashposition, priorityType3[q], positions, Data, Yard);						
+								if(movementTime!=0 && movementTime <100){
+									endPosition = priorityType3[q];
+									int id = positions.get(extWashposition-1);
+									positions.set(endPosition, id);
+									positions.set(extWashposition-1, 0);
+									timeMovement = minuut + 2;
+									movement = true;
+									List.setEndmovement(timeMovement);
+									positionTrainMatrix(endPosition, id, matrix);
+									minuutTrainMatrix(minuut, id, movementtijdmatrix);
+									int finalt = -1;
+									for (int t = 0; t<100; t++){
+										if (List.getMovementlist()[t][2] == id){
+											finalt = t;
+										}
+									}
+									List.setMovementlist(Integer.MAX_VALUE, id, 3 , finalt);
+									break;
+								}
+							}
+						}
+						else{
+						
 						int endPosition = -1;
 						for (int q=0;q<priorityArrivalarea.length;q++){
 							movementTime = move.possibleMovement(extWashposition, priorityArrivalarea[q], positions, Data, Yard);						
@@ -334,6 +406,7 @@ public class optimizingModel2 {
 								minuutTrainMatrix(minuut, id, movementtijdmatrix);
 								break;
 							}
+						}
 						}
 					}
 
@@ -356,7 +429,7 @@ public class optimizingModel2 {
 				}
 
 				while (moveexecuted == false){
-
+					boolean alreadyDeparture = false; 
 					int[] movementMin = getPossibleMin(x,0); //check index -1
 					
 				
@@ -437,10 +510,15 @@ public class optimizingModel2 {
 								x[movementMin[0]][0] = Integer.MAX_VALUE;	
 							}
 						} 
-
-
+						
+						
 						else if(movementType ==3){ //move to depart area
 							for (int i=0;i<priorityType3.length;i++){
+								if (currentPosition == i){
+									alreadyDeparture = true;
+									List.setMovementlist(Integer.MAX_VALUE, movementTrainID, movementType , movementMin[0]);
+								}
+								if (alreadyDeparture = false){
 								movementTime = move.possibleMovement(currentPosition, priorityType3[i], positions, Data, Yard);
 								if(movementTime!=0 && movementTime<100){
 									moveexecuted = true;
@@ -456,14 +534,15 @@ public class optimizingModel2 {
 											indexcheck = n;
 										}
 									}
-									if (getBooleans(id,2) + timeMovement < List.getDeparturelist()[indexcheck][1] ){
-										StartEvent(id, 3, timeMovement);
-									}
+//									if (getBooleans(id,2) + timeMovement < List.getDeparturelist()[indexcheck][1] ){
+//										StartEvent(id, 3, timeMovement);
+//									}
 									List.setMovementlist(Integer.MAX_VALUE, movementTrainID, movementType , movementMin[0]);
 									positionTrainMatrix(endPosition, id, matrix);
 									minuutTrainMatrix(minuut, id, movementtijdmatrix);
 									break;
 								}
+							}
 							}
 							if (moveexecuted == false) {
 						
@@ -504,7 +583,7 @@ public class optimizingModel2 {
 								else {
 									for (int i=0;i<priorityType4.length;i++){
 										movementTime = move.possibleMovement(currentPosition, priorityType4[i], positions, Data, Yard);
-										System.out.println("the reason why he can't move is: "+movementTime);
+//										System.out.println("the reason why he can't move is: "+movementTime);
 										if(movementTime!=0 && movementTime<100){
 											moveexecuted = true; 
 											endPosition = priorityType4[i];
@@ -540,23 +619,29 @@ public class optimizingModel2 {
 	} //while minuut deadline is nog niet bereikt
 		
 		
+//		for (int iuu = 0; iuu<30; iuu++){
+//			int roo = List.getArrivallist()[iuu][1];
+//			move.lengtetrein(roo, Data);
+//		}
 		
+		double result1 = printPerformance(List.activitylist);
+		double result2 = counter; 
+//		System.out.println("aantal keer echte beweging naar departure track" + counter);
+//		System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
+//		System.out.println("");
+		printpositionTrainMatrix(matrix);
+//		printtijdTrainMatrix(movementtijdmatrix);
+
+		double[] results = new double[2];
 		
-		
-	printPerformance(List.activitylist);
-	System.out.println("aantal keer echte beweging naar departure track" + counter);
-	System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
-	System.out.println("");
-	printpositionTrainMatrix(matrix);
-	printtijdTrainMatrix(movementtijdmatrix);
+		results[0] = result1;
+		results[1] = result2; 
+		return results; 
 
 
-//	int[][] o = List.getArrivallist();
-//	for (int i = 0; i<30; i++){
-//		int roo = o[i][1];
-//		move.lengtetrein(roo, Data);
-//	}
-	//		
+
+
+			
 
 
 
@@ -614,7 +699,7 @@ public int[] getarrivalMin(int[][] x, int z){
 		if(x[i][z] == minvalue && x[i][z] !=0){
 			index2 = i;
 			minvalue2 = x[i][z];
-			System.out.println(minvalue2);
+//			System.out.println(minvalue2);
 		}
 	}
 	int[] y = {index, minvalue, index2, minvalue2};
@@ -636,7 +721,7 @@ public int[] getdepartureMin(int[][] x, int z){
 		if(x[i][z] == minvalue && x[i][z] !=0){
 			index2 = i;
 			minvalue2 = x[i][z];
-			System.out.println(minvalue2);
+//			System.out.println(minvalue2);
 		}
 	}
 	int[] y = {index, minvalue, index2, minvalue2};
@@ -806,7 +891,7 @@ public void setMovementList(int id){ // vult de movementmatrix met uiterlijke ti
 	//SET TYPE 3 TO BE THE ULTIMATE_START_REPAIR_EVENT	
 
 
-		type3Event = type4Event - repair - movementtime;
+		type3Event = type4Event - movementtime -  5;
 		List.setMovementlist((int) type3Event,  id,  3, location);
 		location++;
 	
@@ -821,9 +906,9 @@ public void setMovementList(int id){ // vult de movementmatrix met uiterlijke ti
 	// --------------------------------------------------------------------------------------------------		
 	//SET TYPE 1 TO BE THE TIME THAT YOU HAVE TO GO TTHE CLEANING INTERN AREA	
 	if(washExtern>0){
-		type1Event = type2Event - washIntern - movementtime;
+		type1Event = type2Event - washIntern - repair - movementtime;
 	} else {
-		type1Event = type3Event - washIntern - movementtime;
+		type1Event = type3Event - washIntern - repair - movementtime;
 	}
 	List.setMovementlist((int) type1Event, id, 1, location);
 
@@ -852,10 +937,16 @@ public void StartEvent(int id, int type, int arrival){ // vult de eventlist met 
 
 	if(type ==1){ //internal
 		if(List.getActivitylist()[location][4]==1){ //needs cleaning
-			List.setActivitylist(location, 1, arrival+washIntern);
+			List.setActivitylist(location, 1, arrival+washIntern+repair);
 			List.setActivitylist(location, 3, 1);
 			List.setActivitylist(location, 5, 0);
 			List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
+			
+		}
+		if(List.getActivitylist()[location][6]==1){
+			List.setActivitylist(location, 7, 0);
+			List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
+			
 		}
 	} else if(type ==2){ //external
 		if(List.getActivitylist()[location][3]==1){ //needs washing
@@ -865,12 +956,12 @@ public void StartEvent(int id, int type, int arrival){ // vult de eventlist met 
 			List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
 		}
 	} else if(type ==3){ //repair
-		if(List.getActivitylist()[location][6]==1){ //needs repair
-			List.setActivitylist(location, 1, arrival+repair);
-			List.setActivitylist(location, 3, 1);
-			List.setActivitylist(location, 7, 0);
-			List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
-		}
+//		if(List.getActivitylist()[location][6]==1){ //needs repair
+//			List.setActivitylist(location, 1, arrival);
+//			List.setActivitylist(location, 3, 1);
+//			List.setActivitylist(location, 7, 0);
+//			List.setActivitylist(location, 8, List.getActivitylist()[location][7]+1);
+//		}
 	} else if(type ==0){ //inspection
 		if(List.getActivitylist()[location][5]==1){ //inspection
 			List.setActivitylist(location, 1, arrival+inspection);
@@ -911,10 +1002,10 @@ public void fillInitialActivitylist(){
 	}
 }
 
-public void printPerformance(int[][] activity){
+public double printPerformance(int[][] activity){
 	//		TIME(1) -- ID(2) -- CURRENT event(3) -- WASHEXTERN(4) -- WASHINTERN(5) --- INSPECTION(6) -- REPAIR(7) -- event counter(8)
 	double[] performance = new double[50];//create vector with performance per train
-	double minPerformance =100;
+	double minPerformance =0;
 	double maxPerformance=0;
 	double totalPerformance=0;
 	double countPerformance=0;
@@ -938,12 +1029,14 @@ public void printPerformance(int[][] activity){
 			}
 		}
 	}
-	System.out.println("Dit gaat nog alleen over de eerste 8 treinen!!");//verander for loop
-	System.out.println("The lowest performing train performs " + minPerformance*100 + " percent of their tasks.");
-	System.out.println("The highest performing train performs " + maxPerformance*100 + " percent of their tasks.");
-	System.out.println("The average performing train performs " + (totalPerformance/countPerformance)*100 + " percent of their tasks.");
-	System.out.println("The percentage of trains performing all tasks is " + (allDone/countPerformance)*100 + " percent.");
-
+//	System.out.println("Dit gaat nog alleen over de eerste 8 treinen!!");//verander for loop
+//	System.out.println("The lowest performing train performs " + minPerformance*100 + " percent of their tasks.");
+//	System.out.println("The highest performing train performs " + maxPerformance*100 + " percent of their tasks.");
+//	System.out.println("The average performing train performs " + (totalPerformance/countPerformance)*100 + " percent of their tasks.");
+//	System.out.println("The percentage of trains performing all tasks is " + (allDone/countPerformance)*100 + " percent.");
+	
+	double result =  (allDone/countPerformance);
+	return result;
 }
 
 public void printIteration(ArrayList<Integer> p, int minuut){

@@ -7,6 +7,13 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, IOException {
 		// TODO Auto-generated method stub
+		
+		int counterdeparture = 0;
+		int countervolledigfeasible = 0;
+		int countervolledigfeasiblehelemaal = 0;
+
+		
+		for (int i = 0; i < 100 ; i++){
 		initializeData data = new initializeData(); //create the data set
 		InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
 		initializeEventList eventList = new initializeEventList(); //create the eventlist
@@ -18,13 +25,29 @@ public class Main {
 		int[] priorityType3 = {11, 5, 18, 12, 24,19, 30, 25, 34, 31, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
 		int[] priorityType4 = {4, 3, 2, 1}; //departing track
 		int[] priorityType4extra = {61, 62}; // other departing track
-
+		double [] results = new double [2];
 		optimizingModel2 model = new optimizingModel2(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
-
+		
+		
 		yard.tpmbuilder();
 		int[][] test = yard.returnTPM();
-		model.optimization(test); //run the model and obtain output
-
+		results = model.optimization(test); //run the model and obtain output
+		System.out.println("departure good:  " + results[1]);
+		System.out.println("number of activities good:  " + results[0]);
+		if(results[1] > 21.5)
+		{counterdeparture = counterdeparture +1;}
+		if(results[0] > 0.97)
+		{countervolledigfeasible = countervolledigfeasible +1;}
+	
+		if(results[0] > 0.97 && results[1] > 21.5){
+			countervolledigfeasiblehelemaal = countervolledigfeasiblehelemaal +1;
+		}
+		}
+		
+		System.out.println("departure volledig:   " + counterdeparture);
+		System.out.println("activities volledig:   " + countervolledigfeasible);
+		System.out.println("helmeaal voledig:   " + countervolledigfeasiblehelemaal);
+		
 		
 		
 // 34,25, 19, 26, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12
