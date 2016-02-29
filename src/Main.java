@@ -12,8 +12,8 @@ public class Main {
 		int countervolledigfeasible = 0;
 		int countervolledigfeasiblehelemaal = 0;
 
-		
-		for (int i = 0; i < 5 ; i++){
+		int nriterations = 100;
+		for (int i = 0; i < nriterations ; i++){
 		initializeData data = new initializeData(); //create the data set
 		InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
 		initializeEventList eventList = new initializeEventList(); //create the eventlist
@@ -32,8 +32,10 @@ public class Main {
 		yard.tpmbuilder();
 		int[][] test = yard.returnTPM();
 		results = model.optimization(test); //run the model and obtain output
-		System.out.println("departure good:  " + results[1]);
-		System.out.println("number of activities good:  " + results[0]);
+		int run = i+1;
+		System.out.println("Run " + run);
+		System.out.println("Right track departures:  " + results[1]);
+		System.out.println("Completed activities:  " + results[0]);
 		if(results[1] > 21.5)
 		{counterdeparture = counterdeparture +1;}
 		if(results[0] > 0.97)
@@ -44,9 +46,10 @@ public class Main {
 		}
 		}
 		
-		System.out.println("departure volledig:   " + counterdeparture);
-		System.out.println("activities volledig:   " + countervolledigfeasible);
-		System.out.println("helmeaal voledig:   " + countervolledigfeasiblehelemaal);
+		System.out.println();
+		System.out.println("Right track departures:   " + counterdeparture + " out of " + nriterations + "(" + 100*counterdeparture/nriterations + "%)");
+		System.out.println("Completed activities:   " + countervolledigfeasible + " out of " + nriterations + "(" + 100*countervolledigfeasible/nriterations + "%)");
+		System.out.println("Feasible run:   " + countervolledigfeasiblehelemaal + " out of "+ nriterations + "(" + 100*countervolledigfeasiblehelemaal/nriterations + "%)");
 		
 		
 		
