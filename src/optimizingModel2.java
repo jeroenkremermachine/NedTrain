@@ -53,8 +53,8 @@ public class optimizingModel2 {
 		int[][] movementtijdmatrix = new int[30][15];
 		int[][] r = List.getArrivallist();
 		for (int i = 0; i<30; i++){
-			matrix[i][0] = r[i][1];
-			movementtijdmatrix[i][0] = r[i][1];
+			matrix[i][0] = r[i][1]; //keep track of all positions of each train
+			movementtijdmatrix[i][0] = r[i][1]; //keep track of the arrival times on all positions
 		}
 
 		int counter = 0;
@@ -92,7 +92,7 @@ public class optimizingModel2 {
 			if(arrivalMin[1]<=minuut){
 				//do arrival
 				if (List.getArrivallist()[arrivalMin[0]][1] == 81002 || List.getArrivallist()[arrivalMin[0]][1] == 80428 || List.getArrivallist()[arrivalMin[0]][1] == 80206 ){
-			
+					//arrivals on track 104
 					positions.set(62, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 					List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); 
 					positionTrainMatrix(63, List.getArrivallist()[arrivalMin[0]][1], matrix);
@@ -125,7 +125,7 @@ public class optimizingModel2 {
 				for (int i=0;i<1000;i++){
 					if (List.getMovementlist()[i][2] == List.getDeparturelist()[departureMin[0]][1]){
 						List.setMovementlist(Integer.MAX_VALUE, List.getDeparturelist()[departureMin[0]][1], 1, i);
-					}
+					}//if a train leaves no more moves are availible
 				}
 				
 //				if (departureMin[3] != -1){
@@ -208,7 +208,7 @@ public class optimizingModel2 {
 
 			}
 			positiearrival = -1;	
-			 indexcheck = -1;
+			indexcheck = -1;
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
 				if(positions.get(1)!=0){
@@ -254,7 +254,7 @@ public class optimizingModel2 {
 
 			if (movement == false){//reinigingsperron
 				for (int i = 47; i<54;i++){
-					activity = false; //trein mag verplaatsen
+					activity = false; //trein mag niet verplaatsen, geeft aan activity finished
 					if(positions.get(i)!=0 && movement == false){	
 
 						idextra = positions.get(i);
@@ -433,7 +433,7 @@ public class optimizingModel2 {
 					int[] movementMin = getPossibleMin(x,0); //check index -1
 					
 				
-					if(movementMin[0] !=-1){
+					if(movementMin[0] !=-1){ //move found!
 			
 						int movementType = x[movementMin[0]][1];
 						int movementTrainID = x[movementMin[0]][2];
