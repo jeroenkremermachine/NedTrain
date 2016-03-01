@@ -7,12 +7,13 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, IOException {
 		// TODO Auto-generated method stub
+		long timeBefore = System.currentTimeMillis();
 		
 		int counterdeparture = 0;
 		int countervolledigfeasible = 0;
 		int countervolledigfeasiblehelemaal = 0;
 
-		int nriterations = 100;
+		int nriterations = 1;
 		for (int i = 0; i < nriterations ; i++){
 		initializeData data = new initializeData(); //create the data set
 		InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
@@ -47,12 +48,14 @@ public class Main {
 		}
 		}
 		
+		long timeAfter = System.currentTimeMillis();
+		long elapsedTime = timeAfter - timeBefore;
+		
 		System.out.println();
 		System.out.println("Right track departures:   " + counterdeparture + " out of " + nriterations + "(" + 100*counterdeparture/nriterations + "%)");
 		System.out.println("Completed activities:   " + countervolledigfeasible + " out of " + nriterations + "(" + 100*countervolledigfeasible/nriterations + "%)");
 		System.out.println("Feasible run:   " + countervolledigfeasiblehelemaal + " out of "+ nriterations + "(" + 100*countervolledigfeasiblehelemaal/nriterations + "%)");
-		
-		
+		System.out.println("The run time was " + elapsedTime/1000 + " seconds.");
 		
 // 34,25, 19, 26, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12
 		//	int[][] positionsPerTrack = {
