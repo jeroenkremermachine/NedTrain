@@ -28,7 +28,7 @@ public class Main {
 		int[] priorityType4extra = {61, 62}; // other departing track
 		double [] results = new double [2];
 		
-		optimizingModel2 model = new optimizingModel2(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
+		optimizingModel3 model = new optimizingModel3(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
 		
 		
 		yard.tpmbuilder();
