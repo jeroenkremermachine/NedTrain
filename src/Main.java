@@ -13,7 +13,7 @@ public class Main {
 		int countervolledigfeasible = 0;
 		int countervolledigfeasiblehelemaal = 0;
 
-		int nriterations = 1;
+		int nriterations = 5;
 		for (int i = 0; i < nriterations ; i++){
 		initializeData data = new initializeData(); //create the data set
 		InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
