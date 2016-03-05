@@ -13,7 +13,7 @@ public class Main {
 		int countervolledigfeasible = 0;
 		int countervolledigfeasiblehelemaal = 0;
 
-		int nriterations = 5;
+		int nriterations = 1;
 		for (int i = 0; i < nriterations ; i++){
 		initializeData data = new initializeData(); //create the data set
 		InitializeShuntingYard yard = new InitializeShuntingYard(); //create the shunting yard
@@ -29,6 +29,7 @@ public class Main {
 		double [] results = new double [2];
 		
 		optimizingModel3 model = new optimizingModel3(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
+//		Heuristic model = new Heuristic(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
 		
 		
 		yard.tpmbuilder();

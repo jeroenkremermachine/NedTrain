@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class optimizingModel3 {
+public class Heuristic {
 	private initializeData Data;
 	private InitializeShuntingYard Yard;
 	private initializeEventList List;
@@ -22,7 +22,7 @@ public class optimizingModel3 {
 	public int[][] 	movementtijdmatrix;
 
 
-	public optimizingModel3(initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist, int[] priorityArrivaltrack, int[]priorityArrivalarea, int[] priorityType1, int[]  priorityType2, int[] priorityType3, int[] priorityType4, int[] priorityType4extra){
+	public Heuristic(initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist, int[] priorityArrivaltrack, int[]priorityArrivalarea, int[] priorityType1, int[]  priorityType2, int[] priorityType3, int[] priorityType4, int[] priorityType4extra){
 
 
 
@@ -78,16 +78,16 @@ public class optimizingModel3 {
 
 
 
-			if (minuut == 1500
-					){
-
-				for (int i = 0; i< 30; i++){
-					for (int j=0; j< 8; j++){
-						System.out.print("   "+activitylist[i][j]);
-					}
-					System.out.println();
-				}
-			}
+//			if (minuut == 1500
+//					){
+//
+//				for (int i = 0; i< 30; i++){
+//					for (int j=0; j< 8; j++){
+//						System.out.print("   "+activitylist[i][j]);
+//					}
+//					System.out.println();
+//				}
+//			}
 
 			if(arrivalMin[1]<=minuut){
 				//do arrival
@@ -120,7 +120,6 @@ public class optimizingModel3 {
 			if(departureMin[1]<=minuut ){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
 				//do departure
 				int departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[0]][1]); //find leaving train
-				System.out.println(List.getDeparturelist()[departureMin[0]][1]);
 				positions.set(departurePosition, 0); //remove leaving train
 				List.setDeparturelist(Integer.MAX_VALUE, departureMin[0]); // set departure time on inf
 				for (int i=0;i<1000;i++){
@@ -155,7 +154,7 @@ public class optimizingModel3 {
 
 			}
 
-			printIteration(positions, minuut);
+//			printIteration(positions, minuut);
 			int indexcheck = -1;
 			int positiearrival = -1;
 
@@ -221,11 +220,11 @@ public class optimizingModel3 {
 				if (positiearrival != -1){
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
-						printIteration(positions, minuut);
+//						printIteration(positions, minuut);
 						movementTime = move.possibleMovement(positiearrival+1, priorityArrivalarea[i], positions, Data, Yard);
 //					if(movementTime!=0 && movementTime<100){System.out.println("movement 1 "  + movementTime);}
 						if(movementTime!=0 && movementTime<100){
-							System.out.println("CHECK");
+//							System.out.println("CHECK");
 							endPosition = priorityArrivalarea[i];
 							int id;
 							if(positiearrival==0){
@@ -642,7 +641,7 @@ public class optimizingModel3 {
 //		System.out.println("aantal keer echte beweging naar departure track" + counter);
 //		System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
 //		System.out.println("");
-		printpositionTrainMatrix(matrix);
+//		printpositionTrainMatrix(matrix);
 //		printtijdTrainMatrix(movementtijdmatrix);
 
 		double[] results = new double[2];
