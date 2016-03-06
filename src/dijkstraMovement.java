@@ -52,21 +52,27 @@ public class dijkstraMovement {
 			for (int i = 0; i<67;i++){
 				for (int j = 0; j<67;j++){
 					tpm[i][j] = tp[i][j];
+//					System.out.print(tpm[i][j]+" ");
 				}
+//				System.out.println();
 			}
+//			System.out.println();
 			
 
-			for (int i = 1; i<=66;i++)
+			for (int i = 0; i<=66;i++)
 			{
 
 				if (positions.get(i) !=0){
-
+//					System.out.println("uitgezet is alles naar: " + i);
 					for (int p = 0; p<=66; p++) 
 					{
-						tpm[p][i-1] = 0;
+						tpm[p][i] = 0;
+					
 					}
 			}
 			}
+//			System.out.println("rotue naar: " + end);
+			
 			
 //	 		int[][] positionsPerTrack2 = {
 //					{1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t906a
@@ -115,7 +121,7 @@ public class dijkstraMovement {
 			
 
 		
-
+//System.out.println("tpm: " + tpm[4][48]);
 
 			for (int i = 1; i <= number_of_vertices; i++)
 			{
@@ -124,8 +130,8 @@ public class dijkstraMovement {
 					adjacency_matrix[i][j] = tpm[i-1][j-1];
 					if (i == j)
 					{
-						adjacency_matrix[i][j] = 0;
-						continue;
+						adjacency_matrix[i][j] = Integer.MAX_VALUE;
+						
 					}
 					if (adjacency_matrix[i][j] == 0)
 					{
@@ -134,6 +140,20 @@ public class dijkstraMovement {
 					}
 				}
 			}
+			for (int i=0; i<67; i++){
+//			System.out.println(i + "  " + adjacency_matrix[i][48]);
+			}
+			
+//			for (int i = 1; i <= 67; i++)
+//			{
+//				for (int j = 1; j <= 67; j++)
+//				{
+//					System.out.print(adjacency_matrix[i][j] + "  ");
+//					
+//				}
+//				System.out.println();
+//			}
+		
 
 			source = start;
 			destination = end;
@@ -183,7 +203,14 @@ public class dijkstraMovement {
 				{61, 62, 63, 64, 65, 66, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //t104
 		};
 		/// start find length movingtrain
-		int id =  positions.get(start);
+		int id =  positions.get(start-1);
+//		System.out.println("id is: "+ id);
+//		System.out.println("start is: "+ start);
+//		System.out.println("end is: "+ end);
+//		System.out.println("length is: "+ getLength(id, Data));
+
+
+		int idnew; 
 		double movingTrainLength = getLength(id, Data);
 		int track = -1;
 		for (int i = 0; i<14; i++){
@@ -197,8 +224,8 @@ public class dijkstraMovement {
 		double currentTrainLength =0;
 		for (int i =0 ; i<10; i++){
 			if(positionsPerTrack[track][i]!=0){ // dont look at start position
-				id = positions.get(positionsPerTrack[track][i]-1);
-				currentTrainLength = currentTrainLength + getLength(id, Data); 
+				idnew = positions.get(positionsPerTrack[track][i]-1);
+				currentTrainLength = currentTrainLength + getLength(idnew, Data); 
 			}
 		}
 
@@ -207,6 +234,17 @@ public class dijkstraMovement {
 			possibleMovement = 0; 
 		}
 
+		if(possibleMovement!=0 && possibleMovement<100){
+//			System.out.println("start is: " + start + " end is: "+ end);
+			for (int i = 0; i<67; i++){
+				if (positions.get(i) != 0){
+//					System.out.println("positie i: " + i + " heeft trein: " + positions.get(i));
+				}
+			}
+		}
+//		if (id == 83003){
+//			System.out.println("id : " + id + "  move  " + possibleMovement + " end: " + end + "  begin:  " + start);
+//		}
 		return possibleMovement;
 	}
 

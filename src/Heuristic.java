@@ -60,7 +60,7 @@ public class Heuristic {
 		int counter = 0;
 		int counter4 =0;
 
-		while (minuut <= 1500)
+		while (minuut <= 1400)
 		{	
 
 
@@ -78,14 +78,15 @@ public class Heuristic {
 
 
 
-//			if (minuut == 1500
+//			if (minuut == 1400
 //					){
 //
-//				for (int i = 0; i< 30; i++){
-//					for (int j=0; j< 8; j++){
-//						System.out.print("   "+activitylist[i][j]);
+//				for (int i = 0; i< 50; i++){
+//					if (positions.get(i) != 0){
+//						System.out.print("positions   "+i + "   " + positions.get(i) );
+//						System.out.println();
 //					}
-//					System.out.println();
+//					
 //				}
 //			}
 
@@ -154,17 +155,25 @@ public class Heuristic {
 
 			}
 
-//			printIteration(positions, minuut);
+			printIteration(positions, minuut);
 			int indexcheck = -1;
 			int positiearrival = -1;
 
-//			if(minuut==1200){
-//				for (int i=0; i<100;i++){
-//					for(int j=0; j<3;j++){
-//						System.out.print("  "+List.getMovementlist()[i][j]);
-//					}System.out.println();
-//				}
-//			}
+			if(minuut==1400){
+				for (int i=0; i<25;i++){
+					for(int j=0; j<8;j++){
+						System.out.print("  "+List.getActivitylist()[i][j]);
+					}System.out.println();
+				}
+			}
+			
+			if(minuut==150){
+				for (int i=0; i<25;i++){
+					for(int j=0; j<8;j++){
+						System.out.print("  "+List.getActivitylist()[i][j]);
+					}System.out.println();
+				}
+			}
 
 			if (movement == false){
 //				System.out.println("minuut is "+minuut);
@@ -177,13 +186,13 @@ public class Heuristic {
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
 						movementTime = move.possibleMovement(positiearrival+1, priorityArrivalarea[i], positions, Data, Yard);
-//						System.out.println(movementTime + " movement time");
+					
 						if(movementTime!=0 && movementTime<100){							
 							endPosition = priorityArrivalarea[i];
 //							System.out.println(endPosition + "end is");
 //							System.out.println(positiearrival + "begin is");
 							int id = positions.get(positiearrival);
-							positions.set(endPosition, id);
+							positions.set(endPosition-1, id);
 							positions.set(positiearrival, 0);
 							timeMovement = minuut + 2;
 							movement = true;
@@ -212,8 +221,9 @@ public class Heuristic {
 			if (movement == false){
 				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
 				if(positions.get(1)!=0){
-				positiearrival = 0;//cheat
-//				positiearrival = 1; //nocheat
+					
+//				positiearrival = 0;//cheat
+				positiearrival = 1; //nocheat
 				}
 				if (positions.get(62) !=0){
 					positiearrival = 62; }
@@ -222,6 +232,7 @@ public class Heuristic {
 					for (int i=0;i<priorityArrivalarea.length;i++){
 //						printIteration(positions, minuut);
 						movementTime = move.possibleMovement(positiearrival+1, priorityArrivalarea[i], positions, Data, Yard);
+						
 //					if(movementTime!=0 && movementTime<100){System.out.println("movement 1 "  + movementTime);}
 						if(movementTime!=0 && movementTime<100){
 //							System.out.println("CHECK");
@@ -232,11 +243,12 @@ public class Heuristic {
 							} else {
 							 id = positions.get(positiearrival);
 							}
-							positions.set(endPosition, id);
+							positions.set(endPosition-1, id);
 							if(positiearrival==0){
 								positions.set(positiearrival+1, 0);//cheat
 							} else {
 								positions.set(positiearrival, 0);
+							
 							}							
 							timeMovement = minuut + 2;
 							movement = true;
@@ -250,6 +262,7 @@ public class Heuristic {
 							if ((getBooleans(id,1) + timeMovement) < List.getDeparturelist()[indexcheck][1] ){
 								StartEvent(id, 0, timeMovement);
 							}
+
 							positionTrainMatrix(endPosition, id, matrix);
 							minuutTrainMatrix(minuut, id, movementtijdmatrix);
 							break;
@@ -300,10 +313,11 @@ public class Heuristic {
 							int endPosition = -1;
 							for (int q=0;q<priorityType3.length;q++){
 								movementTime = move.possibleMovement(intWashposition, priorityType3[q], positions, Data, Yard);
+								
 								if(movementTime!=0 && movementTime <100){
 									endPosition = priorityType3[q];
 									int id = positions.get(intWashposition-1);
-									positions.set(endPosition, id);
+									positions.set(endPosition-1, id);
 									positions.set(intWashposition-1, 0);
 									timeMovement = minuut + 2;
 									movement = true;
@@ -325,10 +339,11 @@ public class Heuristic {
 						int endPosition = -1;
 						for (int q=0;q<priorityArrivalarea.length;q++){
 							movementTime = move.possibleMovement(intWashposition, priorityArrivalarea[q], positions, Data, Yard);
+						
 							if(movementTime!=0 && movementTime <100){
 								endPosition = priorityArrivalarea[q];
 								int id = positions.get(intWashposition-1);
-								positions.set(endPosition, id);
+								positions.set(endPosition-1, id);
 								positions.set(intWashposition-1, 0);
 								timeMovement = minuut + 2;
 								movement = true;
@@ -380,10 +395,11 @@ public class Heuristic {
 							int endPosition = -1;
 							for (int q=0;q<priorityType3.length;q++){
 								movementTime = move.possibleMovement(extWashposition, priorityType3[q], positions, Data, Yard);						
+//								System.out.println(movementTime +  extWashposition);
 								if(movementTime!=0 && movementTime <100){
 									endPosition = priorityType3[q];
 									int id = positions.get(extWashposition-1);
-									positions.set(endPosition, id);
+									positions.set(endPosition-1, id);
 									positions.set(extWashposition-1, 0);
 									timeMovement = minuut + 2;
 									movement = true;
@@ -406,10 +422,11 @@ public class Heuristic {
 						int endPosition = -1;
 						for (int q=0;q<priorityArrivalarea.length;q++){
 							movementTime = move.possibleMovement(extWashposition, priorityArrivalarea[q], positions, Data, Yard);						
+//							System.out.println(movementTime +  extWashposition);
 							if(movementTime!=0 && movementTime <100){
 								endPosition = priorityArrivalarea[q];
 								int id = positions.get(extWashposition-1);
-								positions.set(endPosition, id);
+								positions.set(endPosition-1, id);
 								positions.set(extWashposition-1, 0);
 								timeMovement = minuut + 2;
 								movement = true;
@@ -460,12 +477,13 @@ public class Heuristic {
 						
 							for (int i=0;i<priorityType1.length;i++){	
 								movementTime = move.possibleMovement(currentPosition+1, priorityType1[i], positions, Data, Yard);				
+//								System.out.println("movementTime" +  currentPosition);
 								if(movementTime!=0 && movementTime<100){
 									moveexecuted = true;
 									endPosition = priorityType1[i];
 								
 									int id = movementTrainID;
-									positions.set(endPosition, id);
+									positions.set(endPosition-1, id);
 									positions.set(currentPosition, 0);
 									timeMovement = minuut + 2;
 									movement = true;
@@ -498,7 +516,7 @@ public class Heuristic {
 									moveexecuted = true;
 									endPosition = priorityType2[i];
 									int id = movementTrainID;
-									positions.set(endPosition, id);
+									positions.set(endPosition-1, id);
 									positions.set(currentPosition, 0);
 									timeMovement = minuut + 2;
 									movement = true;
@@ -536,7 +554,7 @@ public class Heuristic {
 									moveexecuted = true;
 									endPosition = priorityType3[i];
 									int id = movementTrainID;
-									positions.set(endPosition, id);
+									positions.set(endPosition-1, id);
 									positions.set(currentPosition, 0);
 									timeMovement = minuut + 2;
 									movement = true;
@@ -573,7 +591,7 @@ public class Heuristic {
 											moveexecuted = true;
 											endPosition = priorityType4extra[i];
 											int id = movementTrainID;
-											positions.set(endPosition, id);
+											positions.set(endPosition-1, id);
 											positions.set(currentPosition, 0);
 											timeMovement = minuut + 2;
 											movement = true;
@@ -600,7 +618,7 @@ public class Heuristic {
 											moveexecuted = true; 
 											endPosition = priorityType4[i];
 											int id = movementTrainID;
-											positions.set(endPosition, id);
+											positions.set(endPosition-1, id);
 											positions.set(currentPosition, 0);
 											timeMovement = minuut + 2;
 											movement = true;
@@ -641,13 +659,15 @@ public class Heuristic {
 //		System.out.println("aantal keer echte beweging naar departure track" + counter);
 //		System.out.println("aantal keer een poging om naar departure track te gaan" + counter4);
 //		System.out.println("");
-//		printpositionTrainMatrix(matrix);
+		printpositionTrainMatrix(matrix);
+		double lengte = getLength(83003);
+		System.out.println(lengte);
 //		printtijdTrainMatrix(movementtijdmatrix);
 
 		double[] results = new double[2];
 		
-		results[0] = result1;
-		results[1] = result2; 
+		results[0] = result1; // all activity's
+		results[1] = result2;  //righttrack
 		return results; 
 
 
