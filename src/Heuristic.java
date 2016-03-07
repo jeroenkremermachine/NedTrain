@@ -65,9 +65,6 @@ public class Heuristic {
 		{	
 
 
-
-
-
 			int[][] a = List.getArrivallist();
 			int[] arrivalMin = getarrivalMin(a, 0);
 			int[][] d = List.getDeparturelist();
@@ -80,7 +77,7 @@ public class Heuristic {
 			// First of all, we check the arrivals, first the trains on track 104, later the trains on trakc 906. 
 			if(arrivalMin[1]<=minuut){
 				if (List.getArrivallist()[arrivalMin[0]][1] == 81002 || List.getArrivallist()[arrivalMin[0]][1] == 80428 || List.getArrivallist()[arrivalMin[0]][1] == 80206 ){
-					//arrivals on track 104
+					//arrivals on track 104				
 					positions.set(62, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 					List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); 
 					positionTrainMatrix(63, List.getArrivallist()[arrivalMin[0]][1], matrix); // positie, id, positiematrix
@@ -455,7 +452,7 @@ public class Heuristic {
 				}
 
 				while (moveexecuted == false){
-					boolean alreadyDeparture = false; //?? kijken
+					boolean alreadyDeparture = false; // checkt of een trein al in de departure area staat
 					int[] movementMin = getPossibleMin(x,0); //check index -1
 					if(movementMin[0] !=-1){ //move found!
 
@@ -463,7 +460,7 @@ public class Heuristic {
 						int movementTrainID = x[movementMin[0]][2]; // id
 						int currentPosition = getIndex(positions, movementTrainID); // current position
 						int endPosition = -1; // initialize end position
-						int time = movementMin[2]; // minimum movement time. ???? kijken
+						int time = movementMin[2]; // minimum movement time, nodig voor departure track, max verblijf op die track. 
 
 						// Start with the real moves, per type. 
 						
@@ -617,10 +614,10 @@ public class Heuristic {
 									}
 								}
 							}
-							else {x[movementMin[0]][0] = Integer.MAX_VALUE; }
+							else {x[movementMin[0]][0] = Integer.MAX_VALUE; } // als die geen enkele move gevonden heeft deze minuut.
 						}
 					}
-					if (movementMin[2] > 10000){
+					if (movementMin[2] > 10000){ // als minimum moventtime allemaal te hoog worden stoppen we deze minuut. 
 						moveexecuted = true; 
 					}
 				} // end while loop voor de move executed
