@@ -57,8 +57,9 @@ public class Heuristic {
 			movementtijdmatrix[i][0] = r[i][1]; //keep track of the arrival times on all positions
 		}
 
-		int counter = 0;
+		int counterdep = 0;
 		int counter4 =0;
+		int countererror = 0; // legen wasmachine, terug gaan naar arrival area, zou niet kunnen. 
 
 		while (minuut <= 1400)
 		{	
@@ -74,121 +75,101 @@ public class Heuristic {
 			int end = List.endmovement;//create set methods
 			int[][] activitylist = List.getActivitylist();
 			int[] activityMin = getMin(activitylist, 0);
-
-
-
-
-			//			if (minuut == 1400
-			//					){
-			//
-			//				for (int i = 0; i< 50; i++){
-			//					if (positions.get(i) != 0){
-			//						System.out.print("positions   "+i + "   " + positions.get(i) );
-			//						System.out.println();
-			//					}
-			//					
-			//				}
-			//			}
-
+			
+			
+			// First of all, we check the arrivals, first the trains on track 104, later the trains on trakc 906. 
 			if(arrivalMin[1]<=minuut){
-				//do arrival
 				if (List.getArrivallist()[arrivalMin[0]][1] == 81002 || List.getArrivallist()[arrivalMin[0]][1] == 80428 || List.getArrivallist()[arrivalMin[0]][1] == 80206 ){
 					//arrivals on track 104
 					positions.set(62, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 					List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); 
-					positionTrainMatrix(63, List.getArrivallist()[arrivalMin[0]][1], matrix);
-					minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[0]][1], movementtijdmatrix);
-
+					positionTrainMatrix(63, List.getArrivallist()[arrivalMin[0]][1], matrix); // positie, id, positiematrix
+					minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[0]][1], movementtijdmatrix); // minuut, id, tijdmatrix
+					
+					if (arrivalMin[3] != -1 ){
+						// als meerdere treinen aankomen on track 104
+						positions.set(61, List.getArrivallist()[arrivalMin[2]][1]); //put train on position
+						List.setArrivallist(Integer.MAX_VALUE, arrivalMin[2]); //set arrival time on inf
+						positionTrainMatrix(2, List.getArrivallist()[arrivalMin[2]][1], matrix);
+						minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[2]][1], movementtijdmatrix);
+					}
 				}
 				else {
+					//arrivals on track 906
 					positions.set(0, List.getArrivallist()[arrivalMin[0]][1]); //put train on position
 					List.setArrivallist(Integer.MAX_VALUE, arrivalMin[0]); //set arrival time on inf
-					positionTrainMatrix(1, List.getArrivallist()[arrivalMin[0]][1], matrix);
-					minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[0]][1], movementtijdmatrix);
+					positionTrainMatrix(1, List.getArrivallist()[arrivalMin[0]][1], matrix); // positie, id, positiematrix
+					minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[0]][1], movementtijdmatrix);// minuut, id, tijdmatrix
 
 					if (arrivalMin[3] != -1 ){
+						// als meerdere treinen aankomen on track 906
 						positions.set(1, List.getArrivallist()[arrivalMin[2]][1]); //put train on position
 						List.setArrivallist(Integer.MAX_VALUE, arrivalMin[2]); //set arrival time on inf
 						positionTrainMatrix(2, List.getArrivallist()[arrivalMin[2]][1], matrix);
 						minuutTrainMatrix(minuut, List.getArrivallist()[arrivalMin[2]][1], movementtijdmatrix);
 					}
 				}
-
 			}
 
-			if(departureMin[1]<=minuut ){ // check if positie is gevuld EN meerdere posities mogelijk, voor meerdere treinen op departure track
-				//do departure
+			// Next step is to check if a departure happens, departure happens always if a train is in the yard
+			// So not necessarily on the departing track. 
+			
+			if(departureMin[1]<=minuut ){ 
 				int departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[0]][1]); //find leaving train
 				positions.set(departurePosition, 0); //remove leaving train
 				List.setDeparturelist(Integer.MAX_VALUE, departureMin[0]); // set departure time on inf
-				for (int i=0;i<1000;i++){
+				
+				for (int i=0;i<1000;i++){ 
+				// set alle moves in movementlist op oneindig van deze trein.
 					if (List.getMovementlist()[i][2] == List.getDeparturelist()[departureMin[0]][1]){
 						List.setMovementlist(Integer.MAX_VALUE, List.getDeparturelist()[departureMin[0]][1], 1, i);
-					}//if a train leaves no more moves are availible
+					}
 				}
 
-				//				if (departureMin[3] != -1){
-				//					departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[2]][1]); //find leaving train
-				//					positions.set(departurePosition, 0); //remove leaving train
-				//					List.setDeparturelist(Integer.MAX_VALUE, departureMin[2]); // set departure time on inf
-				//					for (int i=0;i<1000;i++){
-				//						if (List.getMovementlist()[i][2] == List.getDeparturelist()[departureMin[2]][1]){
-				//							List.setMovementlist(Integer.MAX_VALUE, List.getDeparturelist()[departureMin[2]][1], 1, i);
-				//						}
-				//					}
-				//				}
-
+				if (departureMin[3] != -1){
+					// als meerdere treinen tegelijk weg moeten gaan. 
+					departurePosition = getIndex(positions, List.getDeparturelist()[departureMin[2]][1]); 
+					positions.set(departurePosition, 0); 
+					List.setDeparturelist(Integer.MAX_VALUE, departureMin[2]); 
+					for (int i=0;i<1000;i++){
+						if (List.getMovementlist()[i][2] == List.getDeparturelist()[departureMin[2]][1]){
+							List.setMovementlist(Integer.MAX_VALUE, List.getDeparturelist()[departureMin[2]][1], 1, i);
+						}
+					}
+				}
 			}
-
+			
+			// print iteration (op deze plek omdat nu alle treinen in het model staan van deze minuut. 			
+			printIteration(positions, minuut);
+			
+			// Set movement op false op het moment dat er een move klaar is op deze minuut. 
 			if(end==minuut){
-				movement=false; //endmovement aanpassen
+				movement=false; 
 				List.setEndmovement(Integer.MAX_VALUE);		
 			}
 
-
-
-			if (activityMin[1] <= minuut){ // nog checken: meerdere events op dezelfde minuut klaar?
+			// Set activity's uit op het moment dat ze klaar zijn, er van uitgaande dat het zelden gebeurd dat twee activities 
+			// in dezelfde minuut eindigen.
+			if (activityMin[1] <= minuut){ 
 				List.setActivitylist(activityMin[0], 1, Integer.MAX_VALUE);
 				List.setActivitylist(activityMin[0], 3, 0);
-
 			}
 
-			printIteration(positions, minuut);
+			
+			// Eerste move check: arrival track leegmaken.
 			int indexcheck = -1;
 			int positiearrival = -1;
 
-			if(minuut==1400){
-				for (int i=0; i<25;i++){
-					for(int j=0; j<8;j++){
-						System.out.print("  "+List.getActivitylist()[i][j]);
-					}System.out.println();
-				}
-			}
-
-			// 5 is diegene die niet altijd gebeurt maar vaak (inspectie)
-			// 4 is cleaning
-			// 3 is washing
-			// 6 is repairing
-
-			//			if(minuut==150){
-			//				for (int i=0; i<25;i++){
-			//					for(int j=0; j<8;j++){
-			//						System.out.print("  "+List.getActivitylist()[i][j]);
-			//					}System.out.println();
-			//				}
-			//			}
-
 			if (movement == false){
-				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
+				//Check arrival track voor beide arrival tracks, eerst en voor meerdere posities op de tracks
 				if(positions.get(0)!=0)
 				{positiearrival = 0;}
-				if (positions.get(62) !=0)
+				if (positions.get(62)!=0)
 				{positiearrival = 62; }
 				if (positiearrival != -1){
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
 						movementTime = move.possibleMovement(positiearrival+1, priorityArrivalarea[i], positions, Data, Yard);
-
 						if(movementTime!=0 && movementTime<100){							
 							endPosition = priorityArrivalarea[i];
 							int id = positions.get(positiearrival);
@@ -205,28 +186,24 @@ public class Heuristic {
 							}
 							if ((getBooleans(id,1) + timeMovement) < List.getDeparturelist()[indexcheck][1] ){
 								StartEvent(id, 0, timeMovement);
-
 							}
 							positionTrainMatrix(endPosition, id, matrix);
 							minuutTrainMatrix(minuut, id, movementtijdmatrix);
 							break;
 						}
-
 					}
 				}
-
 			}
+			
 			positiearrival = -1;	
 			indexcheck = -1;
 			if (movement == false){
-				//Check arrival track, niet elke trein komt op hetzelfde spoor aan
+				//Nu hetzelfde voor andere posities
 				if(positions.get(1)!=0){
-
-					//				positiearrival = 0;//cheat
-					positiearrival = 1; //nocheat
+					positiearrival = 1; 
 				}
-				if (positions.get(62) !=0){
-					positiearrival = 62; }
+				if (positions.get(61) !=0){
+					positiearrival = 61; }
 				if (positiearrival != -1){
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
@@ -235,16 +212,15 @@ public class Heuristic {
 							endPosition = priorityArrivalarea[i];
 							int id;
 							if(positiearrival==0){
-								id = positions.get(positiearrival+1);//cheat
+								id = positions.get(positiearrival+1);
 							} else {
 								id = positions.get(positiearrival);
 							}
 							positions.set(endPosition-1, id);
 							if(positiearrival==0){
-								positions.set(positiearrival+1, 0);//cheat
+								positions.set(positiearrival+1, 0);
 							} else {
 								positions.set(positiearrival, 0);
-
 							}							
 							timeMovement = minuut + 2;
 							movement = true;
@@ -258,16 +234,15 @@ public class Heuristic {
 							if ((getBooleans(id,1) + timeMovement) < List.getDeparturelist()[indexcheck][1] ){
 								StartEvent(id, 0, timeMovement);
 							}
-
 							positionTrainMatrix(endPosition, id, matrix);
 							minuutTrainMatrix(minuut, id, movementtijdmatrix);
 							break;
 						}
-
 					}
 				}
-
 			}
+			
+			// Next priority is het legen van de wasmachines, dit is belangrijk zodat deze zsm weer gebruikt kunnen worden
 
 			int intWashposition = -1; 
 			boolean activity = false;
@@ -277,9 +252,9 @@ public class Heuristic {
 				for (int i = 47; i<54;i++){
 					activity = false; //trein mag niet verplaatsen, geeft aan activity finished
 					if(positions.get(i)!=0 && movement == false){	
-
 						idextra = positions.get(i);
 						for(int j=0;j<50;j++){
+							// first check is of er een activity aan de gang is (als activity = true, dan geen activity meer)
 							if(List.getActivitylist()[j][1]==idextra){
 								if(List.getActivitylist()[j][2]==0){ //activity check
 									activity = true; // er wordt geen activity meer gedaan
@@ -287,10 +262,10 @@ public class Heuristic {
 								}
 							}
 						}
-
 					}
 
-					if (activity == true){// geen activity wordt gedaan
+					if (activity == true){
+						// Check het id in de activitylist om te kijken wat hij hierna nog moet doen.
 						int idcheck = positions.get(intWashposition-1);
 						int location = -1;
 						for(int j=0; j<50;j++){
@@ -298,13 +273,12 @@ public class Heuristic {
 								location = j;
 							}
 						}
-
-
+						
+						// Als hij niks meer hoeft te doen, dan richting de departure area, geen activities meer. 
 						if (List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][5] == 0 && List.getActivitylist()[location][6] == 0){
 							int endPosition = -1;
 							for (int q=0;q<priorityType3.length;q++){
 								movementTime = move.possibleMovement(intWashposition, priorityType3[q], positions, Data, Yard);
-
 								if(movementTime!=0 && movementTime <100){
 									endPosition = priorityType3[q];
 									int id = positions.get(intWashposition-1);
@@ -326,11 +300,12 @@ public class Heuristic {
 								}
 							}
 						}
+						
+						// als hij nog extern gewassen moet worden gaat hij daar naar toe. 
 						else if (List.getActivitylist()[location][3] != 0){
 							int endPosition = -1;
 							for (int q=0;q<priorityType2.length;q++){
 								movementTime = move.possibleMovement(intWashposition, priorityType2[q], positions, Data, Yard);
-
 								if(movementTime!=0 && movementTime <100){
 									endPosition = priorityType2[q];
 									int id = positions.get(intWashposition-1);
@@ -341,7 +316,6 @@ public class Heuristic {
 									List.setEndmovement(timeMovement);
 									positionTrainMatrix(endPosition, id, matrix);
 									minuutTrainMatrix(minuut, id, movementtijdmatrix);
-
 									for (int n = 0; n<50; n++){
 										if (List.getDeparturelist()[n][1] == id){
 											indexcheck = n;
@@ -356,17 +330,18 @@ public class Heuristic {
 											finalt = t;
 										}
 									}
-
 									List.setMovementlist(Integer.MAX_VALUE, id, 2 , finalt);
 									break;
 								}
 							}	
 						}
+						
 						else{
+							// Als hij nog iets anders moet doen (kan eigenlijk niet, maar to be sure), gaat hij terug naar de arrival area
 							int endPosition = -1;
 							for (int q=0;q<priorityArrivalarea.length;q++){
+								countererror = countererror +1;
 								movementTime = move.possibleMovement(intWashposition, priorityArrivalarea[q], positions, Data, Yard);
-
 								if(movementTime!=0 && movementTime <100){
 									endPosition = priorityArrivalarea[q];
 									int id = positions.get(intWashposition-1);
@@ -382,27 +357,26 @@ public class Heuristic {
 							}
 						}
 					}
-
 				}
 			}
 
+			// Daarna gaan we de external cleaning machine leeg maken.
+			
 			int extWashposition = -1; 
 			activity = false;
 			idextra = -1;
 
 			if (movement == false){
-				for (int i = 55; i<59;i++){//wasmachine
+				for (int i = 55; i<59;i++){ //posities van externe wasmachine
 					activity = false;
 					if(positions.get(i)!=0 && movement == false){	
 						idextra = positions.get(i);
 						for(int j=0;j<50;j++){
+							// check of er een activity plaats vind (activity = true als hij niet meer bezig is)
 							if(List.getActivitylist()[j][1]==idextra){
 								if(List.getActivitylist()[j][2]==0){ //activity check							
 									activity = true; //if finished activity
 									extWashposition = i+1;
-
-
-
 								}
 							}
 						}
@@ -416,8 +390,8 @@ public class Heuristic {
 								location = j;
 							}
 						}
-						if (List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][6] == 0){
-
+						if (List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][5] == 0 && List.getActivitylist()[location][6] == 0){
+							// als alle activities klaar zijn gaat hij naar de departure area
 							int endPosition = -1;
 							for (int q=0;q<priorityType3.length;q++){
 								movementTime = move.possibleMovement(extWashposition, priorityType3[q], positions, Data, Yard);						
@@ -443,7 +417,7 @@ public class Heuristic {
 							}
 						}
 						else{
-
+							//Zoniet dan gaat hij naar de arrival area (niet terug naar internal cleaning omdat die te druk bezet is). 
 							int endPosition = -1;
 							for (int q=0;q<priorityArrivalarea.length;q++){
 								movementTime = move.possibleMovement(extWashposition, priorityArrivalarea[q], positions, Data, Yard);						
@@ -462,19 +436,18 @@ public class Heuristic {
 							}
 						}
 					}
-
 				}
 			}
 
-
-			boolean moveexecuted = false;
+			// next we start with the normal movement list.
+			
+			boolean moveexecuted = false; // geeft aan of er in de iteratie al een move is uitgevoerd (zoniet dan moet hij een volgende zoekN).
 			indexcheck = -1;
-			if (movement == false){			//rest of movements // first copy the current movementlist
-
-
+			
+			if (movement == false){	
+				// first we copy the current movementlist, als we een infeasible move tegen komen zetten we m in deze copy op oneindig
 				int[][] m = List.getMovementlist(); 
 				int[][] x =  new int[1000][3] ;
-
 				for (int i = 0; i<1000;i++){
 					for (int j = 0; j<3;j++){
 						x[i][j] = m[i][j];
@@ -482,21 +455,18 @@ public class Heuristic {
 				}
 
 				while (moveexecuted == false){
-					boolean alreadyDeparture = false; 
+					boolean alreadyDeparture = false; //?? kijken
 					int[] movementMin = getPossibleMin(x,0); //check index -1
-
-
 					if(movementMin[0] !=-1){ //move found!
 
-						int movementType = x[movementMin[0]][1];
-						int movementTrainID = x[movementMin[0]][2];
-						int currentPosition = getIndex(positions, movementTrainID);
-						int endPosition = -1;
-						int time = movementMin[2];
+						int movementType = x[movementMin[0]][1]; // type
+						int movementTrainID = x[movementMin[0]][2]; // id
+						int currentPosition = getIndex(positions, movementTrainID); // current position
+						int endPosition = -1; // initialize end position
+						int time = movementMin[2]; // minimum movement time. ???? kijken
 
-
-
-
+						// Start with the real moves, per type. 
+						
 						if(movementType ==1){  // internal cleaning
 
 							for (int i=0;i<priorityType1.length;i++){	
@@ -504,7 +474,6 @@ public class Heuristic {
 								if(movementTime!=0 && movementTime<100){
 									moveexecuted = true;
 									endPosition = priorityType1[i];
-
 									int id = movementTrainID;
 									positions.set(endPosition-1, id);
 									positions.set(currentPosition, 0);
@@ -517,8 +486,8 @@ public class Heuristic {
 										}
 									}
 									if (getBooleans(id,3) + timeMovement < List.getDeparturelist()[indexcheck][1] ){
+										// check of hij met de activiteit mag beginnen, zoniet dan blijft de activity op 1 staan.
 										StartEvent(id, 1, timeMovement);
-
 									}
 									positionTrainMatrix(endPosition, id, matrix);
 									minuutTrainMatrix(minuut, id, movementtijdmatrix);
@@ -527,9 +496,8 @@ public class Heuristic {
 								}
 							}
 							if (moveexecuted == false) {
-
+								// Als hij geen move gevonden heeft, wordt de kopie van de movementlist op oneindig gezet
 								x[movementMin[0]][0] = Integer.MAX_VALUE;	
-
 							}
 						}
 						else if(movementType ==2){ // external cleaning
@@ -559,11 +527,9 @@ public class Heuristic {
 								}
 							}
 							if (moveexecuted == false) {
-
 								x[movementMin[0]][0] = Integer.MAX_VALUE;	
 							}
 						} 
-
 
 						else if(movementType ==3){ //move to depart area
 							for (int i=0;i<priorityType3.length;i++){
@@ -587,9 +553,6 @@ public class Heuristic {
 												indexcheck = n;
 											}
 										}
-										//									if (getBooleans(id,2) + timeMovement < List.getDeparturelist()[indexcheck][1] ){
-										//										StartEvent(id, 3, timeMovement);
-										//									}
 										List.setMovementlist(Integer.MAX_VALUE, movementTrainID, movementType , movementMin[0]);
 										positionTrainMatrix(endPosition, id, matrix);
 										minuutTrainMatrix(minuut, id, movementtijdmatrix);
@@ -598,15 +561,12 @@ public class Heuristic {
 								}
 							}
 							if (moveexecuted == false) {
-
-
 								x[movementMin[0]][0] = Integer.MAX_VALUE;	
 							}
 						} 
-
-						else if(movementType ==4  ){	//naar departuretrack
-							counter4++;
-							if (minuut > time - 3){//not infinite on track
+						
+					else if(movementType ==4  ){	//naar departuretrack, twee keer voor verschillende departure tracks. 
+							if (minuut > time - 3){	//not infinite on departing track, max 3 minutes. 
 								if (movementTrainID == 80428 || movementTrainID == 80206 || movementTrainID == 83071){
 									for (int i=0;i<priorityType4extra.length;i++){
 										movementTime = move.possibleMovement(currentPosition+1, priorityType4extra[i], positions, Data, Yard);
@@ -619,7 +579,7 @@ public class Heuristic {
 											timeMovement = minuut + 2;
 											movement = true;
 											List.setEndmovement(timeMovement);
-											counter = counter +1;
+											counterdep = counterdep +1;  //  belangrijke counter, telt het aantal succesvolle departures
 											positionTrainMatrix(endPosition, id, matrix);
 											minuutTrainMatrix(minuut, id, movementtijdmatrix);
 											List.setMovementlist(Integer.MAX_VALUE, movementTrainID, movementType , movementMin[0]);
@@ -645,17 +605,15 @@ public class Heuristic {
 											timeMovement = minuut + 2;
 											movement = true;
 											List.setEndmovement(timeMovement);
-											counter = counter +1;
+											counterdep = counterdep +1; //  belangrijke counter, telt het aantal succesvolle departures
 											positionTrainMatrix(endPosition, id, matrix);
 											minuutTrainMatrix(minuut, id, movementtijdmatrix);
 											List.setMovementlist(Integer.MAX_VALUE, movementTrainID, movementType , movementMin[0]);
 											break;
 										}
-
 									}
 									if (moveexecuted == false) {
 										x[movementMin[0]][0] = Integer.MAX_VALUE;	
-
 									}
 								}
 							}
@@ -670,34 +628,32 @@ public class Heuristic {
 			minuut++;
 		} //while minuut deadline is nog niet bereikt
 
-
-		double result1 = printPerformance(List.activitylist);
-		double result2 = counter; 
+	
+		// Print activitylist
+		for (int i=0; i<25;i++){
+			for(int j=0; j<8;j++){
+					System.out.print("  "+List.getActivitylist()[i][j]);
+				}System.out.println();
+			}
+		// print end position matrix
 		printpositionTrainMatrix(matrix);
-		double lengte = getLength(83003);
-		System.out.println(lengte);
+		System.out.println("error"+countererror);
+		
+		// print performance
+		double result1 = printPerformance(List.activitylist);
+		double result2 = counterdep; 
 		double[] results = new double[2];
-
 		results[0] = result1; // all activity's
-		results[1] = result2;  //righttrack
+		results[1] = result2;  //right track?
 		return results; 
-
-
-
-
-
-
-
-
-
-
-
+		
 	}
-
-	// SKIP EVENT IF: TYPE 4 event - (eventime + minuut) < 0
-
-
-
+	
+	// Informatie over de activitylist uitlezen. 
+	// 5 is inspectie
+	// 4 is cleaning
+	// 3 is washing
+	// 6 is repairing
 
 	public int[] getMin(int[] x){
 		int minvalue = 800000;
@@ -715,6 +671,7 @@ public class Heuristic {
 		int[] y = {index, minvalue};
 		return y;
 	}
+	
 	public int[] getMin(int[][] x, int z){
 		int minvalue = Integer.MAX_VALUE;
 		int index = -1;
@@ -957,7 +914,6 @@ public class Heuristic {
 		// THE REAL start event is making sure that the train cannot move, and that the train makes an end event after which it can move. 
 	}
 
-
 	public void StartEvent(int id, int type, int arrival){ // vult de eventlist met events (ANDERS DAN DE MOVEMENTLIST!)  
 		//
 		//	 // IF A TRAIN ARRIVES, OR IF A END MOVEMENT EVENT OCCURS, WE WILL CALL THIS METHOD. PER TRAIN ID SHOULD EXIST A EVENT MATRIX:
@@ -1044,32 +1000,21 @@ public class Heuristic {
 
 	public double printPerformance(int[][] activity){
 		//		TIME(1) -- ID(2) -- CURRENT event(3) -- WASHEXTERN(4) -- WASHINTERN(5) --- INSPECTION(6) -- REPAIR(7) -- event counter(8)
-		double[] performance = new double[50];//create vector with performance per train
 		double minPerformance =0;
 		double maxPerformance=0;
 		double totalPerformance=0;
 		double countPerformance=0;
 		double allDone = 0;
+		double unperformed =0; 
+		double performance = 0; 
 
 		for (int i=0;i<50;i++){
 			if(activity[i][1]!=0){ //a train is assigned to the row
-				double unperformed = activity[i][3]+activity[i][4]+activity[i][5]+activity[i][6]; //needed but undone binary
-				performance[i] = activity[i][7]/(activity[i][7]+unperformed); 
-
-				totalPerformance=totalPerformance+performance[i];
-				countPerformance=countPerformance+1;
-				if(minPerformance>performance[i]){
-					minPerformance=performance[i];
-				}
-				if(maxPerformance<performance[i]){
-					maxPerformance=performance[i];
-				}
-				if(performance[i]==1){
-					allDone = allDone+1;
+				unperformed = unperformed + activity[i][3]+activity[i][4]+activity[i][5]+activity[i][6]; //needed but undone binary
+				performance = performance + activity[i][7]; 		
 				}
 			}
-		}
-		double result =  (allDone/countPerformance);
+		double result =  (performance/(performance+unperformed));
 		return result;
 	}
 

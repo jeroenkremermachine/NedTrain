@@ -143,7 +143,7 @@ public class TotalMain {
 			System.out.println();
 			if(results[1] > 21.5)
 			{counterdeparture = counterdeparture +1;}
-			if(results[0] > 0.97)
+			if(results[0] > 0.999)
 			{countervolledigfeasible = countervolledigfeasible +1;}
 
 			if(results[0] > 0.97 && results[1] > 21.5){
@@ -186,7 +186,7 @@ public class TotalMain {
 	}
 
 	public static int[][] initializeBlockInfo(int blocks){
-		int[][] output = new int[blocks+1][11];
+		int[][] output = new int[blocks][11];
 
 		//		String csvFile = "CompositionTimesMatching.csv";
 		String csvFile = "CompositionTimes.csv";
