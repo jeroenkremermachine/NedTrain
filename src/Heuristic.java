@@ -167,13 +167,18 @@ public class Heuristic {
 				}
 			}
 			
-			if(minuut==150){
-				for (int i=0; i<25;i++){
-					for(int j=0; j<8;j++){
-						System.out.print("  "+List.getActivitylist()[i][j]);
-					}System.out.println();
-				}
-			}
+			// 5 is diegene die niet altijd gebeurt maar vaak (inspectie)
+			// 4 is cleaning
+			// 3 is washing
+			// 6 is repairing
+			
+//			if(minuut==150){
+//				for (int i=0; i<25;i++){
+//					for(int j=0; j<8;j++){
+//						System.out.print("  "+List.getActivitylist()[i][j]);
+//					}System.out.println();
+//				}
+//			}
 
 			if (movement == false){
 //				System.out.println("minuut is "+minuut);
@@ -288,18 +293,15 @@ public class Heuristic {
 
 								if(List.getActivitylist()[j][2]==0){ //activity check
 									//										System.out.println("index" + List.getActivitylist()[i][2]);
-									activity = true;
+									activity = true; // er wordt geen activity meer gedaan
 									intWashposition = i+1;
-
-
-
 								}
 							}
 						}
 
 					}
 
-					if (activity == true){//????
+					if (activity == true){// geen activity wordt gedaan
 						int idcheck = positions.get(intWashposition-1);
 						int location = -1;
 						for(int j=0; j<50;j++){
@@ -309,7 +311,7 @@ public class Heuristic {
 						}
 					
 						
-						if (List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][6] == 0){
+						if (List.getActivitylist()[location][3] == 0 && List.getActivitylist()[location][4] == 0 && List.getActivitylist()[location][5] == 0 && List.getActivitylist()[location][6] == 0){
 							int endPosition = -1;
 							for (int q=0;q<priorityType3.length;q++){
 								movementTime = move.possibleMovement(intWashposition, priorityType3[q], positions, Data, Yard);
@@ -334,6 +336,44 @@ public class Heuristic {
 									break;
 								}
 							}
+						}
+						else if (List.getActivitylist()[location][3] != 0){
+							int endPosition = -1;
+							for (int q=0;q<priorityType2.length;q++){
+								movementTime = move.possibleMovement(intWashposition, priorityType2[q], positions, Data, Yard);
+								
+								if(movementTime!=0 && movementTime <100){
+									endPosition = priorityType2[q];
+									int id = positions.get(intWashposition-1);
+									positions.set(endPosition-1, id);
+									positions.set(intWashposition-1, 0);
+									timeMovement = minuut + 2;
+									movement = true;
+									List.setEndmovement(timeMovement);
+									positionTrainMatrix(endPosition, id, matrix);
+									minuutTrainMatrix(minuut, id, movementtijdmatrix);
+									
+									for (int n = 0; n<50; n++){
+										if (List.getDeparturelist()[n][1] == id){
+											indexcheck = n;
+										}
+									}
+									if (getBooleans(id,4) + timeMovement < List.getDeparturelist()[indexcheck][1] ){
+										StartEvent(id, 2, timeMovement);								
+									}
+									int finalt = -1;
+									for (int t = 0; t<100; t++){
+										if (List.getMovementlist()[t][2] == id){
+											finalt = t;
+										}
+									}
+									
+									List.setMovementlist(Integer.MAX_VALUE, id, 2 , finalt);
+									break;
+								}
+							}
+						
+							
 						}
 						else{
 						int endPosition = -1;
@@ -855,6 +895,10 @@ public int getBooleans(int id, int bool){ //inspect, repair, clean, wash
 	ArrayList<trainComposition> comp = Data.getCompositions();
 	for (int i = 0; i< comp.size(); i++){
 		if (comp.get(i).getID()==id){
+//			if (id == 83067){
+//				System.out.println("kengte  : "+comp.get(i).getTrains().size());
+//				System.out.println(comp.get(i).getTrains().get(0).getType().getCleaningtime());
+//			}
 			for (int j=0; j<comp.get(i).getTrains().size();j++){
 				if(bool == 1){
 					if(comp.get(i).getTrains().get(j).getInspect()==true){
@@ -876,6 +920,7 @@ public int getBooleans(int id, int bool){ //inspect, repair, clean, wash
 			}
 		}
 	}
+
 	return time;
 }
 
@@ -1061,12 +1106,14 @@ public double printPerformance(int[][] activity){
 			}
 		}
 	}
-//	System.out.println("Dit gaat nog alleen over de eerste 8 treinen!!");//verander for loop
+
+	
+	//	System.out.println("Dit gaat nog alleen over de eerste 8 treinen!!");//verander for loop
 //	System.out.println("The lowest performing train performs " + minPerformance*100 + " percent of their tasks.");
 //	System.out.println("The highest performing train performs " + maxPerformance*100 + " percent of their tasks.");
 //	System.out.println("The average performing train performs " + (totalPerformance/countPerformance)*100 + " percent of their tasks.");
 //	System.out.println("The percentage of trains performing all tasks is " + (allDone/countPerformance)*100 + " percent.");
-	
+
 	double result =  (allDone/countPerformance);
 	return result;
 }
