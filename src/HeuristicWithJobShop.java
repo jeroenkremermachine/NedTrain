@@ -161,7 +161,7 @@ public class HeuristicWithJobShop {
 
 			}
 
-//						printIteration(positions, minuut);
+			printIteration(positions, minuut);
 			int indexcheck = -1;
 			int positiearrival = -1;
 
