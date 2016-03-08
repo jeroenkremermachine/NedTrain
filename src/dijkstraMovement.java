@@ -26,7 +26,7 @@ public class dijkstraMovement {
 		adjacencyMatrix = new int[number_of_nodes + 1][number_of_nodes + 1];
 	}
 
-	public int possibleMovement(int start, int end, ArrayList<Integer> positions, initializeData Data, InitializeShuntingYard Yard) throws FileNotFoundException, IOException{
+	public int possibleMovement(int[][] blockdata, int start, int end, ArrayList<Integer> positions, initializeData Data, InitializeShuntingYard Yard) throws FileNotFoundException, IOException{
 		int adjacency_matrix[][];
 		int number_of_vertices;
 		int source = 0, destination = 0;
@@ -211,7 +211,7 @@ public class dijkstraMovement {
 
 
 		int idnew; 
-		double movingTrainLength = getLength(id, Data);
+		double movingTrainLength = getLength(id, blockdata);
 		int track = -1;
 		for (int i = 0; i<14; i++){
 			for (int j = 0; j<10; j++){
@@ -225,7 +225,7 @@ public class dijkstraMovement {
 		for (int i =0 ; i<10; i++){
 			if(positionsPerTrack[track][i]!=0){ // dont look at start position
 				idnew = positions.get(positionsPerTrack[track][i]-1);
-				currentTrainLength = currentTrainLength + getLength(idnew, Data); 
+				currentTrainLength = currentTrainLength + getLength(idnew, blockdata); 
 			}
 		}
 
@@ -233,6 +233,10 @@ public class dijkstraMovement {
 			
 			possibleMovement = 0; 
 		}
+//		
+//		if (id == 83003){
+//			System.out.println("current : " + currentTrainLength + "  moving  " + movingTrainLength + " yard: " + Yard.getTracks().get(track).getLength());
+//		}
 
 		if(possibleMovement!=0 && possibleMovement<100){
 //			System.out.println("start is: " + start + " end is: "+ end);
@@ -248,8 +252,8 @@ public class dijkstraMovement {
 		return possibleMovement;
 	}
 
-	public void lengtetrein (int id, initializeData Data){
-		double movingTrainLength = getLength(id, Data);
+	public void lengtetrein (int id, int[][] blockdata){
+		double movingTrainLength = getLength(id, blockdata);
 		System.out.println("id van de trein" + id +"   lengte van de trein:  "+movingTrainLength);
 				}
 	
@@ -324,27 +328,46 @@ public class dijkstraMovement {
 	public double getTime(int i){
 		return distances[i];
 	}
-	public double getLength(int id, initializeData Data){
-		String x = Integer.toString(id);
-		double length=0;
-		if (id != 0){
-			if (x.length() == 5){
-				ArrayList<trainComposition> comp = Data.getCompositions();
-				for (int i = 0; i< comp.size(); i++){
-					if (comp.get(i).getID()==id){
-						length = comp.get(i).getLength();
-					}
-				}
-			}else {
-				ArrayList<Train> train = Data.getTrains();
-				for (int i = 0; i< train.size(); i++){
-					if (train.get(i).getID()==id){
-						length = train.get(i).getType().getLength();
-					}
-				}
+	
+//	public double getLength(int id, initializeData Data){
+//		String x = Integer.toString(id);
+//		double length=0;
+//		if (id != 0){
+//			if (x.length() == 5){
+//				ArrayList<trainComposition> comp = Data.getCompositions();
+//				for (int i = 0; i< comp.size(); i++){
+//					if (comp.get(i).getID()==id){
+//						length = comp.get(i).getLength();
+//					}
+//				}
+//			}else {
+//				ArrayList<Train> train = Data.getTrains();
+//				for (int i = 0; i< train.size(); i++){
+//					if (train.get(i).getID()==id){
+//						length = train.get(i).getType().getLength();
+//					}
+//				}
+//			}
+//		}
+//		return length;
+//	}
+	
+	public double getLength(int id, int[][] Blockdata){
+		int column = -1;
+		int length = 0;
+		for (int i = 0; i<23; i++){
+			if (Blockdata[i][0] == id){
+				column = i;
 			}
+		}
+		
+		if (column != -1){
+		length =  Blockdata[column][11];
 		}
 		return length;
 	}
+	
+	
+
 
 }

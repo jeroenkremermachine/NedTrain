@@ -18,6 +18,7 @@ public class TotalMain {
 		int counterdeparture = 0;
 		int countervolledigfeasible = 0;
 		int countervolledigfeasiblehelemaal = 0;
+		double avgactivity = 0;
 
 		//GIVE INPUT===================================================================================
 		int MatchingMargin = 0;
@@ -85,7 +86,7 @@ public class TotalMain {
 			}
 //			
 //			System.out.println("BlockData");
-//			printDoubleArray(blockdata);
+			printDoubleArray(blockdata);
 			
 			HeuristicJobShop jobshop = new HeuristicJobShop(allJobs, oneJobs, twoJobs);
 			int[][] output = jobshop.solver(); //this is already sorted on starting times
@@ -113,9 +114,9 @@ public class TotalMain {
 			priorityPlatform2.addAll(M1);
 
 			int[] priorityArrivaltrack = {1, 2, 3, 4}; 
-			int[] priorityArrival =  {41, 38, 35, 31, 43, 40, 37, 34, 40, 67};		
-			int[] priorityType1 = {48, 52, 49, 53, 50, 54, 51, 55}; // Internal 
-			int[] priorityType2 = {56, 57, 58, 59, 60}; // External
+			int[] priorityArrival =  { 35, 38, 31, 40, 37, 33, 34, 25, 26, 27, 19, 24, 12, 18, 5, 11, 61, 62};
+			int[] priorityType1 = {48, 50, 49, 52, 53, 54}; // Internal , 49, 53, 50, 54, 51, 55
+			int[] priorityType2 = {56}; // External , 57, 58, 59, 60
 			int[] priorityType3 = {11, 5, 18, 12, 24,19, 30, 25, 34, 31, 11, 18, 24, 30, 10,  17, 23, 29, 9, 16, 22, 28, 8, 15, 21, 27, 7, 14, 20, 26, 6, 13, 19, 25,5, 12}; // depart
 			int[] priorityType4 = {4, 3, 2, 1}; //departing track
 			int[] priorityType4extra = {61, 62}; // other departing track
@@ -139,8 +140,8 @@ public class TotalMain {
 			//	};
 
 			//		optimizingModel3 model = new optimizingModel3(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
-				Heuristic model = new Heuristic(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
-//			HeuristicWithJobShop model = new HeuristicWithJobShop(data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra, priorityPlatform1, priorityPlatform2); //create the model
+//				Heuristic model = new Heuristic(blockdata, data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra); //create the model
+			HeuristicWithJobShop model = new HeuristicWithJobShop(blockdata, data, yard, eventList, priorityArrivaltrack,  priorityArrival, priorityType1, priorityType2, priorityType3, priorityType4, priorityType4extra, priorityPlatform1, priorityPlatform2); //create the model
 
 			yard.tpmbuilder();
 			int[][] test = yard.returnTPM();
@@ -150,12 +151,13 @@ public class TotalMain {
 			System.out.println("Right track departures:  " + results[1]);
 			System.out.println("Completed activities:  " + results[0]);
 			System.out.println();
-			if(results[1] > 21.5)
+			if(results[1] > 22.5 && results[1] < 23.5)
 			{counterdeparture = counterdeparture +1;}
-			if(results[0] > 0.97)
+			if(results[0] > 0.999)
 			{countervolledigfeasible = countervolledigfeasible +1;}
-
-			if(results[0] > 0.97 && results[1] > 21.5){
+			
+			avgactivity = avgactivity + results[0];
+			if(results[0] > 0.999 && results[1] > 22.5){
 				countervolledigfeasiblehelemaal = countervolledigfeasiblehelemaal +1;
 			}
 		}
@@ -168,6 +170,8 @@ public class TotalMain {
 		System.out.println("Completed activities:   " + countervolledigfeasible + " out of " + nriterations + "(" + 100*countervolledigfeasible/nriterations + "%)");
 		System.out.println("Feasible run:   " + countervolledigfeasiblehelemaal + " out of "+ nriterations + "(" + 100*countervolledigfeasiblehelemaal/nriterations + "%)");
 		System.out.println("The runX time was " + elapsedTime/1000 + " seconds.");
+		System.out.println("avg activity score: " + avgactivity/nriterations);
+		
 
 	}
 
@@ -221,7 +225,7 @@ public class TotalMain {
 				output[count][8] = Integer.parseInt(data[8]); //C time
 				output[count][9] = Integer.parseInt(data[9]); //W time
 				output[count][10] = Integer.parseInt(data[10]);  //R time
-//				output[count][11] = Integer.parseInt(data[11]);  //Lengt
+				output[count][11] = Integer.parseInt(data[11]);  //Lengt
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
