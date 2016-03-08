@@ -816,13 +816,16 @@ public class HeuristicWithJobShop {
 
 	
 		// Print activitylist
-		for (int i=0; i<26;i++){
-			for(int j=0; j<8;j++){
-					System.out.print("  "+List.getActivitylist()[i][j]);
-				}System.out.println();
-			}
+//		for (int i=0; i<26;i++){
+//			for(int j=0; j<8;j++){
+//					System.out.print("  "+List.getActivitylist()[i][j]);
+//				}System.out.println();
+//			}
+		
 		// print end position matrix
+		System.out.println();
 		printpositionTrainMatrix(matrix);
+		System.out.println();
 		printtijdTrainMatrix(movementtijdmatrix);
 		
 		// print performance
