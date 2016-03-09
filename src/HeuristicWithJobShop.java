@@ -62,7 +62,7 @@ public class HeuristicWithJobShop {
 		movement = false;
 		int[][] matrix = new int[30][150]; 
 		int[][] results = new int[24][1402];
-		int[][] movementtijdmatrix = new int[30][15];
+		int[][] movementtijdmatrix = new int[30][30];
 		int[][] r = List.getArrivallist();
 		for (int i = 0; i<30; i++){
 			matrix[i][0] = r[i][1]; //keep track of all positions of each train
@@ -243,7 +243,7 @@ public class HeuristicWithJobShop {
 			}
 			
 //			print iteration (op deze plek omdat nu alle treinen in het model staan van deze minuut. 			
-			printIteration(positions, minuut);
+//			printIteration(positions, minuut);
 			int[][] aa = List.getArrivallist();
 			results = makeResults(minuut, aa, results, positions);
 			
@@ -295,7 +295,16 @@ public class HeuristicWithJobShop {
 							timeMovement = minuut + 2;
 							movement = true;
 							List.setEndmovement(timeMovement);
+							boolean known = false;
+							for (int c = 0; c<100; c++){
+								if (List.getMovementlist()[c][2] == id){	
+									known = true;
+								}
+							}
+							if(!known){
+								System.out.println("hoi  " + id);
 							setMovementList(id, blockdata, numberTrains);
+							}
 							for (int n = 0; n<50; n++){
 								if (List.getDeparturelist()[n][1] == id){
 									indexcheck = n;
@@ -343,7 +352,16 @@ public class HeuristicWithJobShop {
 							timeMovement = minuut + 2;
 							movement = true;
 							List.setEndmovement(timeMovement);
+							boolean known = false;
+							for (int c = 0; c<100; c++){
+								if (List.getMovementlist()[c][2] == id){	
+									known = true;
+								}
+							}
+							if(!known){
+								System.out.println("hoi  " + id);
 							setMovementList(id, blockdata, numberTrains);
+							}
 							for (int n = 0; n<50; n++){
 								if (List.getDeparturelist()[n][1] == id){
 									indexcheck = n;
@@ -1254,7 +1272,9 @@ public class HeuristicWithJobShop {
 			}
 		}
 
-//		System.out.println("dit22  " + type + "  " + id + "   " + inspection);
+//		if (id == 83003){
+//		System.out.println("dit22  " + type + "  " + id + "   " + washExtern);
+//		}
 		if(type ==1){ //internal
 			if(List.getActivitylist()[location][4]==1){ //needs cleaning
 				List.setActivitylist(location, 1, arrival+washIntern+repair);
@@ -1378,14 +1398,16 @@ public class HeuristicWithJobShop {
 				break;
 			}
 		}
-		for (int j = 0; j<15 ; j++){
+		for (int j = 0; j<30 ; j++){
 
 			if (matrix[indexrij][j] == 0){
 				indexkolom = j;	
 				break;
 			}
 		}
+		if(indexkolom != -1){
 		matrix[indexrij][indexkolom] = (minuut+2);	
+		}
 		return matrix;
 	}
 

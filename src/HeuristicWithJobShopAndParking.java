@@ -351,7 +351,16 @@
 								timeMovement = minuut + 2;
 								movement = true;
 								List.setEndmovement(timeMovement);
+								boolean known = false;
+								for (int c = 0; c<100; c++){
+									if (List.getMovementlist()[c][2] == id){	
+										known = true;
+									}
+								}
+								if(!known){
+									System.out.println("hoi  " + id);
 								setMovementList(id, blockdata, numberTrains);
+								}
 								for (int n = 0; n<50; n++){
 									if (List.getDeparturelist()[n][1] == id){
 										indexcheck = n;
@@ -398,7 +407,16 @@
 								timeMovement = minuut + 2;
 								movement = true;
 								List.setEndmovement(timeMovement);
+								boolean known = false;
+								for (int c = 0; c<100; c++){
+									if (List.getMovementlist()[c][2] == id){	
+										known = true;
+									}
+								}
+								if(!known){
+									System.out.println("hoi  " + id);
 								setMovementList(id, blockdata, numberTrains);
+								}
 								for (int n = 0; n<50; n++){
 									if (List.getDeparturelist()[n][1] == id){
 										indexcheck = n;
