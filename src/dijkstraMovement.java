@@ -52,18 +52,13 @@ public class dijkstraMovement {
 			for (int i = 0; i<67;i++){
 				for (int j = 0; j<67;j++){
 					tpm[i][j] = tp[i][j];
-//					System.out.print(tpm[i][j]+" ");
 				}
-//				System.out.println();
-			}
-//			System.out.println();
-			
+			}	
 
 			for (int i = 0; i<=66;i++)
 			{
 
 				if (positions.get(i) !=0){
-//					System.out.println("uitgezet is alles naar: " + i);
 					for (int p = 0; p<=66; p++) 
 					{
 						tpm[p][i] = 0;
@@ -71,8 +66,6 @@ public class dijkstraMovement {
 					}
 			}
 			}
-//			System.out.println("rotue naar: " + end);
-			
 			
 //	 		int[][] positionsPerTrack2 = {
 //					{1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//t906a
@@ -114,14 +107,6 @@ public class dijkstraMovement {
 //			}
 //			
 			
-			
-			
-			
-			
-			
-
-		
-//System.out.println("tpm: " + tpm[4][48]);
 
 			for (int i = 1; i <= number_of_vertices; i++)
 			{
@@ -141,19 +126,7 @@ public class dijkstraMovement {
 				}
 			}
 			for (int i=0; i<67; i++){
-//			System.out.println(i + "  " + adjacency_matrix[i][48]);
 			}
-			
-//			for (int i = 1; i <= 67; i++)
-//			{
-//				for (int j = 1; j <= 67; j++)
-//				{
-//					System.out.print(adjacency_matrix[i][j] + "  ");
-//					
-//				}
-//				System.out.println();
-//			}
-		
 
 			source = start;
 			destination = end;
@@ -166,18 +139,11 @@ public class dijkstraMovement {
 			possibleMovement = 0;
 			for (int i = 1; i <= dijkstrasAlgorithm.distances.length - 1; i++)
 			{
-				// System.out.println(dijkstrasAlgorithm.distances[i]);
 				if (i == destination)
 				{
-					//                     System.out.println(source + " to " + i + " is "
-					//                             + dijkstrasAlgorithm.distances[i]);
 					possibleMovement = dijkstrasAlgorithm.distances[i];
 				}
-
-
-
 			}
-			//System.out.println("het is mogelijk om te bewegen:   "+possibleMovement);
 
 		} 
 		catch (InputMismatchException inputMismatch)
@@ -233,22 +199,15 @@ public class dijkstraMovement {
 			
 			possibleMovement = 0; 
 		}
-//		
-//		if (id == 83003){
-//			System.out.println("current : " + currentTrainLength + "  moving  " + movingTrainLength + " yard: " + Yard.getTracks().get(track).getLength());
-//		}
+
 
 		if(possibleMovement!=0 && possibleMovement<100){
-//			System.out.println("start is: " + start + " end is: "+ end);
 			for (int i = 0; i<67; i++){
 				if (positions.get(i) != 0){
-//					System.out.println("positie i: " + i + " heeft trein: " + positions.get(i));
 				}
 			}
 		}
-//		if (id == 83003){
-//			System.out.println("id : " + id + "  move  " + possibleMovement + " end: " + end + "  begin:  " + start);
-//		}
+
 		return possibleMovement;
 	}
 
