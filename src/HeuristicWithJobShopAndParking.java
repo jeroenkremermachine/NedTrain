@@ -30,7 +30,7 @@
 		public int numberTrains;
 		public ArrayList<Integer> departureArea;
 		public int[][] parkingMatrix;
-
+		public int[] departureReserve;
 
 			
 			public HeuristicWithJobShopAndParking(int[][] parkingMatrix, int numberTrains, int[][] blockdata,initializeData Data, InitializeShuntingYard Yard, initializeEventList eventlist, int[] priorityArrivaltrack, int[]priorityArrivalarea, int[] priorityType1, int[]  priorityType2, int[] priorityType3, int[] priorityType4, int[] priorityType4extra, ArrayList<Integer> priorityPlatform1, ArrayList<Integer> priorityPlatform2){
@@ -53,6 +53,7 @@
 			this.priorityPlatform2 = priorityPlatform2;
 			this.departureArea = departureArea;
 			this.parkingMatrix = parkingMatrix; 
+			this.departureReserve = departureReserve;
 		}
 
 		public double[]  optimization(int[][] tpm) throws FileNotFoundException, IOException{
@@ -149,7 +150,7 @@
 				}	
 			}	
 			
-			
+			int[] departureReserve = {6, 13, 20, 26, 32}; 
 			int counterdep = 0;
 			int counter4 =0;
 
@@ -457,14 +458,24 @@
 									departureArea.add(counterindex, p);
 									counterindex = counterindex +1; 
 									}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
+									}
 								}
+								
 								counterindex = 0;
 								if (depArea53.contains(positions.get(intWashposition-1))){
 									for (int p = 18; p > 12; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea54.contains(positions.get(intWashposition-1))){
 									System.out.println(positions.get(intWashposition-1));
@@ -472,27 +483,48 @@
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
+								counterindex = 0;
 								if (depArea55.contains(positions.get(intWashposition-1))){
 									for (int p = 30; p > 25; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea56.contains(positions.get(intWashposition-1))){
 									for (int p = 34; p > 31; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea57.contains(positions.get(intWashposition-1))){
 									for (int p = 37; p > 35; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								for (int q=0;q<departureArea.size();q++){
 									movementTime = move.possibleMovement(blockdata, intWashposition, departureArea.get(q), positions, Data, Yard);
@@ -516,6 +548,7 @@
 										break;
 									}
 								}
+								
 							}
 							
 							// als hij nog extern gewassen moet worden gaat hij daar naar toe. 
@@ -618,41 +651,72 @@
 									departureArea.add(counterindex, p);
 									counterindex = counterindex +1; 
 									}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
+									}
 								}
+								
 								counterindex = 0;
 								if (depArea53.contains(positions.get(extWashposition-1))){
 									for (int p = 18; p > 12; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea54.contains(positions.get(extWashposition-1))){
 									for (int p = 24; p > 19; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea55.contains(positions.get(extWashposition-1))){
 									for (int p = 30; p > 25; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea56.contains(positions.get(extWashposition-1))){
 									for (int p = 34; p > 31; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
+								counterindex = 0;
 								if (depArea57.contains(positions.get(extWashposition-1))){
 									for (int p = 37; p > 35; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								for (int q=0;q<departureArea.size();q++){
 									movementTime = move.possibleMovement(blockdata, extWashposition, departureArea.get(q), positions, Data, Yard);
@@ -714,8 +778,6 @@
 						for (int uu = 0; uu<numberTrains; uu++){
 							if (List.getActivitylist()[uu][1] == priorityPlatform1.get(j)){// check activity
 								locatie = uu; 
-//								System.out.println(priorityPlatform1.get(j));
-//								System.out.println(List.getActivitylist()[locatie][0]);
 							}
 						}
 						if (List.getActivitylist()[locatie][0] > 10000){
@@ -934,42 +996,72 @@
 									departureArea.add(counterindex, p);
 									counterindex = counterindex +1; 
 									}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
+									}
 								}
+								
 								counterindex = 0;
 								if (depArea53.contains(positions.get(currentPosition))){
 									for (int p = 18; p > 12; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea54.contains(positions.get(currentPosition))){
 									for (int p = 24; p > 19; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea55.contains(positions.get(currentPosition))){
 									for (int p = 30; p > 25; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea56.contains(positions.get(currentPosition))){
 									for (int p = 34; p > 31; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								if (depArea57.contains(positions.get(currentPosition))){
 									for (int p = 37; p > 35; p--){
 										departureArea.add(counterindex, p);
 										counterindex = counterindex +1; 
 										}
+									for (int v = 0; v< 5; v++){
+										departureArea.add(counterindex, departureReserve[v]); 
+										counterindex = counterindex+1;
 									}
+								}
+								
 								counterindex = 0;
 								for (int q=0;q<departureArea.size();q++){
 									
@@ -1420,6 +1512,7 @@
 			} else {
 				type1Event = type3Event - washIntern - repair - movementtime;
 			}
+			
 			List.setMovementlist((int) type1Event, id, 1, location);
 
 			// -------------------------------------------------------------------------------------------------- 

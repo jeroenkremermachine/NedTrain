@@ -324,10 +324,11 @@ public class HeuristicWithJobShop {
 				if (positiearrival != -1){
 					int endPosition = -1;	
 					for (int i=0;i<priorityArrivalarea.length;i++){
+
 						movementTime = move.possibleMovement(blockdata, positiearrival+1, priorityArrivalarea[i], positions, Data, Yard);
 						if(movementTime!=0 && movementTime<100){
 							endPosition = priorityArrivalarea[i];
-							int id;
+							int id = positions.get(positiearrival);
 							if(positiearrival==0){
 								id = positions.get(positiearrival+1);
 							} else {
